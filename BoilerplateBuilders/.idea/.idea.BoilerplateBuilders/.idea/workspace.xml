@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="423">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <marker date="1561377416371" expanded="true" signature="6:59" ph="..." />
+                <marker date="1561377416371" expanded="true" signature="82:1719" ph="{...}" />
+                <marker date="1561377416371" expanded="true" signature="89:198" ph="/// Additions to &lt;see cref=&quot;System.Linq.Enumerable&quot;/&gt; extension methods. ... " />
+                <marker date="1561377416371" expanded="true" signature="243:1717" ph="{...}" />
+                <marker date="1561377416371" expanded="true" signature="258:751" ph="/// Compares content of two sequences ignoring order of elements. ... " />
+                <marker date="1561377416371" expanded="true" signature="890:1012" ph="{...}" />
+                <marker date="1561377416371" expanded="true" signature="1030:1422" ph="/// Computes hash code for sequence by combining hash codes of its' elements. ... " />
+                <marker date="1561377416371" expanded="true" signature="1525:1711" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Account</find>
+    </findStrings>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/eb/9a583384/LambdaCompiler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/99/51c428df/Comparer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/AccessorFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Models/Account.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37B379B3-67CB-4B1F-8609-E00EED30209E/7e/6ea64f0b/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A2DDBDA9-1E09-414A-801B-36BA566856C2/1b/b5e359f1/IList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B5338824-CBDC-44DD-BCB5-64CD75C24DAB/11/1a5419ae/ISet`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/SequenceEqualityComparisonMode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A2DDBDA9-1E09-414A-801B-36BA566856C2/50/92a36dfc/ICollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/GetHashCodeDelegate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunctionFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/05/b7e71d2c/Func`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMember.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityDelegate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/TypeExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderOperationSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B681A47F-B789-4724-BD08-CC0A0213E9B7/3b/9eafb882/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberOperation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/3d/c7a2b64f/MethodCallExpression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Utils/TypeExtensionsTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityComparerBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/659CD5F0-C4CE-410C-B23A-6CADD71BB76F/e3/11877ecc/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/34/b789a71c/LambdaExpression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/e3/2d00e7b9/Object.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Getter/BasicMemberInfo.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/BuilderAdapter.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Getter/BasicMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Getter/EqualityMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Getter/BasicMemberInfoFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/MemberEqualityFunctions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/EqualityComparerBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BasicMemberFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/TestModels/Account.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactoryTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/Models/Account.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/AccessorFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/SequenceEqualityComparisonMode.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/Utils/TypeExtensionsTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/TypeExtensions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Equality/EqualityFunctionFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/EqualityMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Equality/EqualityFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BasicMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/GenericEqualityFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/FunctionSource.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityMemberSettings.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/ActiveMemberSettings.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BasicMemberSettings.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityMember.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityBuilderFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunctionFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/FunctionSource.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunc.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualsFunc.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityDelegate.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityComparer.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunc.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/GetHashCodeDeleget.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/GetHashCodeDelegate.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberOperation.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderOperationSource.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunction.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="980" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <autoscrollToSource SolutionExplorer="false" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="BoilerplateBuilders" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="BoilerplateBuilders" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="BoilerplateBuilders" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="BoilerplateBuilders" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="BoilerplateBuilders" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="BoilerplateBuilders" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Utils" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="C#" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XAML" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="" />
+      <created>1560776056769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560776056769</updated>
+      <workItem from="1560776060083" duration="11878000" />
+      <workItem from="1560796329044" duration="3027000" />
+      <workItem from="1560799414301" duration="977000" />
+      <workItem from="1560872440560" duration="5810000" />
+      <workItem from="1560952365672" duration="9866000" />
+      <workItem from="1561014041468" duration="2747000" />
+      <workItem from="1561016867120" duration="9362000" />
+      <workItem from="1561177805762" duration="2074000" />
+      <workItem from="1561265563181" duration="2577000" />
+      <workItem from="1561270176234" duration="4528000" />
+      <workItem from="1561279295765" duration="3715000" />
+      <workItem from="1561368296536" duration="5804000" />
+      <workItem from="1561391930696" duration="1156000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="63521000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25419182" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32916668" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" auto_hide="true" id="Unit Tests" order="12" sideWeight="0.49966466" weight="0.3625" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32916668" />
+      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.50033534" side_tool="true" weight="0.32916668" />
+      <window_info anchor="bottom" auto_hide="true" id="Build" order="15" weight="0.32916668" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" weight="0.3293092" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23071764" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32916668" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" auto_hide="true" id="Unit Tests" order="12" sideWeight="0.49966466" weight="0.3625" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32916668" />
+      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.50033534" side_tool="true" weight="0.32916668" />
+      <window_info anchor="bottom" auto_hide="true" id="Build" order="15" weight="0.32916668" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" weight="0.3293092" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>type</expression-string>
+        <language-id>C#</language-id>
+        <custom-info>RiderImportsList:</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Class1.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/UnitTest1.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityComparerBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="88" column="3" selection-end-line="88" selection-end-column="3" />
+          <folding>
+            <marker date="1560890905634" expanded="true" signature="0:3030" ph="/* using System; ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/MemberEqualityFunctions.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/3d/c7a2b64f/MethodCallExpression.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/659CD5F0-C4CE-410C-B23A-6CADD71BB76F/e3/11877ecc/Dictionary`2.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="80" selection-start-line="22" selection-start-column="69" selection-end-line="22" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/34/b789a71c/LambdaExpression.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="148" column="30" lean-forward="true" selection-start-line="148" selection-start-column="30" selection-end-line="148" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/096D1F85-47DE-4789-9429-3B9C34E84301/eb/9a583384/LambdaCompiler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="936" column="38" lean-forward="true" selection-start-line="936" selection-start-column="38" selection-end-line="936" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="66" selection-start-line="73" selection-start-column="66" selection-end-line="73" selection-end-column="66" />
+          <folding>
+            <marker date="1561035115610" expanded="true" signature="6:73" ph="..." />
+            <marker date="1561035115610" expanded="true" signature="3412:3463" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="3412:3461" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="356:2209" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="382:2199" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="1230:1329" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="1399:1498" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="2351:2429" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="2497:3221" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="2523:3211" ph="{...}" />
+            <marker date="1561035115610" expanded="true" signature="3412:3455" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="35" column="85" selection-start-line="35" selection-start-column="78" selection-end-line="35" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/codeStyles/codeStyleConfig.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/riderModule.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders.sln">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="82" selection-start-line="65" selection-start-column="82" selection-end-line="65" selection-end-column="82" />
+          <folding>
+            <marker date="1561034058073" expanded="true" signature="6:243" ph="..." />
+            <marker date="1561034058073" expanded="true" signature="306:3526" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="463:3524" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="538:1701" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="564:1691" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="1854:1972" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="2046:2569" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="2072:2559" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="2728:2865" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="2938:3185" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="2964:3175" ph="{...}" />
+            <marker date="1561034058073" expanded="true" signature="3377:3518" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Models/Account.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding>
+            <marker date="1561033981198" expanded="true" signature="6:57" ph="..." />
+            <marker date="1561033981198" expanded="true" signature="100:1028" ph="{...}" />
+            <marker date="1561033981198" expanded="true" signature="191:1026" ph="{...}" />
+            <marker date="1561033981198" expanded="true" signature="309:404" ph="{...}" />
+            <marker date="1561033981198" expanded="true" signature="533:1020" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/SequenceEqualityComparisonMode.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <marker date="1561035036076" expanded="true" signature="29:546" ph="{...}" />
+            <marker date="1561035036076" expanded="true" signature="36:136" ph="/// Determines how collections should be compared for equality. ... " />
+            <marker date="1561035036076" expanded="true" signature="183:544" ph="{...}" />
+            <marker date="1561035036076" expanded="true" signature="198:337" ph="/// Sequences are considered equal if they contain same number of same elements in same order. ... " />
+            <marker date="1561035036076" expanded="true" signature="374:518" ph="/// Sequences are considered equal if they contain same number of same elements in arbitrary order. ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B5338824-CBDC-44DD-BCB5-64CD75C24DAB/11/1a5419ae/ISet`1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <marker date="1560784791338" expanded="true" signature="0:323" ph="/* Decompiled with JetBrains decompiler ... */" />
+            <marker date="1560784791338" expanded="true" signature="361:932" ph="{...}" />
+            <marker date="1560784791338" expanded="true" signature="436:930" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B681A47F-B789-4724-BD08-CC0A0213E9B7/3b/9eafb882/Enumerable.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="143" column="41" lean-forward="true" selection-start-line="143" selection-start-column="41" selection-end-line="143" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/e3/2d00e7b9/Object.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/99/51c428df/Comparer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A2DDBDA9-1E09-414A-801B-36BA566856C2/50/92a36dfc/ICollection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A2DDBDA9-1E09-414A-801B-36BA566856C2/1b/b5e359f1/IList.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37B379B3-67CB-4B1F-8609-E00EED30209E/7e/6ea64f0b/List`1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="139" lean-forward="true" selection-start-line="12" selection-start-column="139" selection-end-line="12" selection-end-column="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Utils/TypeExtensionsTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <marker date="1561267128935" expanded="true" signature="6:129" ph="..." />
+            <marker date="1561267128935" expanded="true" signature="171:773" ph="{...}" />
+            <marker date="1561267128935" expanded="true" signature="210:771" ph="{...}" />
+            <marker date="1561267128935" expanded="true" signature="463:543" ph="{...}" />
+            <marker date="1561267128935" expanded="true" signature="683:756" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/TypeExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <marker date="1561267519882" expanded="true" signature="6:97" ph="..." />
+            <marker date="1561267519882" expanded="true" signature="134:4637" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="175:4635" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="190:439" ph="/// Returns default value for a type. ... " />
+            <marker date="1561267519882" expanded="true" signature="500:741" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="751:1517" ph="/// Returns specific generic interface implemented by &lt;paramref name=&quot;type&quot;/&gt;. ... " />
+            <marker date="1561267519882" expanded="true" signature="1615:1891" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="1901:2732" ph="/// Returns specific generic interface implemented by &lt;paramref name=&quot;type&quot;/&gt;. ... " />
+            <marker date="1561267519882" expanded="true" signature="2836:3578" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="3648:3758" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="3827:3944" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="4035:4189" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="4275:4365" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="4438:4620" ph="{...}" />
+            <marker date="1561267519882" expanded="true" signature="4543:4610" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/05/b7e71d2c/Func`2.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding>
+            <marker date="1561179626438" expanded="true" signature="50:600" ph="{...}" />
+            <marker date="1561179626438" expanded="true" signature="95:598" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/FunctionSource.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/ActiveMemberSettings.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityMember.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityBuilderFunction.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMember.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <marker date="1561279359500" expanded="true" signature="6:163" ph="..." />
+            <marker date="1561279359500" expanded="true" signature="205:4230" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="238:4228" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="297:580" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="766:1091" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="1331:1449" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="1498:1739" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="1782:1936" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="1814:1926" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2017:2077" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2158:2219" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2325:2667" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2462:2537" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2554:2617" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="2784:3299" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="3370:3777" ph="{...}" />
+            <marker date="1561279359500" expanded="true" signature="3842:4222" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/BuilderAdapter.cs" />
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <marker date="1561282590496" expanded="true" signature="6:51" ph="..." />
+            <marker date="1561282590496" expanded="true" signature="82:455" ph="{...}" />
+            <marker date="1561282590496" expanded="true" signature="183:453" ph="{...}" />
+            <marker date="1561282590496" expanded="true" signature="230:299" ph="{...}" />
+            <marker date="1561282590496" expanded="true" signature="389:447" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+          <folding>
+            <marker date="1561282641280" expanded="false" signature="6:91" ph="..." />
+            <marker date="1561282641280" expanded="true" signature="133:1791" ph="{...}" />
+            <marker date="1561282641280" expanded="true" signature="173:1789" ph="{...}" />
+            <marker date="1561282641280" expanded="true" signature="429:670" ph="{...}" />
+            <marker date="1561282641280" expanded="true" signature="811:1036" ph="{...}" />
+            <marker date="1561282641280" expanded="true" signature="1232:1774" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding>
+            <marker date="1561374009591" expanded="false" signature="6:332" ph="..." />
+            <marker date="1561374009591" expanded="true" signature="363:4169" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="370:577" ph="/// Builds function comparing two object of &lt;typeparamref name=&quot;TTarget&quot;/&gt; type for equality. ... " />
+            <marker date="1561374009591" expanded="true" signature="690:4167" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="705:811" ph="/// Determines how collections should be compared by default. ... " />
+            <marker date="1561374009591" expanded="true" signature="954:1161" ph="/// Sets &lt;see cref=&quot;SequenceMode&quot;/&gt; which defines how collections should be compared by default. ... " />
+            <marker date="1561374009591" expanded="true" signature="1265:1343" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="1353:1929" ph="/// Adds field or property to use for object comparison using given function to compare it's values. ... " />
+            <marker date="1561374009591" expanded="true" signature="2111:2230" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="2240:2794" ph="/// Sets equality comparison function for all object assignable to given type. ... " />
+            <marker date="1561374009591" expanded="true" signature="2895:3011" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="3097:3888" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="3162:3251" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="3326:3838" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="3378:3824" ph="{...}" />
+            <marker date="1561374009591" expanded="true" signature="3906:4017" ph="/// Builds and returns final immutable equality comparer function. ... " />
+            <marker date="1561374009591" expanded="true" signature="4066:4161" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/GetHashCodeDelegate.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding>
+            <marker date="1561374046143" expanded="true" signature="49:108" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/AccessorFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="35" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="35" />
+          <folding>
+            <marker date="1561034543247" expanded="true" signature="6:44" ph="..." />
+            <marker date="1561034543247" expanded="true" signature="86:2339" ph="{...}" />
+            <marker date="1561034543247" expanded="true" signature="93:188" ph="/// Contains methods creating property or field accessors. ... " />
+            <marker date="1561034543247" expanded="true" signature="228:2337" ph="{...}" />
+            <marker date="1561034543247" expanded="true" signature="243:1149" ph="/// Creates function accessing object public property of field value.  ... " />
+            <marker date="1561034543247" expanded="true" signature="1321:2331" ph="{...}" />
+            <marker date="1561034543247" expanded="true" signature="1838:2121" ph="{...}" />
+            <marker date="1561034543247" expanded="true" signature="2154:2261" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderOperationSource.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <marker date="1561374786666" expanded="true" signature="40:687" ph="{...}" />
+            <marker date="1561374786666" expanded="true" signature="47:137" ph="/// Indicates how/why builder operation was created.  ... " />
+            <marker date="1561374786666" expanded="true" signature="176:685" ph="{...}" />
+            <marker date="1561374786666" expanded="true" signature="191:330" ph="/// Operation was chosen implicitly by builder based on member information and it's settings.  ... " />
+            <marker date="1561374786666" expanded="true" signature="366:469" ph="/// Operation was specified explicitly for current member. ... " />
+            <marker date="1561374786666" expanded="true" signature="511:658" ph="/// Operation was specified explicitly for specific type/interface (and all subtypes/implementations). ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberOperation.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding>
+            <marker date="1561374494341" expanded="true" signature="55:1425" ph="{...}" />
+            <marker date="1561374494341" expanded="true" signature="62:262" ph="/// Information about operation executed on field or property by builder. ... " />
+            <marker date="1561374494341" expanded="true" signature="337:1423" ph="{...}" />
+            <marker date="1561374494341" expanded="true" signature="352:545" ph="///  ... " />
+            <marker date="1561374494341" expanded="true" signature="672:919" ph="{...}" />
+            <marker date="1561374494341" expanded="true" signature="929:1050" ph="/// Information about field or property the function is applied to.  ... " />
+            <marker date="1561374494341" expanded="true" signature="1113:1186" ph="/// Actual function applied. ... " />
+            <marker date="1561374494341" expanded="true" signature="1247:1347" ph="/// Indicates why this particular instance was created. ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunctionFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" column="72" selection-start-line="30" selection-start-column="72" selection-end-line="30" selection-end-column="72" />
+          <folding>
+            <marker date="1561371257367" expanded="false" signature="6:130" ph="..." />
+            <marker date="1561371257367" expanded="true" signature="181:6224" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="188:301" ph="/// Contains methods for creating functions testing equality of two objects. ... " />
+            <marker date="1561371257367" expanded="true" signature="349:6222" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="364:1209" ph="/// Creates function comparing two sequences (instances of &lt;see cref=&quot;IEnumerable{T}&quot;/&gt;) ... " />
+            <marker date="1561371257367" expanded="true" signature="1299:2333" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="1489:1617" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="1658:1887" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="2347:3164" ph="/// Creates function comparing two sequences (instances of &lt;see cref=&quot;IEnumerable{T}&quot;/&gt;) ... " />
+            <marker date="1561371257367" expanded="true" signature="3256:4338" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="3446:3574" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="3615:3844" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="4356:4943" ph="/// Creates function comparing two sets for equality using &lt;see cref=&quot;ISet{T}.SetEquals&quot;/&gt;. ... " />
+            <marker date="1561371257367" expanded="true" signature="5021:5895" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="5212:5333" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="5374:5593" ph="{...}" />
+            <marker date="1561371257367" expanded="true" signature="6058:6216" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityDelegate.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding>
+            <marker date="1561371248058" expanded="true" signature="49:121" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding>
+            <marker date="1561374494357" expanded="false" signature="6:66" ph="..." />
+            <marker date="1561374494357" expanded="true" signature="117:2004" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="124:281" ph="/// Function comparing two objects for equality. ... " />
+            <marker date="1561374494357" expanded="true" signature="324:2002" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="510:729" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="739:822" ph="/// Compares two objects for equality. ... " />
+            <marker date="1561374494357" expanded="true" signature="871:1068" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="1182:1350" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="1414:1489" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="1538:1791" ph="{...}" />
+            <marker date="1561374494357" expanded="true" signature="1834:1996" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunction.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <marker date="1561377057378" expanded="true" signature="6:200" ph="..." />
+            <marker date="1561377057378" expanded="true" signature="251:2227" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="258:480" ph="/// Computes hashcode for an object by combining results of configured objects' members hash codes. ... " />
+            <marker date="1561377057378" expanded="true" signature="523:2225" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="735:956" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="974:1239" ph="/// Computes hashcode for an object by combining results of configured members hash codes. ... " />
+            <marker date="1561377057378" expanded="true" signature="1286:1448" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="1522:1600" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="1662:1788" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="1837:2090" ph="{...}" />
+            <marker date="1561377057378" expanded="true" signature="2133:2219" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <marker date="1561377244669" expanded="false" signature="6:195" ph="..." />
+            <marker date="1561377244669" expanded="true" signature="231:2588" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="331:2586" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="659:1448" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="685:1438" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="1562:1640" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="1709:2284" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="1735:2274" ph="{...}" />
+            <marker date="1561377244669" expanded="true" signature="2410:2580" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="81" column="41" lean-forward="true" selection-start-line="81" selection-start-column="41" selection-end-line="81" selection-end-column="41" />
+          <folding>
+            <marker date="1561375018484" expanded="true" signature="6:234" ph="..." />
+            <marker date="1561375018484" expanded="true" signature="265:3919" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="442:3917" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="715:1003" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="1053:1217" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="1263:1423" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="1598:1879" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="1962:2125" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="2236:2339" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="2473:2595" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="2687:2832" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="2921:3220" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="3318:3823" ph="{...}" />
+            <marker date="1561375018484" expanded="true" signature="3372:3813" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <marker date="1561399253398" expanded="true" signature="6:207" ph="..." />
+            <marker date="1561399253398" expanded="true" signature="238:3146" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="245:448" ph="/// Creates function computing hashcode using hash codes of configured members. ... " />
+            <marker date="1561399253398" expanded="true" signature="564:3144" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="661:917" ph="/// Initializes new builder instance with provided or default values. ... " />
+            <marker date="1561399253398" expanded="true" signature="978:1050" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="1060:1599" ph="/// Include field or property into hashcode computation ... " />
+            <marker date="1561399253398" expanded="true" signature="1772:1895" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="1922:2303" ph="/// Instructs builder to use supplied function for computing hashcode of target object member values ... " />
+            <marker date="1561399253398" expanded="true" signature="2396:2516" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="2613:2853" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="2685:2795" ph="{...}" />
+            <marker date="1561399253398" expanded="true" signature="2871:2971" ph="/// Builds function computing hashcode of given object. ... " />
+            <marker date="1561399253398" expanded="true" signature="3020:3129" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <marker date="1561377416371" expanded="true" signature="6:59" ph="..." />
+            <marker date="1561377416371" expanded="true" signature="82:1719" ph="{...}" />
+            <marker date="1561377416371" expanded="true" signature="89:198" ph="/// Additions to &lt;see cref=&quot;System.Linq.Enumerable&quot;/&gt; extension methods. ... " />
+            <marker date="1561377416371" expanded="true" signature="243:1717" ph="{...}" />
+            <marker date="1561377416371" expanded="true" signature="258:751" ph="/// Compares content of two sequences ignoring order of elements. ... " />
+            <marker date="1561377416371" expanded="true" signature="890:1012" ph="{...}" />
+            <marker date="1561377416371" expanded="true" signature="1030:1422" ph="/// Computes hash code for sequence by combining hash codes of its' elements. ... " />
+            <marker date="1561377416371" expanded="true" signature="1525:1711" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

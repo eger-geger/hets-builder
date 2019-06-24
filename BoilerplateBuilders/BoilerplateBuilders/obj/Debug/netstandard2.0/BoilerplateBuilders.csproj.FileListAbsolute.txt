@@ -1,0 +1,10 @@
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.csprojAssemblyReference.cache
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.csproj.CoreCompileInputs.cache
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.AssemblyInfoInputs.cache
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.AssemblyInfo.cs
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\bin\Debug\netstandard2.0\BoilerplateBuilders.deps.json
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\bin\Debug\netstandard2.0\BoilerplateBuilders.dll
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\bin\Debug\netstandard2.0\BoilerplateBuilders.pdb
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.dll
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\obj\Debug\netstandard2.0\BoilerplateBuilders.pdb
+C:\repo\git\BoilerplateBuilders\BoilerplateBuilders\BoilerplateBuilders\bin\Debug\netstandard2.0\BoilerplateBuilders.xml
