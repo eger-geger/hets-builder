@@ -7,6 +7,7 @@ using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Reflection.Equality;
 using BoilerplateBuilders.Utils;
 using static BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory;
+using EqualityFunc = System.Func<object, object, bool>;
 
 namespace BoilerplateBuilders
 {
@@ -14,7 +15,7 @@ namespace BoilerplateBuilders
     /// Builds function comparing two object of <typeparamref name="TTarget"/> type for equality.
     /// </summary>
     /// <typeparam name="TTarget">Type of object being compared.</typeparam>
-    public class EqualityBuilder<TTarget> : AbstractBuilder<TTarget, EqualityBuilder<TTarget>, EqualityDelegate>
+    public class EqualityBuilder<TTarget> : AbstractBuilder<TTarget, EqualityBuilder<TTarget>, EqualityFunc>
     {
         /// <summary>
         /// Determines how collections should be compared by default.
@@ -44,7 +45,7 @@ namespace BoilerplateBuilders
             Func<TMember, TMember, bool> comparisonFunc
         )
         {
-            return AppendExplicitMemberFunction(expression, new EqualityDelegate(comparisonFunc));
+            return AppendExplicitMemberFunction(expression, comparisonFunc.ToGeneric());
         }
 
         /// <summary>
@@ -59,10 +60,10 @@ namespace BoilerplateBuilders
         /// </remarks>
         public EqualityBuilder<TTarget> WithExplicitTypeComparer<T>(Func<T, T, bool> comparisonFunc)
         {
-            return AppendExplicitTypeFunction(typeof(T), new EqualityDelegate(comparisonFunc));
+            return AppendExplicitTypeFunction(typeof(T), comparisonFunc.ToGeneric());
         }
 
-        protected override EqualityDelegate GetDefaultFunction(BuilderMember member)
+        protected override EqualityFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToSet())
             {

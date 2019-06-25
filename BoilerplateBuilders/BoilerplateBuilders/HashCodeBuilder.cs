@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Reflection.HashCode;
 using BoilerplateBuilders.Utils;
+using HashCodeFunc = System.Func<object, int>;
 
 namespace BoilerplateBuilders
 {
@@ -12,7 +13,7 @@ namespace BoilerplateBuilders
     /// Creates function computing hashcode using hash codes of configured members.
     /// </summary>
     /// <typeparam name="TTarget">Type of objects to compute hashcode for.</typeparam>
-    public class HashCodeBuilder<TTarget> : AbstractBuilder<TTarget, HashCodeBuilder<TTarget>, GetHashCodeDelegate>
+    public class HashCodeBuilder<TTarget> : AbstractBuilder<TTarget, HashCodeBuilder<TTarget>, HashCodeFunc>
     {
         private readonly int _seed;
 
@@ -42,7 +43,7 @@ namespace BoilerplateBuilders
             Func<TMember, int> computeHashCode
         )
         {
-            return AppendExplicitMemberFunction(expression, new GetHashCodeDelegate(computeHashCode));
+            return AppendExplicitMemberFunction(expression, computeHashCode.ToGeneric<TMember, int, int>());
         }
         
         
@@ -55,10 +56,10 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public HashCodeBuilder<TTarget> OverrideHashCodeFor<T>(Func<T, int> computeHashCode)
         {
-            return AppendExplicitTypeFunction(typeof(T), new GetHashCodeDelegate(computeHashCode));
+            return AppendExplicitTypeFunction(typeof(T), computeHashCode.ToGeneric<T, int, int>());
         }
         
-        protected override GetHashCodeDelegate GetDefaultFunction(BuilderMember member)
+        protected override HashCodeFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToEnumerable())
             {

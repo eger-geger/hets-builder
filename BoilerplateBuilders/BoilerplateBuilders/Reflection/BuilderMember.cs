@@ -91,7 +91,7 @@ namespace BoilerplateBuilders.Reflection
                 ? new BuilderMember(
                     typeof(TMember),
                     memberInfo.Name,
-                    expression.Compile().ToGeneric(),
+                    expression.Compile().ToGeneric<TTarget, TMember, object>(),
                     default(TMember)
                 )
                 : throw new ArgumentException(

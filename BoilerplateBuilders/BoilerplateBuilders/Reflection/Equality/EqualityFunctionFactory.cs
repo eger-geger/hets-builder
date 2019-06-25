@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Utils;
+using EqualityFunc = System.Func<object, object, bool>;
 
 namespace BoilerplateBuilders.Reflection.Equality
 {
@@ -25,7 +26,7 @@ namespace BoilerplateBuilders.Reflection.Equality
         /// <exception cref="ArgumentException">
         /// <paramref name="collectionType"/> does not implement <see cref="IEnumerable{T}"/>.
         /// </exception>
-        public static EqualityDelegate CreateOrderedSequenceComparer(Type collectionType)
+        public static EqualityFunc CreateOrderedSequenceComparer(Type collectionType)
         {
             if(collectionType is null)
                 throw new ArgumentNullException(nameof(collectionType));
@@ -73,7 +74,7 @@ namespace BoilerplateBuilders.Reflection.Equality
         /// <exception cref="ArgumentException">
         /// <paramref name="collectionType"/> does not implement <see cref="IEnumerable{T}"/>.
         /// </exception>
-        public static EqualityDelegate CreateUnorderedSequenceComparer(Type collectionType)
+        public static EqualityFunc CreateUnorderedSequenceComparer(Type collectionType)
         {
             if(collectionType is null)
                 throw new ArgumentNullException(nameof(collectionType));
@@ -119,7 +120,7 @@ namespace BoilerplateBuilders.Reflection.Equality
         /// <exception cref="ArgumentException">
         /// <paramref name="collectionType"/> does not implement <see cref="ISet{T}"/>.
         /// </exception>
-        public static EqualityDelegate CreateSetComparer(Type collectionType)
+        public static EqualityFunc CreateSetComparer(Type collectionType)
         {
             if(collectionType is null)
                 throw new ArgumentNullException(nameof(collectionType));
@@ -149,7 +150,7 @@ namespace BoilerplateBuilders.Reflection.Equality
             );
         }
 
-        private static EqualityDelegate CompileComparerFunction(
+        private static EqualityFunc CompileComparerFunction(
             Expression expression,
             params ParameterExpression[] parameters
         )

@@ -10,25 +10,20 @@
             </summary>
             <typeparam name="TTarget">Type of object being compared.</typeparam>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.#ctor">
-            <summary>
-            Default constructor. Initializes new instance.
-            </summary>
-        </member>
         <member name="P:BoilerplateBuilders.EqualityBuilder`1.SequenceMode">
             <summary>
             Determines how collections should be compared by default.
             </summary>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.SetSequenceComparisonMode(BoilerplateBuilders.SequenceEqualityComparisonMode)">
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.WithSequenceComparisonMode(BoilerplateBuilders.SequenceEqualityComparisonMode)">
             <summary>
             Sets <see cref="P:BoilerplateBuilders.EqualityBuilder`1.SequenceMode"/> which defines how collections should be compared by default.
             </summary>
             <returns>Current equality builder instance.</returns>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.CompareMemberWith``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Func{``0,``0,System.Boolean})">
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.Append``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Func{``0,``0,System.Boolean})">
             <summary>
-            Sets equality comparison function for given member.
+            Adds field or property to use for object comparison using given function to compare it's values.
             Overrides any previous or default value. 
             </summary>
             <param name="expression">Points to field or property being used for object comparison.</param>
@@ -36,7 +31,7 @@
             <typeparam name="TMember">Type of chosen field or property value.</typeparam>
             <returns>Current equality builder instance.</returns>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.CompareWith``1(System.Func{``0,``0,System.Boolean})">
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.WithExplicitTypeComparer``1(System.Func{``0,``0,System.Boolean})">
             <summary>
             Sets equality comparison function for all object assignable to given type.
             Overrides any previous or default value.
@@ -48,65 +43,47 @@
             Setting <typeparamref name="T"/> equal to <see cref="T:System.Object"/> would override comparison function for all members.
             </remarks>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.Equals(`0,`0)">
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.Build">
             <summary>
-            Compares two objects for equality using configured members.
-            </summary>
-            <param name="a">First object to compare.</param>
-            <param name="b">Second object to compare.</param>
-            <returns>
-            'True' if objects are equal and 'False' otherwise.
-            </returns>
-        </member>
-        <member name="T:BoilerplateBuilders.Equality.EqualityFunctionFactory">
-            <summary>
-            Contains methods for creating functions testing equality of two objects.
+            Builds and returns final immutable equality comparer function.
             </summary>
         </member>
-        <member name="M:BoilerplateBuilders.Equality.EqualityFunctionFactory.CreateOrderedSequenceComparer(System.Type)">
+        <member name="T:BoilerplateBuilders.HashCodeBuilder`1">
             <summary>
-            Creates function comparing two sequences (instances of <see cref="T:System.Collections.Generic.IEnumerable`1"/>)
-            for equality using <see cref="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>.
+            Creates function computing hashcode using hash codes of configured members.
             </summary>
-            <param name="collectionType">
-            Compared sequence type implementing <see cref="T:System.Collections.Generic.IEnumerable`1"/> or <see cref="T:System.Collections.Generic.IEnumerable`1"/> itself.
-            </param>
-            <returns>Function comparing two sequences of type <paramref name="collectionType"/>.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="collectionType"/> is null.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </exception>
+            <typeparam name="TTarget">Type of objects to compute hashcode for.</typeparam>
         </member>
-        <member name="M:BoilerplateBuilders.Equality.EqualityFunctionFactory.CreateUnorderedSequenceComparer(System.Type)">
+        <member name="M:BoilerplateBuilders.HashCodeBuilder`1.#ctor(System.Int32,System.Int32)">
             <summary>
-            Creates function comparing two sequences (instances of <see cref="T:System.Collections.Generic.IEnumerable`1"/>)
-            for equality using <see cref="M:System.Linq.CollectionExtensions.SequenceEqualIgnoreOrder``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>.
+            Initializes new builder instance with provided or default values.
             </summary>
-            <param name="collectionType">
-            Compared sequence type implementing <see cref="T:System.Collections.Generic.IEnumerable`1"/> or <see cref="T:System.Collections.Generic.IEnumerable`1"/> itself.
-            </param>
-            <returns>Function comparing two sequences of type <paramref name="collectionType"/>.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="collectionType"/> is null.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </exception>
+            <param name="seed">Initial hashcode value.</param>
+            <param name="step">Value applied to every hashcode member.</param>
         </member>
-        <member name="M:BoilerplateBuilders.Equality.EqualityFunctionFactory.CreateSetComparer(System.Type)">
+        <member name="M:BoilerplateBuilders.HashCodeBuilder`1.Append``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Func{``0,System.Int32})">
             <summary>
-            Creates function comparing two sets for equality using <see cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>.
+            Include field or property into hashcode computation
+            using provided function for computing hashcode of its' value.
             </summary>
-            <param name="collectionType">Concrete type of sets to compare.</param>
-            <returns>Function comparing two sets for equality.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            <paramref name="collectionType"/> is null.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.ISet`1"/>.
-            </exception>
+            <param name="expression">Points to field or property to be used for computing object hashcode.</param>
+            <param name="computeHashCode">Function computing hashcode for chosen member value.</param>
+            <typeparam name="TMember">Type of chosen field or property value.</typeparam>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.HashCodeBuilder`1.OverrideHashCodeFor``1(System.Func{``0,System.Int32})">
+            <summary>
+            Instructs builder to use supplied function for computing hashcode of target object member values
+            which are assignable to given type.
+            </summary>
+            <param name="computeHashCode">Computes hashcode.</param>
+            <typeparam name="T">Type of interest.</typeparam>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.HashCodeBuilder`1.Build">
+            <summary>
+            Builds function computing hashcode of given object.
+            </summary>
         </member>
         <member name="T:BoilerplateBuilders.Reflection.AccessorFactory">
             <summary>
@@ -130,6 +107,129 @@
             <exception cref="T:System.ArgumentException">
             Invalid member name or type.
             </exception>
+        </member>
+        <member name="T:BoilerplateBuilders.Reflection.BuilderMemberOperation`1">
+            <summary>
+            Information about operation executed on field or property by builder.
+            </summary>
+            <typeparam name="TFunction">Type of function applied to member value.</typeparam>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.BuilderMemberOperation`1.#ctor(BoilerplateBuilders.Reflection.BuilderMember,`0,BoilerplateBuilders.Reflection.BuilderOperationSource)">
+            <summary>
+            
+            </summary>
+            <param name="member"></param>
+            <param name="function"></param>
+            <param name="builderOperationSource"></param>
+        </member>
+        <member name="P:BoilerplateBuilders.Reflection.BuilderMemberOperation`1.Member">
+            <summary>
+            Information about field or property the function is applied to. 
+            </summary>        
+        </member>
+        <member name="P:BoilerplateBuilders.Reflection.BuilderMemberOperation`1.Function">
+            <summary>
+            Actual function applied.
+            </summary>
+        </member>
+        <member name="P:BoilerplateBuilders.Reflection.BuilderMemberOperation`1.BuilderOperationSource">
+            <summary>
+            Indicates why this particular instance was created.
+            </summary>
+        </member>
+        <member name="T:BoilerplateBuilders.Reflection.BuilderOperationSource">
+            <summary>
+            Indicates how/why builder operation was created. 
+            </summary>
+        </member>
+        <member name="F:BoilerplateBuilders.Reflection.BuilderOperationSource.Implicit">
+            <summary>
+            Operation was chosen implicitly by builder based on member information and it's settings. 
+            </summary>
+        </member>
+        <member name="F:BoilerplateBuilders.Reflection.BuilderOperationSource.ExplicitMember">
+            <summary>
+            Operation was specified explicitly for current member.
+            </summary>
+        </member>
+        <member name="F:BoilerplateBuilders.Reflection.BuilderOperationSource.ExplicitType">
+            <summary>
+            Operation was specified explicitly for specific type/interface (and all subtypes/implementations).
+            </summary>
+        </member>
+        <member name="T:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1">
+            <summary>
+            Function comparing two objects for equality.
+            </summary>
+            <typeparam name="TTarget">Type of compared objects.</typeparam>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1.Equals(`0,`0)">
+            <summary>
+            Compares two objects for equality.
+            </summary>
+        </member>
+        <member name="T:BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory">
+            <summary>
+            Contains methods for creating functions testing equality of two objects.
+            </summary>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory.CreateOrderedSequenceComparer(System.Type)">
+            <summary>
+            Creates function comparing two sequences (instances of <see cref="T:System.Collections.Generic.IEnumerable`1"/>)
+            for equality using <see cref="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>.
+            </summary>
+            <param name="collectionType">
+            Compared sequence type implementing <see cref="T:System.Collections.Generic.IEnumerable`1"/> or <see cref="T:System.Collections.Generic.IEnumerable`1"/> itself.
+            </param>
+            <returns>Function comparing two sequences of type <paramref name="collectionType"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="collectionType"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </exception>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory.CreateUnorderedSequenceComparer(System.Type)">
+            <summary>
+            Creates function comparing two sequences (instances of <see cref="T:System.Collections.Generic.IEnumerable`1"/>)
+            for equality using <see cref="M:System.Linq.CollectionExtensions.SequenceEqualIgnoreOrder``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>.
+            </summary>
+            <param name="collectionType">
+            Compared sequence type implementing <see cref="T:System.Collections.Generic.IEnumerable`1"/> or <see cref="T:System.Collections.Generic.IEnumerable`1"/> itself.
+            </param>
+            <returns>Function comparing two sequences of type <paramref name="collectionType"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="collectionType"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </exception>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory.CreateSetComparer(System.Type)">
+            <summary>
+            Creates function comparing two sets for equality using <see cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>.
+            </summary>
+            <param name="collectionType">Concrete type of sets to compare.</param>
+            <returns>Function comparing two sets for equality.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="collectionType"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="collectionType"/> does not implement <see cref="T:System.Collections.Generic.ISet`1"/>.
+            </exception>
+        </member>
+        <member name="T:BoilerplateBuilders.Reflection.HashCode.HashCodeFunction`1">
+            <summary>
+            Computes hashcode for an object by combining results of configured objects' members hash codes.
+            </summary>
+            <typeparam name="TTarget">Type of object to compute hashcode for.</typeparam>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.HashCode.HashCodeFunction`1.GetHashCode(`0)">
+            <summary>
+            Computes hashcode for an object by combining results of configured members hash codes.
+            </summary>
+            <param name="target">Type of member to compute hashcode for.</param>
+            <returns>Computed hashcode</returns>
         </member>
         <member name="T:BoilerplateBuilders.SequenceEqualityComparisonMode">
             <summary>
@@ -200,6 +300,15 @@
             <returns>
             'True' when collections contains exactly same elements and 'False' otherwise. 
             </returns>
+        </member>
+        <member name="M:System.Linq.CollectionExtensions.GetItemWiseHashCode(System.Collections.IEnumerable,System.Int32,System.Int32)">
+            <summary>
+            Computes hash code for sequence by combining hash codes of its' elements.
+            </summary>
+            <param name="sequence">Sequence to compute has code for.</param>
+            <param name="seed">Initial hashcode value.</param>
+            <param name="step">Value applied to every sequence element.</param>
+            <returns>Sequence hashcode.</returns>
         </member>
     </members>
 </doc>

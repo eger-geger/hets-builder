@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Operation = BoilerplateBuilders.Reflection.BuilderMemberOperation<System.Func<object, object, bool>>;
 
 namespace BoilerplateBuilders.Reflection.Equality
 {
@@ -10,14 +11,14 @@ namespace BoilerplateBuilders.Reflection.Equality
     /// <typeparam name="TTarget">Type of compared objects.</typeparam>
     public class EqualityFunction<TTarget>
     {
-        private readonly ISet<BuilderMemberOperation<EqualityDelegate>> _members;
+        private readonly ISet<Operation> _members;
 
-        internal EqualityFunction(IEnumerable<BuilderMemberOperation<EqualityDelegate>> members)
+        internal EqualityFunction(IEnumerable<Operation> members)
         {
             if (members is null)
                 throw new ArgumentNullException(nameof(members));
             
-            _members = new HashSet<BuilderMemberOperation<EqualityDelegate>>(members);
+            _members = new SortedSet<Operation>(members);
         }
 
         /// <summary>
@@ -30,11 +31,11 @@ namespace BoilerplateBuilders.Reflection.Equality
                 .All(abm => Compare(abm.Item1, abm.Item2, abm.Item3));
         }
         
-        private static bool Compare(object x, object y, BuilderMemberOperation<EqualityDelegate> member)
+        private static bool Compare(object x, object y, Operation op)
         {
             if (ReferenceEquals(x, y)) return true;
             if (x is null || y is null) return false;
-            return member.Function(x, y);
+            return op.Function(x, y);
         }
 
         protected bool Equals(EqualityFunction<TTarget> other)

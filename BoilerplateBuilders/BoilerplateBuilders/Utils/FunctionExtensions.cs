@@ -4,8 +4,11 @@ namespace BoilerplateBuilders.Utils
 {
     public static class FunctionExtensions
     {
-        public static Func<object, object> ToGeneric<TArg, TReturn>(this Func<TArg, TReturn> fn) => o => fn((TArg) o);
-
+        public static Func<object, TGenericReturn> ToGeneric<TArg, TReturn, TGenericReturn>(
+            this Func<TArg, TReturn> fn
+        ) where TReturn : TGenericReturn
+            => o => (TGenericReturn) fn((TArg) o);
+        
         public static Func<object, object, bool> ToGeneric<TArg>(
             this Func<TArg, TArg, bool> fn
         ) => (a, b) => fn((TArg) a, (TArg) b);

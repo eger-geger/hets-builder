@@ -23,12 +23,10 @@
           <e p="BuilderMemberOperation.cs" t="Include" />
           <e p="BuilderOperationSource.cs" t="Include" />
           <e p="Equality" t="Include">
-            <e p="EqualityDelegate.cs" t="Include" />
             <e p="EqualityFunction.cs" t="Include" />
             <e p="EqualityFunctionFactory.cs" t="Include" />
           </e>
           <e p="HashCode" t="Include">
-            <e p="GetHashCodeDelegate.cs" t="Include" />
             <e p="HashCodeFunction.cs" t="Include" />
           </e>
         </e>
@@ -65,6 +63,9 @@
           </e>
         </e>
         <e p="Utils" t="Include">
+          <e p="CollectionExtensions" t="Include">
+            <e p="SequenceEqualsIgnoreOrderTests.cs" t="Include" />
+          </e>
           <e p="TypeExtensionsTests.cs" t="Include" />
         </e>
       </e>
