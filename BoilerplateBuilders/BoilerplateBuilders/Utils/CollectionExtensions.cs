@@ -17,26 +17,41 @@ namespace System.Linq
         /// <returns>
         /// 'True' when collections contains exactly same elements and 'False' otherwise. 
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="source"/> or <paramref name="other"/> is null.
+        /// </exception>
         public static bool SequenceEqualIgnoreOrder<T>(
             this ICollection<T> source,
             IEnumerable<T> other
         )
         {
+            if(source is null)
+                throw new ArgumentNullException(nameof(source));
+            
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+            
             var copy = source.ToList();
             return other.All(copy.Remove) && copy.Count == 0;
         }
         
         /// <summary>
-        /// Computes hash code for sequence by combining hash codes of its' elements.
+        /// Computes sequence hashcode by combining hash codes of its' elements.
         /// </summary>
         /// <param name="sequence">Sequence to compute has code for.</param>
         /// <param name="seed">Initial hashcode value.</param>
         /// <param name="step">Value applied to every sequence element.</param>
         /// <returns>Sequence hashcode.</returns>
-        public static int GetItemWiseHashCode(this IEnumerable sequence, int seed = 0, int step = 397)
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="sequence"/> is null.
+        /// </exception>
+        public static int GetSequenceHashCode(this IEnumerable sequence, int seed = 0, int step = 397)
         {
+            if(sequence is null)
+                throw new ArgumentNullException(nameof(sequence));
+            
             return sequence.Cast<object>().Aggregate(seed, (hashCode, value) =>
-                unchecked(hashCode ^ value?.GetHashCode() ?? 0 * step)
+                unchecked(hashCode ^ (value?.GetHashCode() * step ?? 0))
             );
         }
     }

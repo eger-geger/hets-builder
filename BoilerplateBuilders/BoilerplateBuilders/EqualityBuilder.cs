@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Reflection.Equality;
@@ -45,7 +43,7 @@ namespace BoilerplateBuilders
             Func<TMember, TMember, bool> comparisonFunc
         )
         {
-            return AppendExplicitMemberFunction(expression, comparisonFunc.ToGeneric());
+            return AppendExplicit(expression, comparisonFunc.ToGeneric());
         }
 
         /// <summary>
@@ -58,11 +56,20 @@ namespace BoilerplateBuilders
         /// <remarks>
         /// Setting <typeparamref name="T"/> equal to <see cref="object"/> would override comparison function for all members.
         /// </remarks>
-        public EqualityBuilder<TTarget> WithExplicitTypeComparer<T>(Func<T, T, bool> comparisonFunc)
+        public EqualityBuilder<TTarget> CompareWith<T>(Func<T, T, bool> comparisonFunc)
         {
-            return AppendExplicitTypeFunction(typeof(T), comparisonFunc.ToGeneric());
+            return OverrideFunction(typeof(T), comparisonFunc.ToGeneric());
         }
 
+        /// <summary>
+        /// Chooses function to compare objects based on type and
+        /// <see cref="SequenceMode"/> setting.
+        /// </summary>
+        /// <remarks>
+        /// Returns <see cref="ISet{T}.SetEquals"/> for <see cref="ISet{T}"/> objects.
+        /// Returns function comparing sequences (<see cref="IEnumerable{T}"/>) element-wise.
+        /// Uses objects' equality function for all other types.
+        /// </remarks>
         protected override EqualityFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToSet())
@@ -91,7 +98,7 @@ namespace BoilerplateBuilders
         /// </summary>
         public EqualityFunction<TTarget> Build()
         {
-            return new EqualityFunction<TTarget>(BuildFinalFunctionSet());
+            return new EqualityFunction<TTarget>(BuildOperations());
         }
     }
 }

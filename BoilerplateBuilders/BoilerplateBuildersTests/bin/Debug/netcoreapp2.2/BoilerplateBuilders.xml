@@ -4,6 +4,90 @@
         <name>BoilerplateBuilders</name>
     </assembly>
     <members>
+        <member name="T:BoilerplateBuilders.AbstractBuilder`3">
+            <summary>
+            Provides common builder skeleton and behavior like
+            exploring objects, adding and storing builder member operations.
+            </summary>
+            <typeparam name="TTarget">Type of object builder will be used with.</typeparam>
+            <typeparam name="TBuilder">Type of a builder object itself.</typeparam>
+            <typeparam name="TFunction">
+            Most generic signature of a function being built
+            (e.g. <code>Func&lt;object, object, bool&gt;</code> for equality).
+            </typeparam>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.#ctor">
+            <summary>
+            Default constructor initializing private members.
+            </summary>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.Append``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Appends builder with selected field or property with default
+            operation selected by builder.
+            </summary>
+            <param name="getter"><typeparamref name="TTarget"/> field or property getter.</param>
+            <typeparam name="TMember">Type of chosen field or property.</typeparam>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.AppendPublicFieldsAndPropertiesMarkedWith``1">
+            <summary>
+            Appends current builder with all public fields and properties from
+            <typeparamref name="TTarget"/> type  marked with <typeparamref name="TAttribute"/>
+            attribute  with default operations selected by builder (<see cref="M:BoilerplateBuilders.AbstractBuilder`3.GetDefaultFunction(BoilerplateBuilders.Reflection.BuilderMember)"/>).
+            </summary>
+            <typeparam name="TAttribute">Type of required attribute.</typeparam>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.AppendPublicProperties">
+            <summary>
+            Appends current builder with all public properties from <typeparamref name="TTarget"/>
+            with default operations selected by builder (<see cref="M:BoilerplateBuilders.AbstractBuilder`3.GetDefaultFunction(BoilerplateBuilders.Reflection.BuilderMember)"/>).
+            </summary>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.AppendPublicFields">
+            <summary>
+            Appends current builder with all public fields of <typeparamref name="TTarget"/>
+            with default operations selected by builder (<see cref="M:BoilerplateBuilders.AbstractBuilder`3.GetDefaultFunction(BoilerplateBuilders.Reflection.BuilderMember)"/>).
+            </summary>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.AppendExplicit``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},`2)">
+            <summary>
+            Appends builder with selected <typeparamref name="TTarget"/>
+            field or property and specified generic builder function (
+            e.g.: <code>Func&lt;object, object, bool&gt;</code> for equality). 
+            </summary>
+            <param name="expression">Field or property selector.</param>
+            <param name="function">Function used by builder operation on selected member.</param>
+            <typeparam name="TMember">type of selected field or property.</typeparam>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.OverrideFunction(System.Type,`2)">
+            <summary>
+            Instructs builder to use <paramref name="function"/> builder function
+            for all selected members of <paramref name="type"/> type or type derived from it.
+            It affects only members added with implicit functions chosen by builder.
+            Any members added with <see cref="M:BoilerplateBuilders.AbstractBuilder`3.AppendExplicit``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},`2)"/>
+            are not affected by this call. 
+            </summary>
+            <param name="type">Type to override builder function for.</param>
+            <param name="function">Custom builder function.</param>
+            <returns>Updated builder instance.</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.BuildOperations">
+            <summary>
+            Returns final set of member operations accounting for implicit (default) and explicit operations.
+            </summary>
+        </member>
+        <member name="M:BoilerplateBuilders.AbstractBuilder`3.GetDefaultFunction(BoilerplateBuilders.Reflection.BuilderMember)">
+            <summary>
+            Chooses generic builder function best suited for given member.
+            </summary>
+            <param name="member">Selected property or field of <typeparamref name="TTarget"/>.</param>
+            <returns>Generic builder function.</returns>
+        </member>
         <member name="T:BoilerplateBuilders.EqualityBuilder`1">
             <summary>
             Builds function comparing two object of <typeparamref name="TTarget"/> type for equality.
@@ -31,7 +115,7 @@
             <typeparam name="TMember">Type of chosen field or property value.</typeparam>
             <returns>Current equality builder instance.</returns>
         </member>
-        <member name="M:BoilerplateBuilders.EqualityBuilder`1.WithExplicitTypeComparer``1(System.Func{``0,``0,System.Boolean})">
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.CompareWith``1(System.Func{``0,``0,System.Boolean})">
             <summary>
             Sets equality comparison function for all object assignable to given type.
             Overrides any previous or default value.
@@ -42,6 +126,12 @@
             <remarks>
             Setting <typeparamref name="T"/> equal to <see cref="T:System.Object"/> would override comparison function for all members.
             </remarks>
+        </member>
+        <member name="M:BoilerplateBuilders.EqualityBuilder`1.GetDefaultFunction(BoilerplateBuilders.Reflection.BuilderMember)">
+            <summary>
+            Chooses best function to compare objects based on type and
+            <see cref="P:BoilerplateBuilders.EqualityBuilder`1.SequenceMode"/> setting.
+            </summary>
         </member>
         <member name="M:BoilerplateBuilders.EqualityBuilder`1.Build">
             <summary>
@@ -168,6 +258,23 @@
             Compares two objects for equality.
             </summary>
         </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1.Equals(System.Object)">
+            <summary>
+            Compares two <see cref="T:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1"/> objects for equality.
+            Two <see cref="T:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1"/> are considered equal if they accept same
+            type and consist of same set of equality operations.
+            </summary>
+            <param name="obj">Object to compare current with.</param>
+            <returns>
+            Flag determining whether <paramref name="obj"/> is equal to current instance.
+            </returns>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1.GetHashCode">
+            <summary>
+            Computes <see cref="T:BoilerplateBuilders.Reflection.Equality.EqualityFunction`1"/> hashcode by combining hashes of its'
+            equality operations. 
+            </summary>
+        </member>
         <member name="T:BoilerplateBuilders.Reflection.Equality.EqualityFunctionFactory">
             <summary>
             Contains methods for creating functions testing equality of two objects.
@@ -230,6 +337,22 @@
             </summary>
             <param name="target">Type of member to compute hashcode for.</param>
             <returns>Computed hashcode</returns>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.HashCode.HashCodeFunction`1.Equals(System.Object)">
+            <summary>
+            Compares two instances of <see cref="T:BoilerplateBuilders.Reflection.HashCode.HashCodeFunction`1"/> for equality.
+            Two hashcode functions are considered equal if they both accept object of the type,
+            consist of the same set of a member functions and have same initialization values. 
+            </summary>
+            <param name="obj">Object to compare with.</param>
+            <returns>
+            Flag indicating whether <paramref name="obj"/> equals to current instance.
+            </returns>
+        </member>
+        <member name="M:BoilerplateBuilders.Reflection.HashCode.HashCodeFunction`1.GetHashCode">
+            <summary>
+            Computes builder hashcode by combining hashes of its' member functions.
+            </summary>
         </member>
         <member name="T:BoilerplateBuilders.SequenceEqualityComparisonMode">
             <summary>
@@ -300,15 +423,21 @@
             <returns>
             'True' when collections contains exactly same elements and 'False' otherwise. 
             </returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="source"/> or <paramref name="other"/> is null.
+            </exception>
         </member>
-        <member name="M:System.Linq.CollectionExtensions.GetItemWiseHashCode(System.Collections.IEnumerable,System.Int32,System.Int32)">
+        <member name="M:System.Linq.CollectionExtensions.GetSequenceHashCode(System.Collections.IEnumerable,System.Int32,System.Int32)">
             <summary>
-            Computes hash code for sequence by combining hash codes of its' elements.
+            Computes sequence hashcode by combining hash codes of its' elements.
             </summary>
             <param name="sequence">Sequence to compute has code for.</param>
             <param name="seed">Initial hashcode value.</param>
             <param name="step">Value applied to every sequence element.</param>
             <returns>Sequence hashcode.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="sequence"/> is null.
+            </exception>
         </member>
     </members>
 </doc>

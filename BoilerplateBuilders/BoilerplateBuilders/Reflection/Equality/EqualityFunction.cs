@@ -11,14 +11,14 @@ namespace BoilerplateBuilders.Reflection.Equality
     /// <typeparam name="TTarget">Type of compared objects.</typeparam>
     public class EqualityFunction<TTarget>
     {
-        private readonly ISet<Operation> _members;
+        private readonly ISet<Operation> _operations;
 
         internal EqualityFunction(IEnumerable<Operation> members)
         {
             if (members is null)
                 throw new ArgumentNullException(nameof(members));
             
-            _members = new SortedSet<Operation>(members);
+            _operations = new SortedSet<Operation>(members);
         }
 
         /// <summary>
@@ -26,23 +26,33 @@ namespace BoilerplateBuilders.Reflection.Equality
         /// </summary>
         public bool Equals(TTarget a, TTarget b)
         {
-            return _members
-                .Select(bf => (bf.Member.Getter(a), bf.Member.Getter(b), bf))
-                .All(abm => Compare(abm.Item1, abm.Item2, abm.Item3));
+            bool MemberValuesEqual(Operation op) =>
+                MemberValuesEquals(op.Member.Getter(a), op.Member.Getter(b), op);
+            
+            return _operations.All(MemberValuesEqual);
         }
         
-        private static bool Compare(object x, object y, Operation op)
+        private static bool MemberValuesEquals(object x, object y, Operation op)
         {
             if (ReferenceEquals(x, y)) return true;
             if (x is null || y is null) return false;
             return op.Function(x, y);
         }
 
-        protected bool Equals(EqualityFunction<TTarget> other)
+        private bool Equals(EqualityFunction<TTarget> other)
         {
-            return _members.SetEquals(other._members);
+            return _operations.SetEquals(other._operations);
         }
 
+        /// <summary>
+        /// Compares two <see cref="EqualityFunction{TTarget}"/> objects for equality.
+        /// Two <see cref="EqualityFunction{TTarget}"/> are considered equal if they accept same
+        /// type and consist of same set of equality operations.
+        /// </summary>
+        /// <param name="obj">Object to compare current with.</param>
+        /// <returns>
+        /// Flag determining whether <paramref name="obj"/> is equal to current instance.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -50,12 +60,14 @@ namespace BoilerplateBuilders.Reflection.Equality
             if (obj.GetType() != GetType()) return false;
             return Equals((EqualityFunction<TTarget>) obj);
         }
-
+                
+        /// <summary>
+        /// Computes <see cref="EqualityFunction{TTarget}"/> hashcode by combining hashes of its'
+        /// equality operations. 
+        /// </summary>
         public override int GetHashCode()
         {
-            return _members
-                .Select(m => GetHashCode())
-                .Aggregate(seed: 0, func: (acc, h) => acc ^ h * 397);
+            return _operations.GetSequenceHashCode();
         }
     }
 }

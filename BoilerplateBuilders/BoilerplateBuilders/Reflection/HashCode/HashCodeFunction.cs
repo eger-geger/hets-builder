@@ -19,6 +19,7 @@ namespace BoilerplateBuilders.Reflection.HashCode
         {
             _seed = seed;
             _step = step;
+            
             _operations = new SortedSet<Operation>(
                 operations ?? throw new ArgumentNullException(nameof(operations))
             );
@@ -31,21 +32,31 @@ namespace BoilerplateBuilders.Reflection.HashCode
         /// <returns>Computed hashcode</returns>
         public int GetHashCode(TTarget target)
         {
+            int ComputeHashCode(Operation op) =>
+                op.Function(op.Member.Getter(target));
+            
             return _operations
-                .Select(op => ComputeHashCode(op, target))
-                .GetItemWiseHashCode(_seed, _step);
+                .Select(ComputeHashCode)
+                .GetSequenceHashCode(_seed, _step);
         }
-
-        private static int ComputeHashCode(Operation op, TTarget target)
-        {
-            return op.Function(op.Member.Getter(target));
-        }
-
+        
         private bool Equals(HashCodeFunction<TTarget> other)
         {
-            return _seed == other._seed && _step == other._step && _operations.Equals(other._operations);
+            return 
+                _seed == other._seed 
+                   && _step == other._step 
+                   && _operations.SetEquals(other._operations);
         }
-
+        
+        /// <summary>
+        /// Compares two instances of <see cref="HashCodeFunction{TTarget}"/> for equality.
+        /// Two hashcode functions are considered equal if they both accept object of the type,
+        /// consist of the same set of a member functions and have same initialization values. 
+        /// </summary>
+        /// <param name="obj">Object to compare with.</param>
+        /// <returns>
+        /// Flag indicating whether <paramref name="obj"/> equals to current instance.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -54,9 +65,12 @@ namespace BoilerplateBuilders.Reflection.HashCode
             return Equals((HashCodeFunction<TTarget>) obj);
         }
 
+        /// <summary>
+        /// Computes builder hashcode by combining hashes of its' member functions.
+        /// </summary>
         public override int GetHashCode()
         {
-            return _operations.GetItemWiseHashCode(_seed, _step);
+            return _operations.GetSequenceHashCode(_seed, _step);
         }
     }
 }

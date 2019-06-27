@@ -43,7 +43,7 @@ namespace BoilerplateBuilders
             Func<TMember, int> computeHashCode
         )
         {
-            return AppendExplicitMemberFunction(expression, computeHashCode.ToGeneric<TMember, int, int>());
+            return AppendExplicit(expression, computeHashCode.ToGeneric<TMember, int, int>());
         }
         
         
@@ -56,14 +56,19 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public HashCodeBuilder<TTarget> OverrideHashCodeFor<T>(Func<T, int> computeHashCode)
         {
-            return AppendExplicitTypeFunction(typeof(T), computeHashCode.ToGeneric<T, int, int>());
+            return OverrideFunction(typeof(T), computeHashCode.ToGeneric<T, int, int>());
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="member"></param>
+        /// <returns></returns>
         protected override HashCodeFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToEnumerable())
             {
-                return o => (o as IEnumerable).GetItemWiseHashCode(_seed, _step);
+                return o => (o as IEnumerable).GetSequenceHashCode(_seed, _step);
             }
 
             return o => o?.GetHashCode() ?? 0;
@@ -74,7 +79,7 @@ namespace BoilerplateBuilders
         /// </summary>
         public HashCodeFunction<TTarget> Build()
         {
-            return new HashCodeFunction<TTarget>(BuildFinalFunctionSet(), _seed, _step);
+            return new HashCodeFunction<TTarget>(BuildOperations(), _seed, _step);
         }
         
     }
