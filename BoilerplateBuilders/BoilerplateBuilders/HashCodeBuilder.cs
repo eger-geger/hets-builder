@@ -48,22 +48,27 @@ namespace BoilerplateBuilders
         
         
         /// <summary>
-        /// Instructs builder to use supplied function for computing hashcode of target object member values
+        /// Instructs builder to use supplied function for computing hashcode of members' values
         /// which are assignable to given type.
         /// </summary>
-        /// <param name="computeHashCode">Computes hashcode.</param>
-        /// <typeparam name="T">Type of interest.</typeparam>
+        /// <param name="computeHashCode">Function computing hashcode.</param>
+        /// <typeparam name="T">Type accepted by <paramref name="computeHashCode"/> function.</typeparam>
         /// <returns>Updated builder instance.</returns>
-        public HashCodeBuilder<TTarget> OverrideHashCodeFor<T>(Func<T, int> computeHashCode)
+        public HashCodeBuilder<TTarget> Use<T>(Func<T, int> computeHashCode)
         {
             return OverrideFunction(typeof(T), computeHashCode.ToGeneric<T, int, int>());
         }
         
         /// <summary>
-        /// 
+        /// Selects function computing hashcode for given member based on member type.
         /// </summary>
-        /// <param name="member"></param>
-        /// <returns></returns>
+        /// <param name="member">Field or property to compute hashcode for.</param>
+        /// <returns>Function computing hashcode for value of given member.</returns>
+        /// <remarks>
+        /// It has special treatment for sequences (<see cref="IEnumerable"/>) by computing
+        /// hashcode element-wise. It uses objects' hashcode function in other cases.
+        /// Either way returned function handles null values correctly.
+        /// </remarks>
         protected override HashCodeFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToEnumerable())
@@ -77,9 +82,9 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Builds function computing hashcode of given object.
         /// </summary>
-        public HashCodeFunction<TTarget> Build()
+        public Func<TTarget, int> Build()
         {
-            return new HashCodeFunction<TTarget>(BuildOperations(), _seed, _step);
+            return new HashCodeFunction<TTarget>(BuildOperations(), _seed, _step).GetHashCode;
         }
         
     }

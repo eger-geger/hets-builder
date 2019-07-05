@@ -30,7 +30,15 @@
             <e p="HashCodeFunction.cs" t="Include" />
           </e>
         </e>
-        <e p="SequenceEqualityComparisonMode.cs" t="Include" />
+        <e p="SequenceComparisonMode.cs" t="Include" />
+        <e p="ToString" t="Include">
+          <e p="Format" t="Include">
+            <e p="DefaultFormatBuilder.cs" t="Include" />
+            <e p="FormatCombinators.cs" t="Include" />
+            <e p="FormatDensity.cs" t="Include" />
+            <e p="IToStringFormat.cs" t="Include" />
+          </e>
+        </e>
         <e p="ToStringBuilder.cs" t="Include" />
         <e p="Utils" t="Include">
           <e p="CollectionExtensions.cs" t="Include" />
@@ -60,6 +68,11 @@
         <e p="Reflection" t="Include">
           <e p="AccessorFactory" t="Include">
             <e p="CreatePropertyOrFieldGetterTests.cs" t="Include" />
+          </e>
+        </e>
+        <e p="ToString" t="Include">
+          <e p="Format" t="Include">
+            <e p="DefaultFormatBuilderTests.cs" t="Include" />
           </e>
         </e>
         <e p="Utils" t="Include">

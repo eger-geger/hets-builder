@@ -42,17 +42,11 @@ namespace System.Linq
         /// <param name="seed">Initial hashcode value.</param>
         /// <param name="step">Value applied to every sequence element.</param>
         /// <returns>Sequence hashcode.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="sequence"/> is null.
-        /// </exception>
         public static int GetSequenceHashCode(this IEnumerable sequence, int seed = 0, int step = 397)
         {
-            if(sequence is null)
-                throw new ArgumentNullException(nameof(sequence));
-            
-            return sequence.Cast<object>().Aggregate(seed, (hashCode, value) =>
+            return sequence?.Cast<object>().Aggregate(seed, (hashCode, value) =>
                 unchecked(hashCode ^ (value?.GetHashCode() * step ?? 0))
-            );
+            ) ?? seed;
         }
     }
 }

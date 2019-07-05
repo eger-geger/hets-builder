@@ -4,6 +4,9 @@ namespace BoilerplateBuilders.Utils
 {
     public static class FunctionExtensions
     {
+        public static Func<TArg, TRet> ToSpecific<TArg, TRet>(this Func<object, TRet> f) =>
+            arg => f(arg); 
+        
         public static Func<object, TGenericReturn> ToGeneric<TArg, TReturn, TGenericReturn>(
             this Func<TArg, TReturn> fn
         ) where TReturn : TGenericReturn

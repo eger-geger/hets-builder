@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Reflection.Equality;
@@ -18,13 +19,13 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Determines how collections should be compared by default.
         /// </summary>
-        public SequenceEqualityComparisonMode SequenceMode { get; private set; } = SequenceEqualityComparisonMode.SameOrder;
+        public SequenceComparisonMode SequenceMode { get; private set; } = SequenceComparisonMode.SameOrder;
         
         /// <summary>
         /// Sets <see cref="SequenceMode"/> which defines how collections should be compared by default.
         /// </summary>
         /// <returns>Current equality builder instance.</returns>
-        public EqualityBuilder<TTarget> WithSequenceComparisonMode(SequenceEqualityComparisonMode mode)
+        public EqualityBuilder<TTarget> WithSequenceComparisonMode(SequenceComparisonMode mode)
         {
             SequenceMode = mode;
             return this;
@@ -70,6 +71,7 @@ namespace BoilerplateBuilders
         /// Returns function comparing sequences (<see cref="IEnumerable{T}"/>) element-wise.
         /// Uses objects' equality function for all other types.
         /// </remarks>
+        [SuppressMessage("ReSharper", "InvertIf")]
         protected override EqualityFunc GetDefaultFunction(BuilderMember member)
         {
             if (member.MemberType.IsAssignableToSet())
@@ -81,9 +83,9 @@ namespace BoilerplateBuilders
             {
                 switch (SequenceMode)
                 {
-                    case SequenceEqualityComparisonMode.SameOrder:
+                    case SequenceComparisonMode.SameOrder:
                         return CreateOrderedSequenceComparer(member.MemberType);
-                    case SequenceEqualityComparisonMode.IgnoreOrder:
+                    case SequenceComparisonMode.IgnoreOrder:
                         return CreateUnorderedSequenceComparer(member.MemberType);
                     default:
                         return CreateOrderedSequenceComparer(member.MemberType);
@@ -96,9 +98,9 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Builds and returns final immutable equality comparer function.
         /// </summary>
-        public EqualityFunction<TTarget> Build()
+        public Func<TTarget, TTarget, bool> Build()
         {
-            return new EqualityFunction<TTarget>(BuildOperations());
+            return new EqualityFunction<TTarget>(BuildOperations()).Equals;
         }
     }
 }

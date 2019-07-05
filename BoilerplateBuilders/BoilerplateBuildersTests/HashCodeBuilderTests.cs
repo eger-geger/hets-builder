@@ -39,7 +39,7 @@ namespace BoilerplateBuildersTests
         [TestCaseSource(nameof(ComputeHashCodeCases))]
         public int ShouldComputeHashCode(Account account)
         {
-            return _builder.Build().GetHashCode(account);
+            return _builder.Build().Invoke(account);
         }
 
         private static IEnumerable<ITestCaseData> SameHashCodeCases
@@ -67,8 +67,8 @@ namespace BoilerplateBuildersTests
         public void ComputedHashCodesShouldBeEqual(Account a, Account b)
         {
             Assert.That(
-                _builder.Build().GetHashCode(a), 
-                Is.EqualTo(_builder.Build().GetHashCode(b))
+                _builder.Build().Invoke(a), 
+                Is.EqualTo(_builder.Build().Invoke(b))
             );
         }
     }
