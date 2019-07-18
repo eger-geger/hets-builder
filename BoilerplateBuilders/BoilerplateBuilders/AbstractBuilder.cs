@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Utils;
-using static BoilerplateBuilders.Reflection.BuilderMemberFactory;
+using static BoilerplateBuilders.Reflection.MemberFactory;
 
 namespace BoilerplateBuilders
 {
@@ -18,11 +19,12 @@ namespace BoilerplateBuilders
     /// Most generic signature of a function being built
     /// (e.g. <code>Func&lt;object, object, bool&gt;</code> for equality).
     /// </typeparam>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public abstract class AbstractBuilder<TTarget, TBuilder, TFunction>
         where TBuilder : AbstractBuilder<TTarget, TBuilder, TFunction>
         where TFunction : class
     {
-        private readonly ISet<BuilderMemberOperation<TFunction>> _operations;
+        private readonly ISet<MemberFunction<TFunction>> _operations;
 
         private readonly IDictionary<Type, TFunction> _explicitTypeFunctions;
 
@@ -31,20 +33,22 @@ namespace BoilerplateBuilders
         /// </summary>
         protected AbstractBuilder()
         {
-            _operations = new SortedSet<BuilderMemberOperation<TFunction>>();
+            _operations = new SortedSet<MemberFunction<TFunction>>();
             _explicitTypeFunctions = new Dictionary<Type, TFunction>();
         }
 
         /// <summary>
-        /// Appends builder with selected field or property with default
-        /// operation selected by builder.
+        /// Includes referenced field or property into list of members available to function being build.
         /// </summary>
-        /// <param name="getter"><typeparamref name="TTarget"/> field or property getter.</param>
-        /// <typeparam name="TMember">Type of chosen field or property.</typeparam>
+        /// <param name="fieldOrPropertyGetter">Expression pointing to field or property to include.</param>
+        /// <typeparam name="TMember">Type of selected field or property.</typeparam>
         /// <returns>Updated builder instance.</returns>
-        public TBuilder Append<TMember>(Expression<Func<TTarget, TMember>> getter)
+        /// <exception cref="ArgumentException">
+        /// <paramref name="fieldOrPropertyGetter"/> is not field or property accessor expression.
+        /// </exception>
+        public TBuilder Append<TMember>(Expression<Func<TTarget, TMember>> fieldOrPropertyGetter)
         {
-            _operations.Add(CreateImplicitOperation(BuilderMember.Create(getter)));
+            _operations.Add(CreateImplicitOperation(SelectedMember.Create(fieldOrPropertyGetter)));
             return this as TBuilder;
         }
         
@@ -59,7 +63,7 @@ namespace BoilerplateBuilders
         {
             _operations
                 .UnionWith(
-                    CollectFieldsAndPropertiesMarkedWith<TAttribute>(typeof(TTarget))
+                    SelectFieldsAndPropertiesMarkedWith<TAttribute>(typeof(TTarget))
                         .Select(CreateImplicitOperation)
                 );
             
@@ -73,7 +77,7 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public TBuilder AppendPublicProperties()
         {
-            _operations.UnionWith(CollectProperties(typeof(TTarget)).Select(CreateImplicitOperation));
+            _operations.UnionWith(SelectProperties(typeof(TTarget)).Select(CreateImplicitOperation));
             return this as TBuilder;
         }
 
@@ -84,7 +88,7 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public TBuilder AppendPublicFields()
         {
-            _operations.UnionWith(CollectFields(typeof(TTarget)).Select(CreateImplicitOperation));
+            _operations.UnionWith(SelectFields(typeof(TTarget)).Select(CreateImplicitOperation));
             return this as TBuilder;
         }
         
@@ -99,10 +103,10 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         protected TBuilder AppendExplicit<TMember>(Expression<Func<TTarget, TMember>> expression, TFunction function)
         {
-            _operations.Add(new BuilderMemberOperation<TFunction>(
-                BuilderMember.Create(expression),
+            _operations.Add(new MemberFunction<TFunction>(
+                SelectedMember.Create(expression),
                 function,
-                BuilderOperationSource.ExplicitMember
+                MemberFunctionSource.ExplicitMember
             ));
             
             return this as TBuilder;
@@ -124,14 +128,14 @@ namespace BoilerplateBuilders
             return this as TBuilder;
         }
         
-        private BuilderMemberOperation<TFunction> CreateImplicitOperation(BuilderMember member)
+        private MemberFunction<TFunction> CreateImplicitOperation(SelectedMember member)
         {
-            return CreateOperation(member, BuilderOperationSource.Implicit);
+            return CreateOperation(member, MemberFunctionSource.Implicit);
         }
         
-        private BuilderMemberOperation<TFunction> CreateOperation(BuilderMember member, BuilderOperationSource source)
+        private MemberFunction<TFunction> CreateOperation(SelectedMember member, MemberFunctionSource source)
         {
-            return new BuilderMemberOperation<TFunction>(member, GetDefaultFunction(member), source);
+            return new MemberFunction<TFunction>(member, GetDefaultFunction(member), source);
         }
 
         private bool HasTypeExplicitComparer(Type type, out TFunction function)
@@ -148,14 +152,14 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Returns final set of member operations accounting for implicit (default) and explicit operations.
         /// </summary>
-        protected IEnumerable<BuilderMemberOperation<TFunction>> BuildOperations()
+        protected IEnumerable<MemberFunction<TFunction>> BuildOperations()
         {
             foreach (var func in _operations)
             {
-                if (func.BuilderOperationSource == BuilderOperationSource.ExplicitMember)
+                if (func.MemberFunctionSource == MemberFunctionSource.ExplicitMember)
                     yield return func;
                 else if (HasTypeExplicitComparer(func.Member.MemberType, out var function))
-                    yield return new BuilderMemberOperation<TFunction>(func.Member, function, BuilderOperationSource.ExplicitType);
+                    yield return new MemberFunction<TFunction>(func.Member, function, MemberFunctionSource.ExplicitType);
                 else
                     yield return func;
             }
@@ -166,6 +170,6 @@ namespace BoilerplateBuilders
         /// </summary>
         /// <param name="member">Selected property or field of <typeparamref name="TTarget"/>.</param>
         /// <returns>Generic builder function.</returns>
-        protected abstract TFunction GetDefaultFunction(BuilderMember member);
+        protected abstract TFunction GetDefaultFunction(SelectedMember member);
     }
 }

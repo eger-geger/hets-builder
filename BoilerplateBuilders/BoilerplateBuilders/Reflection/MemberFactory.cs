@@ -8,7 +8,7 @@ namespace BoilerplateBuilders.Reflection
     /// <summary>
     /// Provides functions for inspecting fields and properties of a given type.
     /// </summary>
-    public class BuilderMemberFactory
+    public class MemberFactory
     {
         private const BindingFlags PublicInstance = BindingFlags.Public | BindingFlags.Instance;
         
@@ -21,14 +21,14 @@ namespace BoilerplateBuilders.Reflection
         /// <exception cref="ArgumentNullException">
         /// <paramref name="type"/> is null.
         /// </exception>
-        public static IEnumerable<BuilderMember> CollectProperties(Type type, BindingFlags bindingFlags = PublicInstance)
+        public static IEnumerable<SelectedMember> SelectProperties(Type type, BindingFlags bindingFlags = PublicInstance)
         {
             if(type is null)
                 throw new ArgumentNullException(nameof(type));
             
             return type
                 .GetProperties(bindingFlags)
-                .Select(BuilderMember.Create);
+                .Select(SelectedMember.Create);
         }
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace BoilerplateBuilders.Reflection
         /// <exception cref="ArgumentNullException">
         /// <paramref name="type"/> is null.
         /// </exception>
-        public static IEnumerable<BuilderMember> CollectFields(Type type, BindingFlags bindingFlags = PublicInstance)
+        public static IEnumerable<SelectedMember> SelectFields(Type type, BindingFlags bindingFlags = PublicInstance)
         {
             if(type is null)
                 throw new ArgumentNullException(nameof(type));
 
             return type
                 .GetFields(bindingFlags)
-                .Select(BuilderMember.Create);
+                .Select(SelectedMember.Create);
         }
             
         /// <summary>
@@ -60,7 +60,7 @@ namespace BoilerplateBuilders.Reflection
         /// <returns>
         /// Sequence of member info objects describing matched fields and properties.
         /// </returns>
-        public static IEnumerable<BuilderMember> CollectFieldsAndPropertiesMarkedWith<TAttribute>(
+        public static IEnumerable<SelectedMember> SelectFieldsAndPropertiesMarkedWith<TAttribute>(
             Type type,
             BindingFlags bindingFlags = PublicInstance
         )
@@ -71,12 +71,12 @@ namespace BoilerplateBuilders.Reflection
             var fields = 
                 type.GetFields(bindingFlags)
                     .Where(HasAttribute)
-                    .Select(BuilderMember.Create);
+                    .Select(SelectedMember.Create);
 
             var properties =
                 type.GetProperties(bindingFlags)
                     .Where(HasAttribute)
-                    .Select(BuilderMember.Create);
+                    .Select(SelectedMember.Create);
 
             return fields.Union(properties);
         }

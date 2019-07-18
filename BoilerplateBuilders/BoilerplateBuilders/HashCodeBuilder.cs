@@ -69,7 +69,7 @@ namespace BoilerplateBuilders
         /// hashcode element-wise. It uses objects' hashcode function in other cases.
         /// Either way returned function handles null values correctly.
         /// </remarks>
-        protected override HashCodeFunc GetDefaultFunction(BuilderMember member)
+        protected override HashCodeFunc GetDefaultFunction(SelectedMember member)
         {
             if (member.MemberType.IsAssignableToEnumerable())
             {

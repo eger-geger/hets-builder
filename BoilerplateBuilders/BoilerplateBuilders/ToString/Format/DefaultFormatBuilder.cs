@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Operation = BoilerplateBuilders.Reflection.BuilderMemberOperation<System.Func<object, string>>;
+using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, string>>;
 using Formatter = System.Action<object, System.Text.StringBuilder>;
 using static BoilerplateBuilders.ToString.Format.FormatDensity;
 using static BoilerplateBuilders.ToString.Format.FormatCombinators;
@@ -12,6 +13,7 @@ namespace BoilerplateBuilders.ToString.Format
     /// <summary>
     /// Builds formatting function according to settings.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class DefaultFormatBuilder : IToStringFormat
     {
         /// <summary>

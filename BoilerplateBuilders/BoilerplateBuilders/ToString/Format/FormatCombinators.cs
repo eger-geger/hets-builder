@@ -1,12 +1,17 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Formatter = System.Action<object, System.Text.StringBuilder>;
 
 namespace BoilerplateBuilders.ToString.Format
 {
+    /// <summary>
+    /// Library of generic formatting function combinators.
+    /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class FormatCombinators
     {
-        private static Formatter None => (_1, _2) => { };
+        private static Formatter None => (a, b) => { };
 
         public static Formatter Map(Func<object, object> mapper, Formatter formatter)
         {

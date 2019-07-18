@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Operation = BoilerplateBuilders.Reflection.BuilderMemberOperation<System.Func<object, int>>;
+using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, int>>;
 
 namespace BoilerplateBuilders.Reflection.HashCode
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Operation = BoilerplateBuilders.Reflection.BuilderMemberOperation<System.Func<object, object, bool>>;
+using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, object, bool>>;
 
 namespace BoilerplateBuilders.Reflection.Equality
 {

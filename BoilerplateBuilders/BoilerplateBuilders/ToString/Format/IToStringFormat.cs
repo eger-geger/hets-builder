@@ -5,17 +5,17 @@ using BoilerplateBuilders.Reflection;
 namespace BoilerplateBuilders.ToString.Format
 {
     /// <summary>
-    /// Converts set of members operations to function which returns string representation of an object.  
+    /// Combines set of <see cref="object.ToString"/> functions applied to object members into final function
+    /// returning string representation of whole object.
     /// </summary>
     public interface IToStringFormat
     {
         /// <summary>
-        /// Converts set of members operations to function returning string representation of an object.
+        /// Builds <see cref="object.ToString"/> function from individual <see cref="object.ToString"/> applied to
+        /// its' members.
         /// </summary>
-        /// <param name="operations">Set of formatting member operations.</param>
-        /// <returns>
-        /// Function converting object to string representation.
-        /// </returns>
-        Func<object, string> Build(IEnumerable<BuilderMemberOperation<Func<object, string>>> operations);
+        /// <param name="operations">Sequence of member specific <see cref="object.ToString"/> functions.</param>
+        /// <returns>Function returning string representation of an object.</returns>
+        Func<object, string> Build(IEnumerable<MemberFunction<Func<object, string>>> operations);
     }
 }
