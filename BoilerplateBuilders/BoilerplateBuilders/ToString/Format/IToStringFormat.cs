@@ -16,6 +16,6 @@ namespace BoilerplateBuilders.ToString.Format
         /// </summary>
         /// <param name="operations">Sequence of member specific <see cref="object.ToString"/> functions.</param>
         /// <returns>Function returning string representation of an object.</returns>
-        Func<object, string> Build(IEnumerable<MemberFunction<Func<object, string>>> operations);
+        Func<object, string> Build(IEnumerable<MemberContext<Func<object, string>>> operations);
     }
 }

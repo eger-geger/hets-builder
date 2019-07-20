@@ -59,7 +59,7 @@ namespace BoilerplateBuilders
         /// </remarks>
         public EqualityBuilder<TTarget> CompareWith<T>(Func<T, T, bool> comparisonFunc)
         {
-            return OverrideFunction(typeof(T), comparisonFunc.ToGeneric());
+            return OverrideContextForType(typeof(T), comparisonFunc.ToGeneric());
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace BoilerplateBuilders
         /// Uses objects' equality function for all other types.
         /// </remarks>
         [SuppressMessage("ReSharper", "InvertIf")]
-        protected override EqualityFunc GetDefaultFunction(SelectedMember member)
+        protected override EqualityFunc GetImplicitContext(SelectedMember member)
         {
             if (member.MemberType.IsAssignableToSet())
             {
@@ -100,7 +100,7 @@ namespace BoilerplateBuilders
         /// </summary>
         public Func<TTarget, TTarget, bool> Build()
         {
-            return new EqualityFunction<TTarget>(BuildOperations()).Equals;
+            return new EqualityFunction<TTarget>(GetMemberContexts()).Equals;
         }
     }
 }

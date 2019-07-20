@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, int>>;
+using Operation = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, int>>;
 
 namespace BoilerplateBuilders.Reflection.HashCode
 {
@@ -33,7 +33,7 @@ namespace BoilerplateBuilders.Reflection.HashCode
         public int GetHashCode(TTarget target)
         {
             int ComputeHashCode(Operation op) =>
-                op.Function(op.Member.Getter(target));
+                op.Context(op.Member.Getter(target));
             
             return _operations
                 .Select(ComputeHashCode)

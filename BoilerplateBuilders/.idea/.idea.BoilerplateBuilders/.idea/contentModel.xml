@@ -18,6 +18,7 @@
         </e>
         <e p="Reflection" t="Include">
           <e p="AccessorFactory.cs" t="Include" />
+          <e p="ContextSource.cs" t="Include" />
           <e p="Equality" t="Include">
             <e p="EqualityFunction.cs" t="Include" />
             <e p="EqualityFunctionFactory.cs" t="Include" />
@@ -25,9 +26,8 @@
           <e p="HashCode" t="Include">
             <e p="HashCodeFunction.cs" t="Include" />
           </e>
+          <e p="MemberContext.cs" t="Include" />
           <e p="MemberFactory.cs" t="Include" />
-          <e p="MemberFunction.cs" t="Include" />
-          <e p="MemberFunctionSource.cs" t="Include" />
           <e p="SelectedMember.cs" t="Include" />
         </e>
         <e p="SequenceComparisonMode.cs" t="Include" />

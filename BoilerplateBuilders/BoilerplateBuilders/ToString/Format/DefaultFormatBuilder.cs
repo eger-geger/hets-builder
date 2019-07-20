@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, string>>;
+using Operation = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
 using Formatter = System.Action<object, System.Text.StringBuilder>;
 using static BoilerplateBuilders.ToString.Format.FormatDensity;
 using static BoilerplateBuilders.ToString.Format.FormatCombinators;
@@ -175,7 +175,7 @@ namespace BoilerplateBuilders.ToString.Format
 
             var appendMemberNameAndValue = Enclose(
                 MemberEnclosure, 
-                AppendMemberName(op.Member.MemberName) + AppendMemberValue(op.Function)
+                AppendMemberName(op.Member.MemberName) + AppendMemberValue(op.Context)
             );
 
             var appendMember = When(

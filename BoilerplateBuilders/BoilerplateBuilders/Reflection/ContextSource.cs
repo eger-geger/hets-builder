@@ -3,7 +3,7 @@ namespace BoilerplateBuilders.Reflection
     /// <summary>
     /// Indicates how/why builder operation was created. 
     /// </summary>
-    public enum MemberFunctionSource
+    public enum ContextSource
     {
         /// <summary>
         /// Operation was chosen implicitly by builder based on member information and it's settings. 

@@ -10,13 +10,13 @@ namespace BoilerplateBuilders
     /// <summary>
     /// Builds <see cref="object.ToString"/> function.
     /// </summary>
-    /// <typeparam name="TTarget">Type of object to build function for.</typeparam>
+    /// <typeparam name="TTarget">Type of object function is being built for.</typeparam>
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public sealed class ToStringBuilder<TTarget> : AbstractBuilder<TTarget, ToStringBuilder<TTarget>, Func<object, string>>
     {
         /// <summary>
-        /// Determines which members and how to include into resulting <see cref="object.ToString"/> function. 
+        /// Converts selected object members into function returning objects' string representation. 
         /// </summary>
         public IToStringFormat ToStringFormat { get; private set; } = DefaultFormat;
         
@@ -55,7 +55,7 @@ namespace BoilerplateBuilders
         /// <exception cref="ArgumentNullException"><paramref name="toString"/> is null.</exception>
         public ToStringBuilder<TTarget> Use<T>(Func<T, string> toString)
         {
-            return OverrideFunction(typeof(T), toString?.ToGeneric<T, string, string>());
+            return OverrideContextForType(typeof(T), toString?.ToGeneric<T, string, string>());
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ToStringFormat.Build(BuildOperations()).ToSpecific<TTarget, string>();
+            return ToStringFormat.Build(GetMemberContexts()).ToSpecific<TTarget, string>();
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace BoilerplateBuilders
         /// </summary>
         /// <param name="member">Member which value need to be converted to string.</param>
         /// <returns>Function returning string representation of a member value.</returns>
-        protected override Func<object, string> GetDefaultFunction(SelectedMember member)
+        protected override Func<object, string> GetImplicitContext(SelectedMember member)
         {
             //TODO: different function for sequences
             return o => o?.ToString();

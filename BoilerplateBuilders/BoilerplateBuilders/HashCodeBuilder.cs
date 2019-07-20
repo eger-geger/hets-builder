@@ -56,7 +56,7 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public HashCodeBuilder<TTarget> Use<T>(Func<T, int> computeHashCode)
         {
-            return OverrideFunction(typeof(T), computeHashCode.ToGeneric<T, int, int>());
+            return OverrideContextForType(typeof(T), computeHashCode.ToGeneric<T, int, int>());
         }
         
         /// <summary>
@@ -69,7 +69,7 @@ namespace BoilerplateBuilders
         /// hashcode element-wise. It uses objects' hashcode function in other cases.
         /// Either way returned function handles null values correctly.
         /// </remarks>
-        protected override HashCodeFunc GetDefaultFunction(SelectedMember member)
+        protected override HashCodeFunc GetImplicitContext(SelectedMember member)
         {
             if (member.MemberType.IsAssignableToEnumerable())
             {
@@ -84,7 +84,7 @@ namespace BoilerplateBuilders
         /// </summary>
         public Func<TTarget, int> Build()
         {
-            return new HashCodeFunction<TTarget>(BuildOperations(), _seed, _step).GetHashCode;
+            return new HashCodeFunction<TTarget>(GetMemberContexts(), _seed, _step).GetHashCode;
         }
         
     }

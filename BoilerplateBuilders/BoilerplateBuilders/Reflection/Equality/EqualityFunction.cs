@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Operation = BoilerplateBuilders.Reflection.MemberFunction<System.Func<object, object, bool>>;
+using Operation = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, object, bool>>;
 
 namespace BoilerplateBuilders.Reflection.Equality
 {
@@ -36,7 +36,7 @@ namespace BoilerplateBuilders.Reflection.Equality
         {
             if (ReferenceEquals(x, y)) return true;
             if (x is null || y is null) return false;
-            return op.Function(x, y);
+            return op.Context(x, y);
         }
 
         private bool Equals(EqualityFunction<TTarget> other)
