@@ -2,22 +2,50 @@ using System;
 
 namespace BoilerplateBuilders.Utils
 {
+    /// <summary>
+    /// Holds functions operating on functions. 
+    /// </summary>
     public static class FunctionExtensions
     {
-        public static Func<TArg, TRet> ToSpecific<TArg, TRet>(this Func<object, TRet> f) =>
-            arg => f(arg); 
+        /// <summary>
+        /// Converts function signature to accept more specific argument subtype.
+        /// </summary>
+        /// <param name="function">Function accepting single arguments.</param>
+        /// <typeparam name="TGeneric">Provided function argument type.</typeparam>
+        /// <typeparam name="TArg">Resulting function argument type.</typeparam>
+        /// <typeparam name="TRet">Function return type.</typeparam>
+        /// <returns>Same function but with updated signature.</returns>
+        public static Func<TArg, TRet> ToSpecific<TGeneric, TArg, TRet>(this Func<TGeneric, TRet> function)
+            where TArg : TGeneric => arg => function(arg);
+             
+        /// <summary>
+        /// Converts function signature to one with more generic argument and return types.
+        /// Even though new function declares argument of more generic type, it is still just a copy of original function
+        /// so passing argument incompatible with it will cause error <see cref="InvalidCastException"/>.
+        /// </summary>
+        /// <param name="function">Function to change signature of.</param>
+        /// <typeparam name="TArg">Original function argument type.</typeparam>
+        /// <typeparam name="TReturn">Original function return type.</typeparam>
+        /// <typeparam name="TGenericArg">Resulting function argument type.</typeparam>
+        /// <typeparam name="TGenericReturn">Resulting function return type.</typeparam>
+        /// <returns>Copy of a function with updated signature.</returns>
+        public static Func<TGenericArg, TGenericReturn> ToGeneric<TArg, TReturn, TGenericArg, TGenericReturn>(
+            this Func<TArg, TReturn> function) 
+            where TReturn : TGenericReturn
+            where TArg : TGenericArg
+            => o => function((TArg) o);
         
-        public static Func<object, TGenericReturn> ToGeneric<TArg, TReturn, TGenericReturn>(
-            this Func<TArg, TReturn> fn
-        ) where TReturn : TGenericReturn
-            => o => (TGenericReturn) fn((TArg) o);
-        
-        public static Func<object, object, bool> ToGeneric<TArg>(
-            this Func<TArg, TArg, bool> fn
-        ) => (a, b) => fn((TArg) a, (TArg) b);
-
-        public static Func<(TArg1, TArg2, TArg3), TResult> ToTupled<TArg1, TArg2, TArg3, TResult>(
-            Func<TArg1, TArg2, TArg3, TResult> fn
-        ) => tuple => fn(tuple.Item1, tuple.Item2, tuple.Item3);
+        /// <summary>
+        /// Converts function signature to one with more generic arguments and return types.
+        /// Even though new function declares arguments of more generic type, it is still just a copy of original function
+        /// so passing argument incompatible with it will cause error <see cref="InvalidCastException"/>.
+        /// </summary>
+        /// <param name="function">Function to change signature of.</param>
+        /// <typeparam name="TArg">Type of original function arguments.</typeparam>
+        /// <typeparam name="TGenericArg">Type of resulting function arguments.</typeparam>
+        /// <returns>Copy of a function with updated signature.</returns>
+        public static Func<TGenericArg, TGenericArg, bool> ToGeneric<TArg, TGenericArg>(this Func<TArg, TArg, bool> function)
+            where TArg : TGenericArg
+            => (a, b) => function((TArg) a, (TArg) b);
     }
 }

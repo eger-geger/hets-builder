@@ -94,7 +94,7 @@ namespace BoilerplateBuilders.Reflection
                 ? new SelectedMember(
                     typeof(TMember),
                     memberInfo.Name,
-                    expression.Compile().ToGeneric<TTarget, TMember, object>()
+                    expression.Compile().ToGeneric<TTarget, TMember, object, object>()
                 )
                 : throw new ArgumentException(
                     "Invalid expression. Only property or field accessors are supported.",

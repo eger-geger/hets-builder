@@ -21,32 +21,32 @@ namespace BoilerplateBuilders.ToString.Format
         /// densely it should be formatted. 
         /// </summary>
         public FormatDensity Density { get; private set; }
-        
+
         /// <summary>
         /// Tuple of symbols placed before first and after last member in output.
         /// </summary>
-        public (string, string) ClassBodyEnclosure { get; private set; }
+        public (string, string) AllMembersQuotes { get; private set; }
 
         /// <summary>
         /// Pair of symbols placed before and after every member within output.
         /// </summary>
-        public (string, string) MemberEnclosure { get; private set; }
-        
+        public (string, string) SingleMemberQuotes { get; private set; }
+
         /// <summary>
-        /// Pair of symbols placed before and after member name when it is printed to output.
+        /// Pair of symbols placed before and after every member name when it is printed to output.
         /// </summary>
-        public (string, string) MemberNameEnclosure { get; private set; }
-        
+        public (string, string) MemberNameQuotes { get; private set; }
+
         /// <summary>
-        /// Pair of values placed before and after member value within output.
+        /// Pair of values placed before and after every member value within output.
         /// </summary>
-        public (string, string) MemberValueEnclosure { get; private set; }
-        
+        public (string, string) MemberValueQuotes { get; private set; }
+
         /// <summary>
-        /// Symbol placed between two subsequent members within output. 
+        /// Symbol placed between two subsequent members within output.
         /// </summary>
         public string MembersSeparator { get; private set; }
-            
+
         /// <summary>
         /// Deactivates density flag and returns updated format instance. 
         /// </summary>
@@ -57,7 +57,7 @@ namespace BoilerplateBuilders.ToString.Format
             Density &= Density ^ flags;
             return this;
         }
-        
+
         /// <summary>
         /// Sets density flag and returns updated format instance.
         /// </summary>
@@ -68,7 +68,7 @@ namespace BoilerplateBuilders.ToString.Format
             Density |= flags;
             return this;
         }
-        
+
         /// <summary>
         /// Instructs to enclose every formatted member into pair of <paramref name="opening"/>
         /// and <paramref name="closing"/> symbols. 
@@ -78,10 +78,10 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>Updated <see cref="DefaultFormatBuilder"/> instance.</returns>
         public DefaultFormatBuilder EncloseMemberWith(string opening, string closing)
         {
-            MemberEnclosure = (opening, closing);
+            SingleMemberQuotes = (opening, closing);
             return this;
         }
-        
+
         /// <summary>
         /// Instructs to enclose every formatted member value into pair of <paramref name="opening"/>
         /// and <paramref name="closing"/> symbols.
@@ -91,10 +91,10 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>Updated <see cref="DefaultFormatBuilder"/> instance.</returns>
         public DefaultFormatBuilder EncloseMemberValueWith(string opening, string closing)
         {
-            MemberValueEnclosure = (opening, closing);
+            MemberValueQuotes = (opening, closing);
             return this;
         }
-        
+
         /// <summary>
         /// Instructs to enclose every formatted member name into pair of <paramref name="opening"/>
         /// and <paramref name="closing"/> symbols. 
@@ -104,10 +104,10 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>Updated <see cref="DefaultFormatBuilder"/> instance.</returns>
         public DefaultFormatBuilder EncloseMemberNameWith(string opening, string closing)
         {
-            MemberNameEnclosure = (opening, closing);
+            MemberNameQuotes = (opening, closing);
             return this;
         }
-        
+
         /// <summary>
         /// Instructs to place <paramref name="separator"/> symbol between
         /// subsequent formatted members.
@@ -129,15 +129,14 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>Updated <see cref="DefaultFormatBuilder"/> instance.</returns>
         public DefaultFormatBuilder EncloseMemberListWith(string opening, string closing)
         {
-            ClassBodyEnclosure = (opening, closing);
+            AllMembersQuotes = (opening, closing);
             return this;
         }
-        
+
         /// <summary>
-        /// Converts set of members operations to function returning string representation of an object
-        /// according to specified settings.
+        /// Builds <see cref="object.ToString"/> function from sequence of formatting operations.
         /// </summary>
-        /// <param name="operations">Set of formatting member operations.</param>
+        /// <param name="operations">Sequence of formatting member operations.</param>
         /// <returns>Function converting object to string representation.</returns>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="operations"/> is null.
@@ -147,42 +146,51 @@ namespace BoilerplateBuilders.ToString.Format
             if (operations is null)
                 throw new ArgumentNullException(nameof(operations));
 
-            var membersFormatter = operations
-                .Select(AppendMember)
-                .Aggregate(Join(AppendUnlessNullOrEmpty(MembersSeparator)));
+            var formatMembers = Enclose(
+                AllMembersQuotes,
+                operations
+                    .Select(AppendMember)
+                    .Aggregate(Join(Append(MembersSeparator)))
+            );
 
-            var bodyFormatter = Enclose(ClassBodyEnclosure, membersFormatter);
-            
-            var objectFormatter = AppendClassName() + When(o => o != null, bodyFormatter); 
+            var formatObject = AppendClassName() + When(
+                                   o => o != null,
+                                   formatMembers,
+                                   Append("null")
+                               );
 
-            return MakeToString(objectFormatter);
+            return MakeToString(formatObject);
         }
 
         private Formatter AppendClassName()
         {
             return When(
                 Density.HasFlag(IncludeClassName),
-                Append(o => o.GetType().Name)
+                Append(o => o?.GetType().Name)
             );
         }
 
         private Formatter AppendMember(Operation op)
         {
             var appendNewLine = When(
-                Density.HasFlag(MemberOnNewLine), 
+                Density.HasFlag(MemberOnNewLine),
                 (_, sb) => sb.AppendLine()
             );
 
             var appendMemberNameAndValue = Enclose(
-                MemberEnclosure, 
+                SingleMemberQuotes,
                 AppendMemberName(op.Member.MemberName) + AppendMemberValue(op.Context)
             );
 
             var appendMember = When(
-                o => o != null || Density.HasFlag(IncludeNullValues),
-                appendNewLine + appendMemberNameAndValue
-            ); 
-            
+                o => o != null,
+                appendNewLine + appendMemberNameAndValue,
+                When(
+                    Density.HasFlag(IncludeNullValues),
+                    appendNewLine + appendMemberNameAndValue
+                    )
+            );
+
             return Map(op.Member.Getter, appendMember);
         }
 
@@ -190,13 +198,13 @@ namespace BoilerplateBuilders.ToString.Format
         {
             return When(
                 Density.HasFlag(IncludeMemberName),
-                Enclose(MemberNameEnclosure, Append(memberName))
+                Enclose(MemberNameQuotes, Append(memberName))
             );
         }
 
         private Formatter AppendMemberValue(Func<object, string> toString)
         {
-            return Enclose(MemberValueEnclosure, Append(v => v == null ? "null" : toString(v)));
+            return Enclose(MemberValueQuotes, Append(v => v == null ? "null" : toString(v)));
         }
     }
 }

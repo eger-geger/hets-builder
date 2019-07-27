@@ -15,11 +15,11 @@ namespace BoilerplateBuildersTests.ToString.Format
             var defaultEnclosure = ValueTuple.Create<string, string>(null, null);
             
             Assert.That(builder.Density, Is.EqualTo((FormatDensity) 0));
-            Assert.That(builder.MemberEnclosure, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.SingleMemberQuotes, Is.EqualTo(defaultEnclosure));
             Assert.That(builder.MembersSeparator, Is.EqualTo(null));
-            Assert.That(builder.ClassBodyEnclosure, Is.EqualTo(defaultEnclosure));
-            Assert.That(builder.MemberNameEnclosure, Is.EqualTo(defaultEnclosure));
-            Assert.That(builder.MemberValueEnclosure, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.AllMembersQuotes, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.MemberNameQuotes, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.MemberValueQuotes, Is.EqualTo(defaultEnclosure));
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace BoilerplateBuildersTests.ToString.Format
             var builder = new DefaultFormatBuilder()
                 .EncloseMemberWith("<", ">");
             
-            Assert.That(builder.MemberEnclosure, Is.EqualTo(("<", ">")));
+            Assert.That(builder.SingleMemberQuotes, Is.EqualTo(("<", ">")));
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace BoilerplateBuildersTests.ToString.Format
                 .EncloseMemberValueWith(null, "]");
             
             Assert.That(
-                builder.MemberValueEnclosure, 
+                builder.MemberValueQuotes, 
                 Is.EqualTo(ValueTuple.Create<string, string>(null, "]"))
             );
         }

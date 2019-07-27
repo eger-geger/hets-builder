@@ -43,7 +43,7 @@ namespace BoilerplateBuilders
             Func<TMember, int> computeHashCode
         )
         {
-            return AppendExplicit(expression, computeHashCode.ToGeneric<TMember, int, int>());
+            return AppendExplicit(expression, computeHashCode.ToGeneric<TMember, int, object, int>());
         }
         
         
@@ -56,7 +56,7 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         public HashCodeBuilder<TTarget> Use<T>(Func<T, int> computeHashCode)
         {
-            return OverrideContextForType(typeof(T), computeHashCode.ToGeneric<T, int, int>());
+            return OverrideContextForType(typeof(T), computeHashCode.ToGeneric<T, int, object, int>());
         }
         
         /// <summary>

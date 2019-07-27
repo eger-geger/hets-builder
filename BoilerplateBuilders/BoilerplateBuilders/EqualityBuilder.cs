@@ -44,22 +44,22 @@ namespace BoilerplateBuilders
             Func<TMember, TMember, bool> comparisonFunc
         )
         {
-            return AppendExplicit(expression, comparisonFunc.ToGeneric());
+            return AppendExplicit(expression, comparisonFunc.ToGeneric<TMember, object>());
         }
 
         /// <summary>
         /// Sets equality comparison function for all object assignable to given type.
         /// Overrides any previous or default value.
         /// </summary>
-        /// <param name="comparisonFunc">Function comparing objects or given type for equality.</param>
+        /// <param name="comparer">Function comparing objects or given type for equality.</param>
         /// <typeparam name="T">Type of compared objects.</typeparam>
         /// <returns></returns>
         /// <remarks>
         /// Setting <typeparamref name="T"/> equal to <see cref="object"/> would override comparison function for all members.
         /// </remarks>
-        public EqualityBuilder<TTarget> CompareWith<T>(Func<T, T, bool> comparisonFunc)
+        public EqualityBuilder<TTarget> CompareWith<T>(Func<T, T, bool> comparer)
         {
-            return OverrideContextForType(typeof(T), comparisonFunc.ToGeneric());
+            return OverrideContextForType(typeof(T), comparer.ToGeneric<T, object>());
         }
 
         /// <summary>

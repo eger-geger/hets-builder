@@ -38,7 +38,7 @@ namespace BoilerplateBuilders
             Func<TMember, string> toString
         )
         {
-            return AppendExplicit(fieldOrPropertyGetter, toString?.ToGeneric<TMember, string, string>());
+            return AppendExplicit(fieldOrPropertyGetter, toString?.ToGeneric<TMember, string, object, string>());
         }
         
         /// <summary>
@@ -55,7 +55,7 @@ namespace BoilerplateBuilders
         /// <exception cref="ArgumentNullException"><paramref name="toString"/> is null.</exception>
         public ToStringBuilder<TTarget> Use<T>(Func<T, string> toString)
         {
-            return OverrideContextForType(typeof(T), toString?.ToGeneric<T, string, string>());
+            return OverrideContextForType(typeof(T), toString?.ToGeneric<T, string, object, string>());
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ToStringFormat.Build(GetMemberContexts()).ToSpecific<TTarget, string>();
+            return ToStringFormat.Build(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>

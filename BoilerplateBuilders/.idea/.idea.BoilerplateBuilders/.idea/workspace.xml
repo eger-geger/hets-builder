@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/HashCode/HashCodeFunction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunctionSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/ContextSource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFormat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFormat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,28 +37,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="96" column="9" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+            <state relative-caret-position="462">
+              <caret line="57" column="103" lean-forward="true" selection-start-line="57" selection-start-column="103" selection-end-line="57" selection-end-column="103" />
               <folding>
-                <marker date="1563656134358" expanded="false" signature="6:197" ph="..." />
-                <marker date="1563656134358" expanded="true" signature="228:4994" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="235:412" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
-                <marker date="1563656134358" expanded="true" signature="658:4992" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="673:811" ph="/// Converts selected object members into function returning objects' string representation.  ... " />
-                <marker date="1563656134358" expanded="true" signature="914:1854" ph="/// Includes referenced field or property into list of members available to &lt;see cref=&quot;object.ToString&quot;/&gt; ... " />
-                <marker date="1563656134358" expanded="true" signature="2035:2161" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="2179:2945" ph="/// Instructs builder to use a given function for all selected (previously or later) ... " />
-                <marker date="1563656134358" expanded="true" signature="3018:3134" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="3144:3460" ph="/// Overrides current &lt;see cref=&quot;ToStringFormat&quot;/&gt; with given value or sets it to &lt;see cref=&quot;DefaultFormat&quot;/&gt; ... " />
-                <marker date="1563656134358" expanded="true" signature="3534:3633" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="3651:3869" ph="/// Generates final &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
-                <marker date="1563656134358" expanded="true" signature="3914:4026" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="4036:4369" ph="/// Determines a function to use for converting member value to string when one was not explicitly given. ... " />
-                <marker date="1563656134358" expanded="true" signature="4459:4571" ph="{...}" />
-                <marker date="1563656134358" expanded="true" signature="4589:4719" ph="/// Format used by builder when none was explicitly set with &lt;see cref=&quot;UseFormat&quot;/&gt;. ... " />
+                <marker date="1564234998729" expanded="false" signature="6:197" ph="..." />
+                <marker date="1564234998729" expanded="true" signature="228:5018" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="235:412" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
+                <marker date="1564234998729" expanded="true" signature="658:5016" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="673:811" ph="/// Converts selected object members into function returning objects' string representation.  ... " />
+                <marker date="1564234998729" expanded="true" signature="914:1854" ph="/// Includes referenced field or property into list of members available to &lt;see cref=&quot;object.ToString&quot;/&gt; ... " />
+                <marker date="1564234998729" expanded="true" signature="2035:2169" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="2187:2953" ph="/// Instructs builder to use a given function for all selected (previously or later) ... " />
+                <marker date="1564234998729" expanded="true" signature="3026:3150" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="3160:3476" ph="/// Overrides current &lt;see cref=&quot;ToStringFormat&quot;/&gt; with given value or sets it to &lt;see cref=&quot;DefaultFormat&quot;/&gt; ... " />
+                <marker date="1564234998729" expanded="true" signature="3550:3649" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="3667:3885" ph="/// Generates final &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
+                <marker date="1564234998729" expanded="true" signature="3930:4050" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="4060:4393" ph="/// Determines a function to use for converting member value to string when one was not explicitly given. ... " />
+                <marker date="1564234998729" expanded="true" signature="4483:4595" ph="{...}" />
+                <marker date="1564234998729" expanded="true" signature="4613:4743" ph="/// Format used by builder when none was explicitly set with &lt;see cref=&quot;UseFormat&quot;/&gt;. ... " />
               </folding>
             </state>
           </provider>
@@ -91,7 +88,6 @@
         <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret lean-forward="true" />
               <folding>
                 <marker date="1563655944517" expanded="false" signature="6:325" ph="..." />
                 <marker date="1563655944517" expanded="true" signature="356:7536" ph="{...}" />
@@ -125,24 +121,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            <state relative-caret-position="1598">
+              <caret line="105" column="44" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
               <folding>
-                <marker date="1563538858347" expanded="false" signature="6:139" ph="..." />
-                <marker date="1563538858347" expanded="true" signature="186:2253" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="193:285" ph="/// Library of generic formatting function combinators. ... " />
-                <marker date="1563538858347" expanded="true" signature="391:2251" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="540:616" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="702:893" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="749:882" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="951:1006" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="1077:1151" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="1258:1458" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="1553:1625" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="1714:1806" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="1889:1958" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="2027:2087" ph="{...}" />
-                <marker date="1563538858347" expanded="true" signature="2162:2245" ph="{...}" />
+                <marker date="1564159503205" expanded="false" signature="6:139" ph="..." />
+                <marker date="1564159503205" expanded="true" signature="186:7464" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="193:450" ph="/// Library of formatting function combinators. ... " />
+                <marker date="1564159503205" expanded="true" signature="556:7462" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="628:1035" ph="/// Combines mapping and formatting function by applying mapping function first ... " />
+                <marker date="1564159503205" expanded="true" signature="1121:1197" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="1215:1591" ph="/// Converts formatting function to function returning string representation of formatted value accumulated in ... " />
+                <marker date="1564159503205" expanded="true" signature="1668:1859" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="1715:1848" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="1877:2283" ph="/// Creates formatting function ignoring formatted value and appending provided constant at current position.  ... " />
+                <marker date="1564159503205" expanded="true" signature="2332:2452" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="2462:2998" ph="/// Creates formatting function which invokes provided &lt;paramref name=&quot;toString&quot;/&gt; function ... " />
+                <marker date="1564159503205" expanded="true" signature="3068:3255" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="3273:3686" ph="/// Creates formatting function which encloses value generated by another formatting function. ... " />
+                <marker date="1564159503205" expanded="true" signature="3789:3960" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="3978:4429" ph="/// Creates function combining two formatting functions and &lt;paramref name=&quot;separator&quot;/&gt; function ... " />
+                <marker date="1564159503205" expanded="true" signature="4515:4702" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="4712:5432" ph="/// Creates formatting function invoking one of two provided formatting functions ... " />
+                <marker date="1564159503205" expanded="true" signature="5546:5649" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="5667:6379" ph="/// Chooses one of two formatting functions depending on condition value. ... " />
+                <marker date="1564159503205" expanded="true" signature="6479:6559" ph="{...}" />
+                <marker date="1564159503205" expanded="true" signature="6577:7277" ph="/// Chooses one of two function depending on condition value. ... " />
+                <marker date="1564159503205" expanded="true" signature="7379:7456" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -151,39 +155,114 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1377">
-              <caret line="104" column="47" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
+            <state>
               <folding>
-                <marker date="1563637017138" expanded="false" signature="6:417" ph="..." />
-                <marker date="1563637017138" expanded="true" signature="464:8236" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="471:561" ph="/// Builds formatting function according to settings. ... " />
-                <marker date="1563637017138" expanded="true" signature="675:8234" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="690:847" ph="/// Determines what should be printed into formatted output and how ... " />
-                <marker date="1563637017138" expanded="true" signature="924:1042" ph="/// Tuple of symbols placed before first and after last member in output. ... " />
-                <marker date="1563637017138" expanded="true" signature="1125:1241" ph="/// Pair of symbols placed before and after every member within output. ... " />
-                <marker date="1563637017138" expanded="true" signature="1329:1459" ph="/// Pair of symbols placed before and after member name when it is printed to output. ... " />
-                <marker date="1563637017138" expanded="true" signature="1551:1666" ph="/// Pair of values placed before and after member value within output. ... " />
-                <marker date="1563637017138" expanded="true" signature="1759:1868" ph="/// Symbol placed between two subsequent members within output.  ... " />
-                <marker date="1563637017138" expanded="true" signature="1951:2213" ph="/// Deactivates density flag and returns updated format instance.  ... " />
-                <marker date="1563637017138" expanded="true" signature="2287:2372" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="2390:2641" ph="/// Sets density flag and returns updated format instance. ... " />
-                <marker date="1563637017138" expanded="true" signature="2713:2788" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="2806:3252" ph="/// Instructs to enclose every formatted member into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-                <marker date="1563637017138" expanded="true" signature="3338:3433" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="3451:3884" ph="/// Instructs to enclose every formatted member value into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-                <marker date="1563637017138" expanded="true" signature="3975:4075" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="4093:4524" ph="/// Instructs to enclose every formatted member name into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-                <marker date="1563637017138" expanded="true" signature="4614:4713" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="4731:5047" ph="/// Instructs to place &lt;paramref name=&quot;separator&quot;/&gt; symbol between ... " />
-                <marker date="1563637017138" expanded="true" signature="5121:5208" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="5218:5647" ph="/// Instructs to enclose formatted list of members into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-                <marker date="1563637017138" expanded="true" signature="5737:5835" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="5853:6333" ph="/// Converts set of members operations to function returning string representation of an object ... " />
-                <marker date="1563637017138" expanded="true" signature="6410:6933" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="6978:7135" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="7189:7795" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="7858:8035" ph="{...}" />
-                <marker date="1563637017138" expanded="true" signature="8111:8228" ph="{...}" />
+                <marker date="1564160511932" expanded="false" signature="6:417" ph="..." />
+                <marker date="1564160511932" expanded="true" signature="464:8322" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="471:561" ph="/// Builds formatting function according to settings. ... " />
+                <marker date="1564160511932" expanded="true" signature="675:8320" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="690:847" ph="/// Determines what should be printed into formatted output and how ... " />
+                <marker date="1564160511932" expanded="true" signature="916:1034" ph="/// Tuple of symbols placed before first and after last member in output. ... " />
+                <marker date="1564160511932" expanded="true" signature="1115:1231" ph="/// Pair of symbols placed before and after every member within output. ... " />
+                <marker date="1564160511932" expanded="true" signature="1314:1450" ph="/// Pair of symbols placed before and after every member name when it is printed to output. ... " />
+                <marker date="1564160511932" expanded="true" signature="1531:1652" ph="/// Pair of values placed before and after every member value within output. ... " />
+                <marker date="1564160511932" expanded="true" signature="1734:1842" ph="/// Symbol placed between two subsequent members within output. ... " />
+                <marker date="1564160511932" expanded="true" signature="1913:2175" ph="/// Deactivates density flag and returns updated format instance.  ... " />
+                <marker date="1564160511932" expanded="true" signature="2249:2334" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="2344:2595" ph="/// Sets density flag and returns updated format instance. ... " />
+                <marker date="1564160511932" expanded="true" signature="2667:2742" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="2752:3198" ph="/// Instructs to enclose every formatted member into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+                <marker date="1564160511932" expanded="true" signature="3284:3382" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="3392:3825" ph="/// Instructs to enclose every formatted member value into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+                <marker date="1564160511932" expanded="true" signature="3916:4013" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="4023:4454" ph="/// Instructs to enclose every formatted member name into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+                <marker date="1564160511932" expanded="true" signature="4544:4640" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="4650:4966" ph="/// Instructs to place &lt;paramref name=&quot;separator&quot;/&gt; symbol between ... " />
+                <marker date="1564160511932" expanded="true" signature="5040:5127" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="5137:5566" ph="/// Instructs to enclose formatted list of members into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+                <marker date="1564160511932" expanded="true" signature="5656:5752" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="5762:6196" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function from sequence of formatting operations. ... " />
+                <marker date="1564160511932" expanded="true" signature="6273:6912" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="6957:7115" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="7169:7887" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="7950:8124" ph="{...}" />
+                <marker date="1564160511932" expanded="true" signature="8200:8314" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+              <folding>
+                <marker date="1564236261247" expanded="true" signature="50:2942" ph="{...}" />
+                <marker date="1564236261247" expanded="true" signature="57:138" ph="/// Holds functions operating on functions.  ... " />
+                <marker date="1564236261247" expanded="true" signature="181:2940" ph="{...}" />
+                <marker date="1564236261247" expanded="true" signature="196:701" ph="/// Converts function signature to accept more specific argument subtype. ... " />
+                <marker date="1564236261247" expanded="true" signature="891:1735" ph="/// Converts function signature to one with more generic argument and return types. ... " />
+                <marker date="1564236261247" expanded="true" signature="2032:2716" ph="/// Converts function signature to one with more generic arguments and return types. ... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="45" column="97" selection-start-line="45" selection-start-column="94" selection-end-line="45" selection-end-column="97" />
+              <folding>
+                <marker date="1564234945726" expanded="false" signature="6:254" ph="..." />
+                <marker date="1564234945726" expanded="true" signature="285:3808" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="292:495" ph="/// Creates function computing hashcode using hash codes of configured members. ... " />
+                <marker date="1564234945726" expanded="true" signature="604:3806" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="701:957" ph="/// Initializes new builder instance with provided or default values. ... " />
+                <marker date="1564234945726" expanded="true" signature="1018:1090" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="1100:1639" ph="/// Include field or property into hashcode computation ... " />
+                <marker date="1564234945726" expanded="true" signature="1812:1935" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="1962:2385" ph="/// Instructs builder to use supplied function for computing hashcode of members' values ... " />
+                <marker date="1564234945726" expanded="true" signature="2462:2586" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="2604:3192" ph="/// Selects function computing hashcode for given member based on member type. ... " />
+                <marker date="1564234945726" expanded="true" signature="3274:3514" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="3346:3456" ph="{...}" />
+                <marker date="1564234945726" expanded="true" signature="3532:3632" ph="/// Builds function computing hashcode of given object. ... " />
+                <marker date="1564234945726" expanded="true" signature="3674:3791" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+              <folding>
+                <marker date="1564234971120" expanded="false" signature="6:163" ph="..." />
+                <marker date="1564234971120" expanded="true" signature="205:5549" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="212:318" ph="/// Pointer to object field or property selected by function builder. ... " />
+                <marker date="1564234971120" expanded="true" signature="350:5547" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="365:768" ph="/// Explicitly initializes all properties of a new &lt;see cref=&quot;SelectedMember&quot;/&gt; instance. ... " />
+                <marker date="1564234971120" expanded="true" signature="864:1148" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="1158:1239" ph="/// Type of field or property value. ... " />
+                <marker date="1564234971120" expanded="true" signature="1289:1370" ph="/// Selected field or property name. ... " />
+                <marker date="1564234971120" expanded="true" signature="1430:1559" ph="/// Function retrieving member value from an instance of an object it is defined in. ... " />
+                <marker date="1564234971120" expanded="true" signature="1662:1780" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="1864:2106" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2176:2330" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2208:2320" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2444:2786" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2581:2656" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2673:2736" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="2804:3509" ph="/// Creates instance of &lt;see cref=&quot;SelectedMember&quot;/&gt; from member accessor expression. ... " />
+                <marker date="1564234971120" expanded="true" signature="3618:4130" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="4140:4475" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected property information. ... " />
+                <marker date="1564234971120" expanded="true" signature="4546:4851" ph="{...}" />
+                <marker date="1564234971120" expanded="true" signature="4869:5192" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected field information. ... " />
+                <marker date="1564234971120" expanded="true" signature="5257:5541" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -273,10 +352,7 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/Functors.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/FormatterFunctors.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/DefaultFormatterBuilder.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatDensity.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IFormatBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IFormat.cs" />
@@ -290,12 +366,15 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunction.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunctionSource.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" />
       </list>
     </option>
   </component>
@@ -319,21 +398,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystemExplorer">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Project" type="161ac34:FileSystemExplorerRootNode" />
-              <item name="BoilerplateBuilders" type="34e6ba20:FileSystemExplorerNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="SolutionExplorer">
         <option name="show-all-files" value="false" />
       </pane>
       <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -391,12 +460,16 @@
       <workItem from="1563375098227" duration="1237000" />
       <workItem from="1563434133537" duration="7000" />
       <workItem from="1563461107893" duration="4876000" />
-      <workItem from="1563634475857" duration="3525000" />
+      <workItem from="1563634475857" duration="3707000" />
+      <workItem from="1564147482946" duration="523000" />
+      <workItem from="1564152462555" duration="1342000" />
+      <workItem from="1564158571796" duration="2199000" />
+      <workItem from="1564232915082" duration="3058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104395000" />
+    <option name="totallyTimeSpent" value="111699000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,9 +482,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.28906775" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2930919" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -814,20 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="82" column="58" lean-forward="true" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="100" column="51" lean-forward="true" selection-start-line="100" selection-start-column="51" selection-end-line="100" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatDensity.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -861,27 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
           <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
-          <folding>
-            <marker date="1562354023960" expanded="true" signature="6:177" ph="..." />
-            <marker date="1562354023960" expanded="true" signature="229:2688" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="274:2686" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="330:973" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="1041:1451" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="1513:2031" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="2105:2311" ph="{...}" />
-            <marker date="1562354023960" expanded="true" signature="2382:2680" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding>
-            <marker date="1561819882938" expanded="true" signature="50:843" ph="{...}" />
-            <marker date="1561819882938" expanded="true" signature="95:841" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,6 +963,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <marker date="1563635018145" expanded="true" signature="55:1608" ph="{...}" />
+            <marker date="1563635018145" expanded="true" signature="62:285" ph="/// Represents object member selected by builder and additional builder-specific context.  ... " />
+            <marker date="1563635018145" expanded="true" signature="326:1606" ph="{...}" />
+            <marker date="1563635018145" expanded="true" signature="341:861" ph="/// Initializes new member context by providing all required properties. ... " />
+            <marker date="1563635018145" expanded="true" signature="953:1113" ph="{...}" />
+            <marker date="1563635018145" expanded="true" signature="1123:1224" ph="/// Inforation about member selected by builder. ... " />
+            <marker date="1563635018145" expanded="true" signature="1288:1393" ph="/// Builder-specific context associated with selected member ... " />
+            <marker date="1563635018145" expanded="true" signature="1452:1555" ph="/// Indicates what has triggered current context creation. ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFormat.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding>
+            <marker date="1563634535678" expanded="false" signature="6:85" ph="..." />
+            <marker date="1563634535678" expanded="true" signature="132:872" ph="{...}" />
+            <marker date="1563634535678" expanded="true" signature="139:338" ph="/// Combines set of &lt;see cref=&quot;object.ToString&quot;/&gt; functions applied to object members into final function ... " />
+            <marker date="1563634535678" expanded="true" signature="375:870" ph="{...}" />
+            <marker date="1563634535678" expanded="true" signature="390:767" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function from individual &lt;see cref=&quot;object.ToString&quot;/&gt; applied to ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -944,121 +1012,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding>
-            <marker date="1563538858347" expanded="false" signature="6:139" ph="..." />
-            <marker date="1563538858347" expanded="true" signature="186:2253" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="193:285" ph="/// Library of generic formatting function combinators. ... " />
-            <marker date="1563538858347" expanded="true" signature="391:2251" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="540:616" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="702:893" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="749:882" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="951:1006" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="1077:1151" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="1258:1458" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="1553:1625" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="1714:1806" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="1889:1958" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="2027:2087" ph="{...}" />
-            <marker date="1563538858347" expanded="true" signature="2162:2245" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="104" column="47" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
-          <folding>
-            <marker date="1563637017138" expanded="false" signature="6:417" ph="..." />
-            <marker date="1563637017138" expanded="true" signature="464:8236" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="471:561" ph="/// Builds formatting function according to settings. ... " />
-            <marker date="1563637017138" expanded="true" signature="675:8234" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="690:847" ph="/// Determines what should be printed into formatted output and how ... " />
-            <marker date="1563637017138" expanded="true" signature="924:1042" ph="/// Tuple of symbols placed before first and after last member in output. ... " />
-            <marker date="1563637017138" expanded="true" signature="1125:1241" ph="/// Pair of symbols placed before and after every member within output. ... " />
-            <marker date="1563637017138" expanded="true" signature="1329:1459" ph="/// Pair of symbols placed before and after member name when it is printed to output. ... " />
-            <marker date="1563637017138" expanded="true" signature="1551:1666" ph="/// Pair of values placed before and after member value within output. ... " />
-            <marker date="1563637017138" expanded="true" signature="1759:1868" ph="/// Symbol placed between two subsequent members within output.  ... " />
-            <marker date="1563637017138" expanded="true" signature="1951:2213" ph="/// Deactivates density flag and returns updated format instance.  ... " />
-            <marker date="1563637017138" expanded="true" signature="2287:2372" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="2390:2641" ph="/// Sets density flag and returns updated format instance. ... " />
-            <marker date="1563637017138" expanded="true" signature="2713:2788" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="2806:3252" ph="/// Instructs to enclose every formatted member into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-            <marker date="1563637017138" expanded="true" signature="3338:3433" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="3451:3884" ph="/// Instructs to enclose every formatted member value into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-            <marker date="1563637017138" expanded="true" signature="3975:4075" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="4093:4524" ph="/// Instructs to enclose every formatted member name into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-            <marker date="1563637017138" expanded="true" signature="4614:4713" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="4731:5047" ph="/// Instructs to place &lt;paramref name=&quot;separator&quot;/&gt; symbol between ... " />
-            <marker date="1563637017138" expanded="true" signature="5121:5208" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="5218:5647" ph="/// Instructs to enclose formatted list of members into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
-            <marker date="1563637017138" expanded="true" signature="5737:5835" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="5853:6333" ph="/// Converts set of members operations to function returning string representation of an object ... " />
-            <marker date="1563637017138" expanded="true" signature="6410:6933" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="6978:7135" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="7189:7795" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="7858:8035" ph="{...}" />
-            <marker date="1563637017138" expanded="true" signature="8111:8228" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="39" column="51" lean-forward="true" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
-          <folding>
-            <marker date="1563538858344" expanded="false" signature="6:163" ph="..." />
-            <marker date="1563538858344" expanded="true" signature="205:5541" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="212:318" ph="/// Pointer to object field or property selected by function builder. ... " />
-            <marker date="1563538858344" expanded="true" signature="350:5539" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="365:768" ph="/// Explicitly initializes all properties of a new &lt;see cref=&quot;SelectedMember&quot;/&gt; instance. ... " />
-            <marker date="1563538858344" expanded="true" signature="864:1148" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="1158:1239" ph="/// Type of field or property value. ... " />
-            <marker date="1563538858344" expanded="true" signature="1289:1370" ph="/// Selected field or property name. ... " />
-            <marker date="1563538858344" expanded="true" signature="1430:1559" ph="/// Function retrieving member value from an instance of an object it is defined in. ... " />
-            <marker date="1563538858344" expanded="true" signature="1662:1780" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="1864:2106" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2176:2330" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2208:2320" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2444:2786" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2581:2656" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2673:2736" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="2804:3509" ph="/// Creates instance of &lt;see cref=&quot;SelectedMember&quot;/&gt; from member accessor expression. ... " />
-            <marker date="1563538858344" expanded="true" signature="3618:4122" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="4132:4467" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected property information. ... " />
-            <marker date="1563538858344" expanded="true" signature="4538:4843" ph="{...}" />
-            <marker date="1563538858344" expanded="true" signature="4861:5184" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected field information. ... " />
-            <marker date="1563538858344" expanded="true" signature="5249:5533" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <marker date="1563635018145" expanded="true" signature="55:1608" ph="{...}" />
-            <marker date="1563635018145" expanded="true" signature="62:285" ph="/// Represents object member selected by builder and additional builder-specific context.  ... " />
-            <marker date="1563635018145" expanded="true" signature="326:1606" ph="{...}" />
-            <marker date="1563635018145" expanded="true" signature="341:861" ph="/// Initializes new member context by providing all required properties. ... " />
-            <marker date="1563635018145" expanded="true" signature="953:1113" ph="{...}" />
-            <marker date="1563635018145" expanded="true" signature="1123:1224" ph="/// Inforation about member selected by builder. ... " />
-            <marker date="1563635018145" expanded="true" signature="1288:1393" ph="/// Builder-specific context associated with selected member ... " />
-            <marker date="1563635018145" expanded="true" signature="1452:1555" ph="/// Indicates what has triggered current context creation. ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret lean-forward="true" />
           <folding>
             <marker date="1563655944517" expanded="false" signature="6:325" ph="..." />
             <marker date="1563655944517" expanded="true" signature="356:7536" ph="{...}" />
@@ -1088,41 +1044,194 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFormat.cs">
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        <state relative-caret-position="1598">
+          <caret line="105" column="44" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
           <folding>
-            <marker date="1563634535678" expanded="false" signature="6:85" ph="..." />
-            <marker date="1563634535678" expanded="true" signature="132:872" ph="{...}" />
-            <marker date="1563634535678" expanded="true" signature="139:338" ph="/// Combines set of &lt;see cref=&quot;object.ToString&quot;/&gt; functions applied to object members into final function ... " />
-            <marker date="1563634535678" expanded="true" signature="375:870" ph="{...}" />
-            <marker date="1563634535678" expanded="true" signature="390:767" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function from individual &lt;see cref=&quot;object.ToString&quot;/&gt; applied to ... " />
+            <marker date="1564159503205" expanded="false" signature="6:139" ph="..." />
+            <marker date="1564159503205" expanded="true" signature="186:7464" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="193:450" ph="/// Library of formatting function combinators. ... " />
+            <marker date="1564159503205" expanded="true" signature="556:7462" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="628:1035" ph="/// Combines mapping and formatting function by applying mapping function first ... " />
+            <marker date="1564159503205" expanded="true" signature="1121:1197" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="1215:1591" ph="/// Converts formatting function to function returning string representation of formatted value accumulated in ... " />
+            <marker date="1564159503205" expanded="true" signature="1668:1859" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="1715:1848" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="1877:2283" ph="/// Creates formatting function ignoring formatted value and appending provided constant at current position.  ... " />
+            <marker date="1564159503205" expanded="true" signature="2332:2452" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="2462:2998" ph="/// Creates formatting function which invokes provided &lt;paramref name=&quot;toString&quot;/&gt; function ... " />
+            <marker date="1564159503205" expanded="true" signature="3068:3255" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="3273:3686" ph="/// Creates formatting function which encloses value generated by another formatting function. ... " />
+            <marker date="1564159503205" expanded="true" signature="3789:3960" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="3978:4429" ph="/// Creates function combining two formatting functions and &lt;paramref name=&quot;separator&quot;/&gt; function ... " />
+            <marker date="1564159503205" expanded="true" signature="4515:4702" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="4712:5432" ph="/// Creates formatting function invoking one of two provided formatting functions ... " />
+            <marker date="1564159503205" expanded="true" signature="5546:5649" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="5667:6379" ph="/// Chooses one of two formatting functions depending on condition value. ... " />
+            <marker date="1564159503205" expanded="true" signature="6479:6559" ph="{...}" />
+            <marker date="1564159503205" expanded="true" signature="6577:7277" ph="/// Chooses one of two function depending on condition value. ... " />
+            <marker date="1564159503205" expanded="true" signature="7379:7456" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1564160511932" expanded="false" signature="6:417" ph="..." />
+            <marker date="1564160511932" expanded="true" signature="464:8322" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="471:561" ph="/// Builds formatting function according to settings. ... " />
+            <marker date="1564160511932" expanded="true" signature="675:8320" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="690:847" ph="/// Determines what should be printed into formatted output and how ... " />
+            <marker date="1564160511932" expanded="true" signature="916:1034" ph="/// Tuple of symbols placed before first and after last member in output. ... " />
+            <marker date="1564160511932" expanded="true" signature="1115:1231" ph="/// Pair of symbols placed before and after every member within output. ... " />
+            <marker date="1564160511932" expanded="true" signature="1314:1450" ph="/// Pair of symbols placed before and after every member name when it is printed to output. ... " />
+            <marker date="1564160511932" expanded="true" signature="1531:1652" ph="/// Pair of values placed before and after every member value within output. ... " />
+            <marker date="1564160511932" expanded="true" signature="1734:1842" ph="/// Symbol placed between two subsequent members within output. ... " />
+            <marker date="1564160511932" expanded="true" signature="1913:2175" ph="/// Deactivates density flag and returns updated format instance.  ... " />
+            <marker date="1564160511932" expanded="true" signature="2249:2334" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="2344:2595" ph="/// Sets density flag and returns updated format instance. ... " />
+            <marker date="1564160511932" expanded="true" signature="2667:2742" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="2752:3198" ph="/// Instructs to enclose every formatted member into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+            <marker date="1564160511932" expanded="true" signature="3284:3382" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="3392:3825" ph="/// Instructs to enclose every formatted member value into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+            <marker date="1564160511932" expanded="true" signature="3916:4013" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="4023:4454" ph="/// Instructs to enclose every formatted member name into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+            <marker date="1564160511932" expanded="true" signature="4544:4640" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="4650:4966" ph="/// Instructs to place &lt;paramref name=&quot;separator&quot;/&gt; symbol between ... " />
+            <marker date="1564160511932" expanded="true" signature="5040:5127" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="5137:5566" ph="/// Instructs to enclose formatted list of members into pair of &lt;paramref name=&quot;opening&quot;/&gt; ... " />
+            <marker date="1564160511932" expanded="true" signature="5656:5752" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="5762:6196" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function from sequence of formatting operations. ... " />
+            <marker date="1564160511932" expanded="true" signature="6273:6912" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="6957:7115" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="7169:7887" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="7950:8124" ph="{...}" />
+            <marker date="1564160511932" expanded="true" signature="8200:8314" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="96" column="9" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+        <state relative-caret-position="462">
+          <caret line="57" column="103" lean-forward="true" selection-start-line="57" selection-start-column="103" selection-end-line="57" selection-end-column="103" />
           <folding>
-            <marker date="1563656134358" expanded="false" signature="6:197" ph="..." />
-            <marker date="1563656134358" expanded="true" signature="228:4994" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="235:412" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
-            <marker date="1563656134358" expanded="true" signature="658:4992" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="673:811" ph="/// Converts selected object members into function returning objects' string representation.  ... " />
-            <marker date="1563656134358" expanded="true" signature="914:1854" ph="/// Includes referenced field or property into list of members available to &lt;see cref=&quot;object.ToString&quot;/&gt; ... " />
-            <marker date="1563656134358" expanded="true" signature="2035:2161" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="2179:2945" ph="/// Instructs builder to use a given function for all selected (previously or later) ... " />
-            <marker date="1563656134358" expanded="true" signature="3018:3134" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="3144:3460" ph="/// Overrides current &lt;see cref=&quot;ToStringFormat&quot;/&gt; with given value or sets it to &lt;see cref=&quot;DefaultFormat&quot;/&gt; ... " />
-            <marker date="1563656134358" expanded="true" signature="3534:3633" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="3651:3869" ph="/// Generates final &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
-            <marker date="1563656134358" expanded="true" signature="3914:4026" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="4036:4369" ph="/// Determines a function to use for converting member value to string when one was not explicitly given. ... " />
-            <marker date="1563656134358" expanded="true" signature="4459:4571" ph="{...}" />
-            <marker date="1563656134358" expanded="true" signature="4589:4719" ph="/// Format used by builder when none was explicitly set with &lt;see cref=&quot;UseFormat&quot;/&gt;. ... " />
+            <marker date="1564234998729" expanded="false" signature="6:197" ph="..." />
+            <marker date="1564234998729" expanded="true" signature="228:5018" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="235:412" ph="/// Builds &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
+            <marker date="1564234998729" expanded="true" signature="658:5016" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="673:811" ph="/// Converts selected object members into function returning objects' string representation.  ... " />
+            <marker date="1564234998729" expanded="true" signature="914:1854" ph="/// Includes referenced field or property into list of members available to &lt;see cref=&quot;object.ToString&quot;/&gt; ... " />
+            <marker date="1564234998729" expanded="true" signature="2035:2169" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="2187:2953" ph="/// Instructs builder to use a given function for all selected (previously or later) ... " />
+            <marker date="1564234998729" expanded="true" signature="3026:3150" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="3160:3476" ph="/// Overrides current &lt;see cref=&quot;ToStringFormat&quot;/&gt; with given value or sets it to &lt;see cref=&quot;DefaultFormat&quot;/&gt; ... " />
+            <marker date="1564234998729" expanded="true" signature="3550:3649" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="3667:3885" ph="/// Generates final &lt;see cref=&quot;object.ToString&quot;/&gt; function. ... " />
+            <marker date="1564234998729" expanded="true" signature="3930:4050" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="4060:4393" ph="/// Determines a function to use for converting member value to string when one was not explicitly given. ... " />
+            <marker date="1564234998729" expanded="true" signature="4483:4595" ph="{...}" />
+            <marker date="1564234998729" expanded="true" signature="4613:4743" ph="/// Format used by builder when none was explicitly set with &lt;see cref=&quot;UseFormat&quot;/&gt;. ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+          <folding>
+            <marker date="1564234971120" expanded="false" signature="6:163" ph="..." />
+            <marker date="1564234971120" expanded="true" signature="205:5549" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="212:318" ph="/// Pointer to object field or property selected by function builder. ... " />
+            <marker date="1564234971120" expanded="true" signature="350:5547" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="365:768" ph="/// Explicitly initializes all properties of a new &lt;see cref=&quot;SelectedMember&quot;/&gt; instance. ... " />
+            <marker date="1564234971120" expanded="true" signature="864:1148" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="1158:1239" ph="/// Type of field or property value. ... " />
+            <marker date="1564234971120" expanded="true" signature="1289:1370" ph="/// Selected field or property name. ... " />
+            <marker date="1564234971120" expanded="true" signature="1430:1559" ph="/// Function retrieving member value from an instance of an object it is defined in. ... " />
+            <marker date="1564234971120" expanded="true" signature="1662:1780" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="1864:2106" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2176:2330" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2208:2320" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2444:2786" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2581:2656" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2673:2736" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="2804:3509" ph="/// Creates instance of &lt;see cref=&quot;SelectedMember&quot;/&gt; from member accessor expression. ... " />
+            <marker date="1564234971120" expanded="true" signature="3618:4130" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="4140:4475" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected property information. ... " />
+            <marker date="1564234971120" expanded="true" signature="4546:4851" ph="{...}" />
+            <marker date="1564234971120" expanded="true" signature="4869:5192" ph="/// Initializes &lt;see cref=&quot;SelectedMember&quot;/&gt; from reflected field information. ... " />
+            <marker date="1564234971120" expanded="true" signature="5257:5541" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="45" column="97" selection-start-line="45" selection-start-column="94" selection-end-line="45" selection-end-column="97" />
+          <folding>
+            <marker date="1564234945726" expanded="false" signature="6:254" ph="..." />
+            <marker date="1564234945726" expanded="true" signature="285:3808" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="292:495" ph="/// Creates function computing hashcode using hash codes of configured members. ... " />
+            <marker date="1564234945726" expanded="true" signature="604:3806" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="701:957" ph="/// Initializes new builder instance with provided or default values. ... " />
+            <marker date="1564234945726" expanded="true" signature="1018:1090" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="1100:1639" ph="/// Include field or property into hashcode computation ... " />
+            <marker date="1564234945726" expanded="true" signature="1812:1935" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="1962:2385" ph="/// Instructs builder to use supplied function for computing hashcode of members' values ... " />
+            <marker date="1564234945726" expanded="true" signature="2462:2586" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="2604:3192" ph="/// Selects function computing hashcode for given member based on member type. ... " />
+            <marker date="1564234945726" expanded="true" signature="3274:3514" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="3346:3456" ph="{...}" />
+            <marker date="1564234945726" expanded="true" signature="3532:3632" ph="/// Builds function computing hashcode of given object. ... " />
+            <marker date="1564234945726" expanded="true" signature="3674:3791" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="62" column="9" lean-forward="true" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+          <folding>
+            <marker date="1564236224126" expanded="false" signature="6:369" ph="..." />
+            <marker date="1564236224126" expanded="true" signature="400:4625" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="407:614" ph="/// Builds function comparing two object of &lt;typeparamref name=&quot;TTarget&quot;/&gt; type for equality. ... " />
+            <marker date="1564236224126" expanded="true" signature="723:4623" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="738:844" ph="/// Determines how collections should be compared by default. ... " />
+            <marker date="1564236224126" expanded="true" signature="971:1178" ph="/// Sets &lt;see cref=&quot;SequenceMode&quot;/&gt; which defines how collections should be compared by default. ... " />
+            <marker date="1564236224126" expanded="true" signature="1274:1352" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="1362:1938" ph="/// Adds field or property to use for object comparison using given function to compare it's values. ... " />
+            <marker date="1564236224126" expanded="true" signature="2120:2232" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="2242:2790" ph="/// Sets equality comparison function for all object assignable to given type. ... " />
+            <marker date="1564236224126" expanded="true" signature="2872:2979" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="2989:3430" ph="/// Chooses function to compare objects based on type and ... " />
+            <marker date="1564236224126" expanded="true" signature="3563:4338" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="3628:3717" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="3792:4288" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="3844:4274" ph="{...}" />
+            <marker date="1564236224126" expanded="true" signature="4356:4467" ph="/// Builds and returns final immutable equality comparer function. ... " />
+            <marker date="1564236224126" expanded="true" signature="4519:4617" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+          <folding>
+            <marker date="1564236261247" expanded="true" signature="50:2942" ph="{...}" />
+            <marker date="1564236261247" expanded="true" signature="57:138" ph="/// Holds functions operating on functions.  ... " />
+            <marker date="1564236261247" expanded="true" signature="181:2940" ph="{...}" />
+            <marker date="1564236261247" expanded="true" signature="196:701" ph="/// Converts function signature to accept more specific argument subtype. ... " />
+            <marker date="1564236261247" expanded="true" signature="891:1735" ph="/// Converts function signature to one with more generic argument and return types. ... " />
+            <marker date="1564236261247" expanded="true" signature="2032:2716" ph="/// Converts function signature to one with more generic arguments and return types. ... " />
           </folding>
         </state>
       </provider>
