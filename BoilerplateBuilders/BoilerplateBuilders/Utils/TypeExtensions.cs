@@ -1,27 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace BoilerplateBuilders.Utils
 {
+    /// <summary>
+    /// Holds functions examining types.
+    /// </summary>
     public static class TypeExtensions
     {
-        /// <summary>
-        /// Returns default value for a type.
-        /// </summary>
-        /// <param name="type">Type of default value.</param>
-        /// <returns>Default value of given type (e.g.: null for reference type or 0 for int).</returns>
-        public static object GetDefaultValue(this Type type)
-        {
-            return Expression.Lambda(
-                    typeof(Func<>).MakeGenericType(type), 
-                    Expression.Default(type)
-                )
-                .Compile()
-                .DynamicInvoke();
-        }
-
         /// <summary>
         /// Returns specific generic interface implemented by <paramref name="type"/>.
         /// </summary>
@@ -80,12 +67,26 @@ namespace BoilerplateBuilders.Utils
                 : type.GetInterfaces().SingleOrDefault(isInterface);
         }
         
-        public static bool IsAssignableToSet(this Type type)
+        /// <summary>
+        /// Determines if a type implements <see cref="ISet{T}"/>.
+        /// </summary>
+        /// <param name="type">Examined type.</param>
+        /// <returns>
+        /// 'True' when <paramref name="type"/> implements <see cref="ISet{T}"/> and 'False' otherwise.
+        /// </returns>
+        public static bool IsGenericSet(this Type type)
         {
             return type.GetImplementedGenericInterfaceTypeOrNull(typeof(ISet<>)) != null;
         }
 
-        public static bool IsAssignableToEnumerable(this Type type)
+        /// <summary>
+        /// Determines if a type implements <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <param name="type">Examined type.</param>
+        /// <returns>
+        /// 'True' when <paramref name="type"/> implements <see cref="IEnumerable{T}"/> and 'False' otherwise.
+        /// </returns>
+        public static bool IsGenericEnumerable(this Type type)
         {
             return type.GetImplementedGenericInterfaceTypeOrNull(typeof(IEnumerable<>)) != null;
         }
@@ -96,12 +97,19 @@ namespace BoilerplateBuilders.Utils
                            && type.GetGenericTypeDefinition() == genericTypeDefinition;
         }
 
+        /// <summary>
+        /// Retrieves all base types in type hierarchy and implemented interfaces.
+        /// </summary>
+        /// <param name="type">Examined type.</param>
+        /// <returns>
+        /// Sequence of base types and implemented interfaces.
+        /// </returns>
         public static IEnumerable<Type> GetAllBaseTypesAndInterfaces(this Type type)
         {
             return GetAllBaseTypes(type).Union(type.GetInterfaces());
         }
 
-        public static IEnumerable<Type> GetAllBaseTypes(this Type type)
+        private static IEnumerable<Type> GetAllBaseTypes(this Type type)
         {
             for (var baseType = type.BaseType; baseType != null; baseType = baseType.BaseType)
             {

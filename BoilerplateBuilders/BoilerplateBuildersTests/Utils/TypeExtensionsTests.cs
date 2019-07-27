@@ -14,14 +14,14 @@ namespace BoilerplateBuildersTests.Utils
         [TestCase(typeof(Dictionary<string, string>))]
         public void IsAssignableToEnumerableTests(Type type)
         {
-            Assert.IsTrue(type.IsAssignableToEnumerable());
+            Assert.IsTrue(type.IsGenericEnumerable());
         }
 
         [TestCase(typeof(ISet<string>))]
         [TestCase(typeof(HashSet<string>))]
         public void IsAssignableToSetTests(Type type)
         {
-            Assert.IsTrue(type.IsAssignableToSet());
+            Assert.IsTrue(type.IsGenericSet());
         }
         
     }

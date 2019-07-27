@@ -74,12 +74,12 @@ namespace BoilerplateBuilders
         [SuppressMessage("ReSharper", "InvertIf")]
         protected override EqualityFunc GetImplicitContext(SelectedMember member)
         {
-            if (member.MemberType.IsAssignableToSet())
+            if (member.MemberType.IsGenericSet())
             {
                 return CreateSetComparer(member.MemberType);
             }
             
-            if (member.MemberType.IsAssignableToEnumerable())
+            if (member.MemberType.IsGenericEnumerable())
             {
                 switch (SequenceMode)
                 {

@@ -71,7 +71,7 @@ namespace BoilerplateBuilders
         /// </remarks>
         protected override HashCodeFunc GetImplicitContext(SelectedMember member)
         {
-            if (member.MemberType.IsAssignableToEnumerable())
+            if (member.MemberType.IsGenericEnumerable())
             {
                 return o => (o as IEnumerable).GetSequenceHashCode(_seed, _step);
             }
