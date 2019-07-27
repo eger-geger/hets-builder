@@ -30,7 +30,7 @@ namespace BoilerplateBuilders
         /// </summary>
         protected AbstractBuilder()
         {
-            _memberContexts = new SortedSet<MemberContext<TContext>>();
+            _memberContexts = new OrderedHashSet<MemberContext<TContext>>();
             _explicitTypeContexts = new Dictionary<Type, TContext>();
         }
 

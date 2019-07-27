@@ -8,6 +8,7 @@ using NUnit.Framework.Interfaces;
 namespace BoilerplateBuildersTests
 {
     [SuppressMessage("ReSharper", "ArgumentsStyleLiteral")]
+    [SuppressMessage("ReSharper", "UnusedMember.Local")]
     public class HashCodeBuilderTests
     {
         private const int HashStep = 15;

@@ -43,6 +43,7 @@
         <e p="Utils" t="Include">
           <e p="CollectionExtensions.cs" t="Include" />
           <e p="FunctionExtensions.cs" t="Include" />
+          <e p="OrderedHashSet.cs" t="Include" />
           <e p="TypeExtensions.cs" t="Include" />
         </e>
       </e>

@@ -6,7 +6,7 @@ namespace BoilerplateBuilders.Reflection
     /// Represents object member selected by builder and additional builder-specific context. 
     /// </summary>
     /// <typeparam name="TContext">Type of context associated with selected member.</typeparam>
-    public class MemberContext<TContext>
+    public class MemberContext<TContext> : IEquatable<MemberContext<TContext>>
     {
         /// <summary>
         /// Initializes new member context by providing all required properties.
@@ -36,5 +36,32 @@ namespace BoilerplateBuilders.Reflection
         /// Indicates what has triggered current context creation.
         /// </summary>
         public ContextSource Source { get; }
+
+        /// <summary>
+        /// Determines if two <see cref="MemberContext{TContext}"/> are equal.
+        /// </summary>
+        /// <param name="other">Instance to compare against.</param>
+        /// <returns>'True' if both contexts are associated with same member.</returns>
+        public bool Equals(MemberContext<TContext> other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Member.Equals(other.Member);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((MemberContext<TContext>) obj);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return Member.GetHashCode();
+        }
     }
 }

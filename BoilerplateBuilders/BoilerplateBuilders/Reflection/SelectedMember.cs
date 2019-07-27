@@ -61,7 +61,12 @@ namespace BoilerplateBuilders.Reflection
                 return (MemberType.GetHashCode() * 397) ^ MemberName.GetHashCode();
             }
         }
-        
+
+        public override string ToString()
+        {
+            return $"{MemberName}: {MemberType}";
+        }
+
         private static bool IsSupportedMemberExpression(LambdaExpression exp, out MemberInfo memberInfo)
         {
             if (exp.Body is MemberExpression memberExp && (memberExp.Member is PropertyInfo || memberExp.Member is FieldInfo))

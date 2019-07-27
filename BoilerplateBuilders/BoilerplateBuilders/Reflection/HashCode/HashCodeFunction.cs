@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BoilerplateBuilders.Utils;
 using Operation = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, int>>;
 
 namespace BoilerplateBuilders.Reflection.HashCode
@@ -20,7 +21,7 @@ namespace BoilerplateBuilders.Reflection.HashCode
             _seed = seed;
             _step = step;
             
-            _operations = new SortedSet<Operation>(
+            _operations = new OrderedHashSet<Operation>(
                 operations ?? throw new ArgumentNullException(nameof(operations))
             );
         }
