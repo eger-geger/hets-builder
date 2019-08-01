@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -80,17 +81,17 @@ namespace BoilerplateBuilders.Utils
         }
 
         /// <summary>
-        /// Determines if a type implements <see cref="IEnumerable{T}"/>.
+        /// Determines if given type implements <see cref="ICollection{T}"/> or <see cref="ICollection"/>.
         /// </summary>
-        /// <param name="type">Examined type.</param>
-        /// <returns>
-        /// 'True' when <paramref name="type"/> implements <see cref="IEnumerable{T}"/> and 'False' otherwise.
-        /// </returns>
-        public static bool IsGenericEnumerable(this Type type)
+        /// <param name="type">Type to examine.</param>
+        /// <returns>Flag indicating whether given type is collection.</returns>
+        public static bool IsCollection(this Type type)
         {
-            return type.GetImplementedGenericInterfaceTypeOrNull(typeof(IEnumerable<>)) != null;
+            return
+                GetImplementedGenericInterfaceTypeOrNull(type, typeof(ICollection<>)) != null
+                || type.GetInterfaces().Contains(typeof(ICollection));
         }
-        
+
         private static Func<Type, bool> IsGenericType(Type genericTypeDefinition)
         {
             return type => type.IsGenericType

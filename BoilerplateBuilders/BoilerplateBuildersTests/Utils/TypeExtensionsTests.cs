@@ -8,13 +8,13 @@ namespace BoilerplateBuildersTests.Utils
 {
     public class TypeExtensionsTests
     {
-        [TestCase(typeof(IEnumerable<string>))]
-        [TestCase(typeof(IList<string>))]
+        [TestCase(typeof(object[]))]
         [TestCase(typeof(List<string>))]
+        [TestCase(typeof(IList<string>))]
         [TestCase(typeof(Dictionary<string, string>))]
         public void IsAssignableToEnumerableTests(Type type)
         {
-            Assert.IsTrue(type.IsGenericEnumerable());
+            Assert.IsTrue(type.IsCollection());
         }
 
         [TestCase(typeof(ISet<string>))]

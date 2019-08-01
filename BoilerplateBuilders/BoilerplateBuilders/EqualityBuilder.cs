@@ -79,7 +79,7 @@ namespace BoilerplateBuilders
                 return CreateSetComparer(member.MemberType);
             }
             
-            if (member.MemberType.IsGenericEnumerable())
+            if (member.MemberType.IsCollection())
             {
                 switch (SequenceMode)
                 {
