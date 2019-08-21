@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using BoilerplateBuilders;
 using BoilerplateBuildersTests.Models;
 using NUnit.Framework;
@@ -16,7 +17,8 @@ namespace BoilerplateBuildersTests
         private readonly HashCodeBuilder<Account> _builder = 
             new HashCodeBuilder<Account>(step: HashStep)
                 .AppendPublicFields()
-                .AppendPublicProperties();
+                .AppendPublicProperties()
+                .UseElementWiseHashCodeFunctionForCollections();
 
         private static IEnumerable<ITestCaseData> ComputeHashCodeCases
         {
@@ -71,6 +73,37 @@ namespace BoilerplateBuildersTests
                 _builder.Build().Invoke(a), 
                 Is.EqualTo(_builder.Build().Invoke(b))
             );
+        }
+
+        [Test]
+        public void ShouldUseGivenFunctionToComputeHashCodeForAllMembersOfDerivedType()
+        {
+            var getHashCode = _builder
+                .Use<object>(any => (any?.GetHashCode() ?? 0) * 2)
+                .Build();
+            
+            var account = new Account(10, "Jim");
+            
+            Assert.That(getHashCode(account), Is.EqualTo(
+                10 * HashStep * 2 
+                ^ "Jim".GetHashCode() * 2 * HashStep    
+            ));
+        }
+
+        [Test]
+        public void ShouldOverrideFunctionComputingHashCodeForGivenMember()
+        {
+            var getHashCode = _builder
+                .Append(ac => ac.Phones, phones => phones.Length)
+                .Build();
+            
+            var account = new Account(5, "Jack", new []{"45-67-33", "33-55-88"});
+            
+            Assert.That(getHashCode(account), Is.EqualTo(
+                5 * HashStep 
+                ^ "Jack".GetHashCode() * HashStep 
+                ^ 2 * HashStep
+            ));
         }
     }
 }

@@ -8,4 +8,8 @@
       <DocumentationFile>bin\Debug\BoilerplateBuilders.xml</DocumentationFile>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Reflection\HashCode" />
+    </ItemGroup>
+
 </Project>

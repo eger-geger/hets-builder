@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace BoilerplateBuildersTests.Utils.CollectionExtensions
         }
         
         [TestCaseSource(nameof(EqualityValueTestCases))]
-        public bool ShouldReturnEqualityValue(ICollection<object> a, IEnumerable<object> b)
+        public bool ShouldReturnEqualityValue(ICollection a, IEnumerable b)
         {
             return a.SequenceEqualIgnoreOrder(b);
         }

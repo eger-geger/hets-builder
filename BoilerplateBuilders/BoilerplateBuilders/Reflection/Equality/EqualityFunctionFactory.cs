@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,6 +13,29 @@ namespace BoilerplateBuilders.Reflection.Equality
     /// </summary>
     public static class EqualityFunctionFactory
     {
+        public static bool SequenceEqualElementWise(object a, object b)
+        {
+            if(!(a is IEnumerable ae))
+                throw new ArgumentException("Not an enumerable", nameof(a));
+                
+            if(!(b is IEnumerable be))
+                throw new ArgumentException("Not an enumerable", nameof(b));
+
+            return ReferenceEquals(a, b) || ae.Cast<object>().SequenceEqual(be.Cast<object>());
+        }
+
+        public static bool SequenceEqualIgnoreOrder(object a, object b)
+        {
+            if(!(a is ICollection ac))
+                throw new ArgumentException("Not a collection.", nameof(a));
+            
+            if(!(b is ICollection bc))
+                throw new ArgumentException("Not a collection.", nameof(b));
+
+            return ReferenceEquals(ac, bc) || ac.SequenceEqualIgnoreOrder(bc);
+        }
+        
+        
         /// <summary>
         /// Creates function comparing two sequences (instances of <see cref="IEnumerable{T}"/>)
         /// for equality using <see cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource},IEnumerable{TSource})"/>.

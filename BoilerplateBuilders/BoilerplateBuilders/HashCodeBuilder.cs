@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
-using BoilerplateBuilders.Reflection.HashCode;
 using BoilerplateBuilders.Utils;
+using static BoilerplateBuilders.HashCode.HashCodeFunctions;
 using HashCodeFunc = System.Func<object, int>;
 
 namespace BoilerplateBuilders
@@ -46,7 +45,6 @@ namespace BoilerplateBuilders
             return AppendExplicit(expression, computeHashCode.ToGeneric<TMember, int, object, int>());
         }
         
-        
         /// <summary>
         /// Instructs builder to use supplied function for computing hashcode of members' values
         /// which are assignable to given type.
@@ -71,12 +69,19 @@ namespace BoilerplateBuilders
         /// </remarks>
         protected override HashCodeFunc GetImplicitContext(SelectedMember member)
         {
-            if (member.MemberType.IsCollection())
-            {
-                return o => (o as IEnumerable).GetSequenceHashCode(_seed, _step);
-            }
-
             return o => o?.GetHashCode() ?? 0;
+        }
+
+        /// <summary>
+        /// Instructs builder to use 
+        /// </summary>
+        /// <returns></returns>
+        public HashCodeBuilder<TTarget> UseElementWiseHashCodeFunctionForCollections()
+        {
+            return OverrideContextForType(
+                typeof(ICollection), 
+                o => ComputeCollectionHashCode(o, _seed, _step)
+            );
         }
         
         /// <summary>
@@ -84,8 +89,7 @@ namespace BoilerplateBuilders
         /// </summary>
         public Func<TTarget, int> Build()
         {
-            return new HashCodeFunction<TTarget>(GetMemberContexts(), _seed, _step).GetHashCode;
+            return BuildHashCodeFunction<TTarget>(GetMemberContexts(), _seed, _step);
         }
-        
     }
 }

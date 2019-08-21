@@ -8,6 +8,9 @@
         <e p="BoilerplateBuilders.csproj" t="IncludeRecursive" />
         <e p="EqualityBuilder.cs" t="Include" />
         <e p="EqualityComparerBuilder.cs" t="Include" />
+        <e p="HashCode" t="Include">
+          <e p="HashCodeFunctions.cs" t="Include" />
+        </e>
         <e p="HashCodeBuilder.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -23,9 +26,7 @@
             <e p="EqualityFunction.cs" t="Include" />
             <e p="EqualityFunctionFactory.cs" t="Include" />
           </e>
-          <e p="HashCode" t="Include">
-            <e p="HashCodeFunction.cs" t="Include" />
-          </e>
+          <e p="HashCode" t="Include" />
           <e p="MemberContext.cs" t="Include" />
           <e p="MemberFactory.cs" t="Include" />
           <e p="SelectedMember.cs" t="Include" />
@@ -54,6 +55,7 @@
         <e p="Equality" t="Include">
           <e p="EqualityFunctionFactoryTests.cs" t="Include" />
         </e>
+        <e p="EqualityBuilderTests.cs" t="Include" />
         <e p="HashCodeBuilderTests.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Account.cs" t="Include" />

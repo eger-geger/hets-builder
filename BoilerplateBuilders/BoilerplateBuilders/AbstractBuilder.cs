@@ -98,11 +98,10 @@ namespace BoilerplateBuilders
         /// <returns>Updated builder instance.</returns>
         protected TBuilder AppendExplicit<TMember>(Expression<Func<TTarget, TMember>> expression, TContext context)
         {
-            _memberContexts.Add(new MemberContext<TContext>(
-                SelectedMember.Create(expression),
-                context,
-                ExplicitMember
-            ));
+            var ctx = new MemberContext<TContext>(SelectedMember.Create(expression), context, ExplicitMember);
+
+            _memberContexts.Remove(ctx);
+            _memberContexts.Add(ctx);
             
             return this as TBuilder;
         }

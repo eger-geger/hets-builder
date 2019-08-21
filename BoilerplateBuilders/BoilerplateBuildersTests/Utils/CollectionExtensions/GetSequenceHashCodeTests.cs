@@ -45,7 +45,7 @@ namespace BoilerplateBuildersTests.Utils.CollectionExtensions
         [TestCaseSource(nameof(SequenceHashCodeTestCases))]
         public int ShouldComputeHashCode(IEnumerable seq)
         {
-            return seq.GetSequenceHashCode(Seed, Step);
+            return seq.GetHashCodeElementWise(Seed, Step);
         }
         
     }

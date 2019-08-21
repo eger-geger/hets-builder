@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BoilerplateBuilders.Utils;
 using Operation = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, object, bool>>;
 
 namespace BoilerplateBuilders.Reflection.Equality
@@ -18,7 +19,7 @@ namespace BoilerplateBuilders.Reflection.Equality
             if (members is null)
                 throw new ArgumentNullException(nameof(members));
             
-            _operations = new SortedSet<Operation>(members);
+            _operations = new OrderedHashSet<Operation>(members);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace BoilerplateBuilders.Reflection.Equality
         /// </summary>
         public override int GetHashCode()
         {
-            return _operations.GetSequenceHashCode();
+            return _operations.GetHashCodeElementWise();
         }
     }
 }

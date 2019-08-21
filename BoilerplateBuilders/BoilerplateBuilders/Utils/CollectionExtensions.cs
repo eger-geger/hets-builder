@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// ReSharper disable once CheckNamespace
 namespace System.Linq
 {
     /// <summary>
@@ -20,9 +21,9 @@ namespace System.Linq
         /// <exception cref="ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="other"/> is null.
         /// </exception>
-        public static bool SequenceEqualIgnoreOrder<T>(
-            this ICollection<T> source,
-            IEnumerable<T> other
+        public static bool SequenceEqualIgnoreOrder(
+            this ICollection source,
+            IEnumerable other
         )
         {
             if(source is null)
@@ -31,8 +32,9 @@ namespace System.Linq
             if(other is null)
                 throw new ArgumentNullException(nameof(other));
             
-            var copy = source.ToList();
-            return other.All(copy.Remove) && copy.Count == 0;
+            var copy = new HashSet<object>(source.Cast<object>());
+            return other.Cast<object>().All(copy.Remove) && copy.Count == 0;
+      
         }
         
         /// <summary>
@@ -42,7 +44,7 @@ namespace System.Linq
         /// <param name="seed">Initial hashcode value.</param>
         /// <param name="step">Value applied to every sequence element.</param>
         /// <returns>Sequence hashcode.</returns>
-        public static int GetSequenceHashCode(this IEnumerable sequence, int seed = 0, int step = 397)
+        public static int GetHashCodeElementWise(this IEnumerable sequence, int seed = 0, int step = 397)
         {
             return sequence?.Cast<object>().Aggregate(seed, (hashCode, value) =>
                 unchecked(hashCode ^ (value?.GetHashCode() * step ?? 0))

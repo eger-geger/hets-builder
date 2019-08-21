@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.Reflection.Equality;
@@ -16,21 +15,6 @@ namespace BoilerplateBuilders
     /// <typeparam name="TTarget">Type of object being compared.</typeparam>
     public class EqualityBuilder<TTarget> : AbstractBuilder<TTarget, EqualityBuilder<TTarget>, EqualityFunc>
     {
-        /// <summary>
-        /// Determines how collections should be compared by default.
-        /// </summary>
-        public SequenceComparisonMode SequenceMode { get; private set; } = SequenceComparisonMode.SameOrder;
-        
-        /// <summary>
-        /// Sets <see cref="SequenceMode"/> which defines how collections should be compared by default.
-        /// </summary>
-        /// <returns>Current equality builder instance.</returns>
-        public EqualityBuilder<TTarget> WithSequenceComparisonMode(SequenceComparisonMode mode)
-        {
-            SequenceMode = mode;
-            return this;
-        }
-
         /// <summary>
         /// Adds field or property to use for object comparison using given function to compare it's values.
         /// Overrides any previous or default value. 
@@ -57,41 +41,34 @@ namespace BoilerplateBuilders
         /// <remarks>
         /// Setting <typeparamref name="T"/> equal to <see cref="object"/> would override comparison function for all members.
         /// </remarks>
-        public EqualityBuilder<TTarget> CompareWith<T>(Func<T, T, bool> comparer)
+        public EqualityBuilder<TTarget> Use<T>(Func<T, T, bool> comparer)
         {
             return OverrideContextForType(typeof(T), comparer.ToGeneric<T, object>());
         }
 
         /// <summary>
-        /// Chooses function to compare objects based on type and
-        /// <see cref="SequenceMode"/> setting.
+        /// Instructs builder to compare collection members element-wise within resulting function. 
         /// </summary>
-        /// <remarks>
-        /// Returns <see cref="ISet{T}.SetEquals"/> for <see cref="ISet{T}"/> objects.
-        /// Returns function comparing sequences (<see cref="IEnumerable{T}"/>) element-wise.
-        /// Uses objects' equality function for all other types.
-        /// </remarks>
-        [SuppressMessage("ReSharper", "InvertIf")]
+        /// <returns>Updated builder instance.</returns>
+        public EqualityBuilder<TTarget> CompareCollectionsElementWise()
+        {
+            return OverrideContextForType(typeof(ICollection), SequenceEqualElementWise);
+        }
+
+        /// <summary>
+        /// Instructs builder to compare collection members element-wise ignoring order within resulting function.
+        /// </summary>
+        /// <returns>Updated builder instance</returns>
+        public EqualityBuilder<TTarget> CompareCollectionsIgnoringOrder()
+        {
+            return OverrideContextForType(typeof(ICollection), SequenceEqualIgnoreOrder);
+        }
+        
+        /// <summary>
+        /// Returns default comparison function (<see cref="object.Equals(object)"/>).
+        /// </summary>
         protected override EqualityFunc GetImplicitContext(SelectedMember member)
         {
-            if (member.MemberType.IsGenericSet())
-            {
-                return CreateSetComparer(member.MemberType);
-            }
-            
-            if (member.MemberType.IsCollection())
-            {
-                switch (SequenceMode)
-                {
-                    case SequenceComparisonMode.SameOrder:
-                        return CreateOrderedSequenceComparer(member.MemberType);
-                    case SequenceComparisonMode.IgnoreOrder:
-                        return CreateUnorderedSequenceComparer(member.MemberType);
-                    default:
-                        return CreateOrderedSequenceComparer(member.MemberType);
-                }
-            }
-            
             return Equals;
         }
         
