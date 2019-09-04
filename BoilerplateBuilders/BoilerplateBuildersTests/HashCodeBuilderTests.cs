@@ -14,12 +14,14 @@ namespace BoilerplateBuildersTests
     {
         private const int HashStep = 15;
         
-        private readonly HashCodeBuilder<Account> _builder = 
-            new HashCodeBuilder<Account>(step: HashStep)
+        private static HashCodeBuilder<Account> CreateBuilder()
+        {
+            return new HashCodeBuilder<Account>(step: HashStep)
                 .AppendPublicFields()
                 .AppendPublicProperties()
                 .UseElementWiseHashCodeFunctionForCollections();
-
+        }
+        
         private static IEnumerable<ITestCaseData> ComputeHashCodeCases
         {
             get
@@ -42,7 +44,7 @@ namespace BoilerplateBuildersTests
         [TestCaseSource(nameof(ComputeHashCodeCases))]
         public int ShouldComputeHashCode(Account account)
         {
-            return _builder.Build().Invoke(account);
+            return CreateBuilder().Build().Invoke(account);
         }
 
         private static IEnumerable<ITestCaseData> SameHashCodeCases
@@ -69,16 +71,19 @@ namespace BoilerplateBuildersTests
         [TestCaseSource(nameof(SameHashCodeCases))]
         public void ComputedHashCodesShouldBeEqual(Account a, Account b)
         {
+            var builder = CreateBuilder(); 
+            
             Assert.That(
-                _builder.Build().Invoke(a), 
-                Is.EqualTo(_builder.Build().Invoke(b))
+                builder.Build().Invoke(a), 
+                Is.EqualTo(builder.Build().Invoke(b))
             );
         }
 
         [Test]
         public void ShouldUseGivenFunctionToComputeHashCodeForAllMembersOfDerivedType()
         {
-            var getHashCode = _builder
+            var getHashCode = 
+                CreateBuilder()
                 .Use<object>(any => (any?.GetHashCode() ?? 0) * 2)
                 .Build();
             
@@ -93,7 +98,8 @@ namespace BoilerplateBuildersTests
         [Test]
         public void ShouldOverrideFunctionComputingHashCodeForGivenMember()
         {
-            var getHashCode = _builder
+            var getHashCode = 
+                CreateBuilder()
                 .Append(ac => ac.Phones, phones => phones.Length)
                 .Build();
             

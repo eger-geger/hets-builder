@@ -11,43 +11,43 @@ namespace BoilerplateBuildersTests.ToString.Format
         [Test]
         public void EmptyBuilder()
         {
-            var builder = new DefaultFormatBuilder();
+            var builder = new DefaultFormatProviderBuilder();
             var defaultEnclosure = ValueTuple.Create<string, string>(null, null);
             
             Assert.That(builder.Density, Is.EqualTo((FormatDensity) 0));
-            Assert.That(builder.SingleMemberQuotes, Is.EqualTo(defaultEnclosure));
-            Assert.That(builder.MembersSeparator, Is.EqualTo(null));
+            Assert.That(builder.ItemQuotes, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.ItemSeparator, Is.EqualTo(null));
             Assert.That(builder.AllMembersQuotes, Is.EqualTo(defaultEnclosure));
-            Assert.That(builder.MemberNameQuotes, Is.EqualTo(defaultEnclosure));
-            Assert.That(builder.MemberValueQuotes, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.ItemNameQuotes, Is.EqualTo(defaultEnclosure));
+            Assert.That(builder.ItemValueQuotes, Is.EqualTo(defaultEnclosure));
         }
 
         [Test]
         public void ShouldSetMultipleDensityFlags()
         {
-            var builder = new DefaultFormatBuilder()
+            var builder = new DefaultFormatProviderBuilder()
                 .SetDensityFlag(IncludeClassName)
-                .SetDensityFlag(IncludeMemberName)
-                .SetDensityFlag(MemberOnNewLine);
+                .SetDensityFlag(IncludeItemName)
+                .SetDensityFlag(ItemOnNewLine);
             
             Assert.That(builder.Density, Is.EqualTo(
                 IncludeClassName 
-                | IncludeMemberName
-                | MemberOnNewLine
+                | IncludeItemName
+                | ItemOnNewLine
             ));
         }
 
         [Test]
         public void ShouldUnsetDensityFlags()
         {
-            var builder = new DefaultFormatBuilder()
+            var builder = new DefaultFormatProviderBuilder()
                 .SetDensityFlag(IncludeClassName)
-                .SetDensityFlag(IncludeMemberName)
-                .SetDensityFlag(MemberOnNewLine)
+                .SetDensityFlag(IncludeItemName)
+                .SetDensityFlag(ItemOnNewLine)
                 .UnsetDensityFlag(
                     IncludeClassName
-                    | IncludeMemberName
-                    | MemberOnNewLine
+                    | IncludeItemName
+                    | ItemOnNewLine
                     | IncludeNullValues
                 );
             
@@ -57,20 +57,20 @@ namespace BoilerplateBuildersTests.ToString.Format
         [Test]
         public void ShouldUpdateMemberEnclosure()
         {
-            var builder = new DefaultFormatBuilder()
+            var builder = new DefaultFormatProviderBuilder()
                 .EncloseMemberWith("<", ">");
             
-            Assert.That(builder.SingleMemberQuotes, Is.EqualTo(("<", ">")));
+            Assert.That(builder.ItemQuotes, Is.EqualTo(("<", ">")));
         }
 
         [Test]
         public void ShouldUpdateMemberValueEnclosure()
         {
-            var builder = new DefaultFormatBuilder()
+            var builder = new DefaultFormatProviderBuilder()
                 .EncloseMemberValueWith(null, "]");
             
             Assert.That(
-                builder.MemberValueQuotes, 
+                builder.ItemValueQuotes, 
                 Is.EqualTo(ValueTuple.Create<string, string>(null, "]"))
             );
         }

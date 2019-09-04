@@ -142,5 +142,10 @@ namespace BoilerplateBuilders.Reflection
 
             return new SelectedMember(fieldInfo.FieldType, fieldInfo.Name, getter);
         }
+
+        public static SelectedMember Create(object value, string name)
+        {
+            return new SelectedMember(value?.GetType() ?? typeof(object), name, _ => value);
+        }
     }
 }

@@ -34,10 +34,10 @@
         <e p="SequenceComparisonMode.cs" t="Include" />
         <e p="ToString" t="Include">
           <e p="Format" t="Include">
-            <e p="DefaultFormatBuilder.cs" t="Include" />
+            <e p="DefaultFormatProviderBuilder.cs" t="Include" />
             <e p="FormatCombinators.cs" t="Include" />
             <e p="FormatDensity.cs" t="Include" />
-            <e p="IToStringFormat.cs" t="Include" />
+            <e p="IFormatProvider.cs" t="Include" />
           </e>
         </e>
         <e p="ToStringBuilder.cs" t="Include" />

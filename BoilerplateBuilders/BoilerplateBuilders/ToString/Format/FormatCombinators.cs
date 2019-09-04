@@ -1,10 +1,16 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
-using Formatter = System.Action<object, System.Text.StringBuilder>;
 
 namespace BoilerplateBuilders.ToString.Format
 {
+    public delegate void Formatter<in T>(T value, StringBuilder builder);
+
+    public delegate void Writer(StringBuilder builder);
+
     /// <summary>
     /// Library of formatting function combinators.
     /// Formatting function accepts value to format and <see cref="StringBuilder"/> instance which
@@ -13,7 +19,45 @@ namespace BoilerplateBuilders.ToString.Format
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class FormatCombinators
     {
-        private static Formatter None => (a, b) => { };
+        private static Formatter<T> NoneFormatter<T>() => (a, b) => { };
+
+        private static Writer NoneWriter => _ => { };
+
+        public static Writer ToWriter<T>(Formatter<T> fmt, T value = default(T)) => sb => fmt(value, sb);
+
+        public static Formatter<T> ToFormatter<T>(Writer writer) => (t, sb) => writer(sb);
+        
+        public static Formatter<T> Add<T>(Formatter<T> formatter, Writer writer)
+        {
+            return (t, sb) =>
+            {
+                formatter(t, sb);
+                writer(sb);
+            };
+        }
+
+        public static Formatter<T> Add<T>(Writer writer, Formatter<T> formatter)
+        {
+            return (t, sb) =>
+            {
+                writer(sb);
+                formatter(t, sb);
+            };
+        }
+
+        public static Formatter<IEnumerable<T>> Enumerate<T>(Formatter<T> formatter, Writer separator = null)
+        {
+            separator = separator ?? NoneWriter;
+            
+            return (seq, sb) =>
+            {
+                var writer = seq
+                    .Select(item => ToWriter(formatter, item))
+                    .Aggregate((a, b) => a + separator + b);
+
+                writer(sb);
+            };
+        }
 
         /// <summary>
         /// Combines mapping and formatting function by applying mapping function first
@@ -22,18 +66,18 @@ namespace BoilerplateBuilders.ToString.Format
         /// <param name="mapper">Mapping function applied to formatted value.</param>
         /// <param name="formatter">Formatting function applied to mapped value.</param>
         /// <returns>Formatting function.</returns>
-        public static Formatter Map(Func<object, object> mapper, Formatter formatter)
+        public static Formatter<A> Map<A, B>(Func<A, B> mapper, Formatter<B> formatter)
         {
             return (o, sb) => formatter(mapper(o), sb);
         }
-        
+
         /// <summary>
         /// Converts formatting function to function returning string representation of formatted value accumulated in
         /// <see cref="StringBuilder"/> by formatting function.
         /// </summary>
         /// <param name="formatter">Formatting function.</param>
         /// <returns>Function returning string representation of formatted value.</returns>
-        public static Func<object, string> MakeToString(Formatter formatter)
+        public static Func<T, string> MakeToString<T>(Formatter<T> formatter)
         {
             return o =>
             {
@@ -42,7 +86,7 @@ namespace BoilerplateBuilders.ToString.Format
                 return sb.ToString();
             };
         }
-        
+
         /// <summary>
         /// Creates formatting function ignoring formatted value and appending provided constant at current position. 
         /// </summary>
@@ -50,11 +94,11 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>
         /// Formatting function appending constant value when invoked or do nothing function if value is null or empty.
         /// </returns>
-        public static Formatter Append(string s)
+        public static Writer Append(string s)
         {
             return string.IsNullOrEmpty(s)
-                ? None
-                : Append(_ => s);
+                ? NoneWriter
+                : sb => sb.Append(s);
         }
 
         /// <summary>
@@ -64,41 +108,39 @@ namespace BoilerplateBuilders.ToString.Format
         /// <param name="toString">Function converting formatted value to string.</param>
         /// <returns>Formatting function wrapping provided <paramref name="toString"/> function.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="toString"/> is null.</exception>
-        public static Formatter Append(Func<object, string> toString)
+        public static Formatter<T> Append<T>(Func<T, string> toString)
         {
-            if(toString == null)
+            if (toString == null)
                 throw new ArgumentNullException(nameof(toString));
-            
+
             return (o, sb) => sb.Append(toString(o));
         }
-        
+
         /// <summary>
         /// Creates formatting function which encloses value generated by another formatting function.
         /// </summary>
         /// <param name="symbols">Prefix and suffix enclosing formatted value.</param>
         /// <param name="formatter">Wrapped formatter which generated value is enclosed.</param>
         /// <returns>Formatting function wrapping <paramref name="formatter"/>.</returns>
-        public static Formatter Enclose((string opening, string closing) symbols, Formatter formatter)
+        public static Formatter<T> Enclose<T>((string opening, string closing) symbols, Formatter<T> formatter)
         {
             var (opening, closing) = symbols;
 
-            return Append(opening)
-                   + formatter
-                   + Append(closing);
+            return Add(Add(Append(opening), formatter), Append(closing));
         }
-        
+
         /// <summary>
         /// Creates function combining two formatting functions and <paramref name="separator"/> function
         /// by applying those sequentially to same formatted value in following order: 1st, separator, 2nd.  
         /// </summary>
         /// <param name="separator">Formatting function applied in between two other formatting functions.</param>
         /// <returns>Function combining two formatting function into one.</returns>
-        public static Func<Formatter, Formatter, Formatter> Join(Formatter separator)
+        public static Func<Formatter<T>, Formatter<T>, Formatter<T>> Join<T>(Writer separator)
         {
-            if(separator is null)
+            if (separator is null)
                 throw new ArgumentNullException(nameof(separator));
-            
-            return (fa, fb) => fa + separator + fb;
+
+            return (fa, fb) => Add(fa, separator) + fb;
         }
 
         /// <summary>
@@ -115,11 +157,11 @@ namespace BoilerplateBuilders.ToString.Format
         /// Formatting function invoked when condition is negative (default: do nothing function).
         /// </param>
         /// <returns>Conditional formatting function.</returns>
-        public static Formatter When(Func<object, bool> condition, Formatter positive, Formatter negative = null)
+        public static Formatter<T> When<T>(Func<T, bool> condition, Formatter<T> positive, Formatter<T> negative = null)
         {
-            return (o, sb) => (condition(o) ? positive : negative ?? None)(o, sb);
+            return (o, sb) => (condition(o) ? positive : negative ?? NoneFormatter<T>())(o, sb);
         }
-        
+
         /// <summary>
         /// Chooses one of two formatting functions depending on condition value.
         /// Equivalent to ternary operator.
@@ -134,28 +176,9 @@ namespace BoilerplateBuilders.ToString.Format
         /// <returns>
         /// Either <paramref name="positive"/> or <paramref name="negative"/> depending on <paramref name="condition"/>.
         /// </returns>
-        public static Formatter When(bool condition, Formatter positive, Formatter negative = null)
+        public static Formatter<T> When<T>(bool condition, Formatter<T> positive, Formatter<T> negative = null)
         {
-            return condition ? positive : negative ?? None;
-        }
-        
-        /// <summary>
-        /// Chooses one of two function depending on condition value.
-        /// Equivalent to ternary operator.
-        /// </summary>
-        /// <param name="condition">Boolean value determining which function to use.</param>
-        /// <param name="positive">
-        /// Function used when <paramref name="condition"/> is positive.
-        /// </param>
-        /// <param name="negative">
-        /// Function used when <paramref name="condition"/> is negative (default: do nothing function).
-        /// </param>
-        /// <returns>
-        /// Either <paramref name="positive"/> or <paramref name="negative"/> depending on <paramref name="condition"/>.
-        /// </returns>
-        public static Formatter Unless(bool condition, Formatter negative, Formatter positive = null)
-        {
-            return When(!condition, negative, positive);
+            return condition ? positive : negative ?? NoneFormatter<T>();
         }
     }
 }

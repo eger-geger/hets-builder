@@ -11,12 +11,12 @@ namespace BoilerplateBuilders.ToString.Format
         /// <summary>
         /// Place every formatted member on new line.
         /// </summary>
-        MemberOnNewLine = 0x1,
+        ItemOnNewLine = 0x1,
         
         /// <summary>
         /// Include member name into output.
         /// </summary>
-        IncludeMemberName = 0x2,
+        IncludeItemName = 0x2,
         
         /// <summary>
         /// Include formatted object class name into output.

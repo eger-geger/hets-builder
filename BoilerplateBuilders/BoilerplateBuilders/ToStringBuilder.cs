@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.ToString.Format;
 using BoilerplateBuilders.Utils;
+using IFormatProvider = BoilerplateBuilders.ToString.Format.IFormatProvider;
 
 namespace BoilerplateBuilders
 {
@@ -18,7 +21,7 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Converts selected object members into function returning objects' string representation. 
         /// </summary>
-        public IToStringFormat ToStringFormat { get; private set; } = DefaultFormat;
+        public IFormatProvider FormatProvider { get; private set; } = DefaultFormatProvider;
         
         /// <summary>
         /// Includes referenced field or property into list of members available to <see cref="object.ToString"/>
@@ -58,15 +61,20 @@ namespace BoilerplateBuilders
             return OverrideContextForType(typeof(T), toString?.ToGeneric<T, string, object, string>());
         }
 
-        /// <summary>
-        /// Overrides current <see cref="ToStringFormat"/> with given value or sets it to <see cref="DefaultFormat"/>
-        /// when <paramref name="format"/> is null.
-        /// </summary>
-        /// <param name="format">New format.</param>
-        /// <returns>Updated builder instance.</returns>
-        public ToStringBuilder<TTarget> UseFormat(IToStringFormat format)
+        public ToStringBuilder<TTarget> FormatCollectionElementWise()
         {
-            ToStringFormat = format ?? DefaultFormat;
+            return Use<ICollection>(FormatProvider.BuildCollectionFormatter());
+        }
+        
+        /// <summary>
+        /// Overrides current <see cref="FormatProvider"/> with given value or sets it to <see cref="DefaultFormatProvider"/>
+        /// when <paramref name="formatProvider"/> is null.
+        /// </summary>
+        /// <param name="formatProvider">New format.</param>
+        /// <returns>Updated builder instance.</returns>
+        public ToStringBuilder<TTarget> UseFormat(IFormatProvider formatProvider)
+        {
+            FormatProvider = formatProvider ?? DefaultFormatProvider;
             return this;
         }
         
@@ -76,7 +84,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ToStringFormat.Build(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return FormatProvider.BuildObjectFormatter(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>
@@ -86,17 +94,16 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of a member value.</returns>
         protected override Func<object, string> GetImplicitContext(SelectedMember member)
         {
-            //TODO: different function for sequences
             return o => o?.ToString();
         }
         
         /// <summary>
         /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.
         /// </summary>
-        public static IToStringFormat DefaultFormat =>
-            new DefaultFormatBuilder()
+        public static IFormatProvider DefaultFormatProvider =>
+            new DefaultFormatProviderBuilder()
                 .SetDensityFlag(FormatDensity.IncludeClassName)
-                .SetDensityFlag(FormatDensity.IncludeMemberName)
+                .SetDensityFlag(FormatDensity.IncludeItemName)
                 .SeparateMembersWith(", ");
     }
 }
