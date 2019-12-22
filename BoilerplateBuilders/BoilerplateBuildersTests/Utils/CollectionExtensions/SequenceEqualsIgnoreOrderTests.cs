@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,51 +16,62 @@ namespace BoilerplateBuildersTests.Utils.CollectionExtensions
             get
             {
                 yield return new TestCaseData(
-                    new object [] {},
-                    new object [] {}
+                    new object[] { },
+                    new object[] { }
                 ).Returns(true);
-                
+
                 yield return new TestCaseData(
-                    new object [] { 1 },
-                    new object [] { 1 }
+                    new object[] {1},
+                    new object[] {1}
                 ).Returns(true);
-                
+
                 yield return new TestCaseData(
-                    new object [] { "a", "f" },
-                    new object [] { "f", "a" }
+                    new object[] {"a", "f"},
+                    new object[] {"f", "a"}
                 ).Returns(true);
-                
+
                 yield return new TestCaseData(
-                    new object [] { "a", "f" },
-                    new List<object> { "f", "a" }
+                    new object[] {"a", "f"},
+                    new List<object> {"f", "a"}
                 ).Returns(true);
-                
+
                 yield return new TestCaseData(
-                    new object [] { "a", "f" },
-                    new object [] { "f", "a", "b" }
+                    new object[] {"a", "f"},
+                    new object[] {"f", "a", "b"}
                 ).Returns(false);
-                
+
                 yield return new TestCaseData(
-                    new object [] { "a", "f" },
-                    new object [] { }
+                    new object[] {"a", "f"},
+                    new object[] { }
                 ).Returns(false);
-                
+
                 yield return new TestCaseData(
-                    new object [] { 1, 2, 3},
+                    new object[] {1, 2, 3},
                     Enumerable.Range(start: 1, count: 3).Cast<object>()
                 ).Returns(true);
-                
+
                 yield return new TestCaseData(
-                    new object [] { 1, 2, 3},
+                    new object[] {1, 2, 3},
                     Enumerable.Range(start: 1, count: 5).Cast<object>()
                 ).Returns(false);
             }
         }
-        
+
         [TestCaseSource(nameof(EqualityValueTestCases))]
         public bool ShouldReturnEqualityValue(ICollection a, IEnumerable b)
         {
             return a.SequenceEqualIgnoreOrder(b);
+        }
+
+        [Test]
+        [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+        public void ThrowsArgumentNullException()
+        {
+            ICollection nullCollection = null;
+            var emptyCollection = new List<object>();
+
+            Assert.Throws<ArgumentNullException>(() => _ = nullCollection.SequenceEqualIgnoreOrder(emptyCollection));
+            Assert.Throws<ArgumentNullException>(() => emptyCollection.SequenceEqualIgnoreOrder(nullCollection));
         }
     }
 }

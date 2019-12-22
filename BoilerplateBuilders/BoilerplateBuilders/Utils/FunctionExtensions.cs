@@ -47,5 +47,7 @@ namespace BoilerplateBuilders.Utils
         public static Func<TGenericArg, TGenericArg, bool> ToGeneric<TArg, TGenericArg>(this Func<TArg, TArg, bool> function)
             where TArg : TGenericArg
             => (a, b) => function((TArg) a, (TArg) b);
+
+        public static TB Pipe<TA, TB>(this TA a, Func<TA, TB> func) => func(a);
     }
 }
