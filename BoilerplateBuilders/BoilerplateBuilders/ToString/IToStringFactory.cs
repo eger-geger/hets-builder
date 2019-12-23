@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BoilerplateBuilders.Reflection;
 
-namespace BoilerplateBuilders.ToString.Format
+namespace BoilerplateBuilders.ToString
 {
     /// <summary>
     /// Combines set of <see cref="object.ToString"/> functions applied to object members into final function

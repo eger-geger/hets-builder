@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Formatters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Writers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultToStringFactoryTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatProviderBuilder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatCombinators.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IFormatProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatDensity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Formatters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/IToStringFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Writers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/Utils/CollectionExtensions/SequenceEqualsIgnoreOrderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/Utils/CollectionExtensions/SequenceEqualsIgnoreOrderTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/708129CF-4E54-4A2E-810D-663C40E72AFB/1D/Select.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Utils/TypeExtensionsTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Utils/CollectionExtensions/GetSequenceHashCodeTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Utils/CollectionExtensions/SequenceEqualsIgnoreOrderTests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,12 +56,12 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultToStringFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCode/HashCodeFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/FormatDensity.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/IToStringFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/AccessorFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,8 +69,8 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunctionFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Formatters.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Writers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/EqualityBuilderTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/HashCodeBuilderTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/SequenceComparisonMode.cs" root0="FORCE_HIGHLIGHTING" />
@@ -77,15 +78,12 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityComparerBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/IToStringFormatter.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/FormatSparcity.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/FormatDensity.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/DefaultFormatter.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/IFormatterBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/Functors.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Formatters/FormatterFunctors.cs" />
@@ -133,6 +131,10 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultToStringFactoryTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" />
       </list>
     </option>
   </component>
@@ -229,7 +231,8 @@
       <workItem from="1576520352466" duration="658000" />
       <workItem from="1576690257620" duration="7705000" />
       <workItem from="1576735001298" duration="2424000" />
-      <workItem from="1577009212064" duration="1213000" />
+      <workItem from="1577009212064" duration="4087000" />
+      <workItem from="1577093412140" duration="3061000" />
     </task>
     <servers />
   </component>
@@ -240,7 +243,7 @@
     <option name="coveragePercentColumnWidth" value="150" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="357" />
+    <option name="symbolColumnWidth" value="383" />
     <coverage-tree-state>
       <expand>
         <path>
@@ -250,34 +253,13 @@
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="547" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="564" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="547" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="540" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="547" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="541" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="547" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="541" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="557" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="547" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="541" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="557" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="313" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="564" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="551" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
@@ -297,10 +279,98 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state width="470" height="466" key="DebuggerActiveHint" timestamp="1577094736591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="470" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1577094736591" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1577094866172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866172" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.3.bottom" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.3.center" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.3.left" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.3.right" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.4.bottom" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.4.center" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.4.left" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
+    <state width="1877" height="348" key="GridCell.Tab.4.right" timestamp="1577094866173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577094866173" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1576520191514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576520191514" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1577094154613">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1577094154613" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -309,6 +379,45 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs</url>
+          <line>148</line>
+          <properties documentPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" initialLine="148">
+            <startOffsets>
+              <option value="6440" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6661" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs</url>
+          <line>217</line>
+          <properties documentPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" initialLine="217">
+            <startOffsets>
+              <option value="9081" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9265" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs</url>
+          <line>223</line>
+          <properties documentPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" initialLine="223">
+            <startOffsets>
+              <option value="9322" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9331" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

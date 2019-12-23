@@ -39,13 +39,11 @@
         </e>
         <e p="SequenceComparisonMode.cs" t="Include" />
         <e p="ToString" t="Include">
-          <e p="Format" t="Include">
-            <e p="DefaultToStringFactory.cs" t="Include" />
-            <e p="FormatDensity.cs" t="Include" />
-            <e p="Formatters.cs" t="Include" />
-            <e p="IToStringFactory.cs" t="Include" />
-            <e p="Writers.cs" t="Include" />
-          </e>
+          <e p="DefaultToStringFactory.cs" t="Include" />
+          <e p="FormatDensity.cs" t="Include" />
+          <e p="Formatters.cs" t="Include" />
+          <e p="IToStringFactory.cs" t="Include" />
+          <e p="Writers.cs" t="Include" />
         </e>
         <e p="ToStringBuilder.cs" t="Include" />
         <e p="Utils" t="Include">
@@ -81,9 +79,8 @@
           </e>
         </e>
         <e p="ToString" t="Include">
-          <e p="Format" t="Include">
-            <e p="DefaultFormatBuilderTests.cs" t="Include" />
-          </e>
+          <e p="DefaultToStringFactoryTests.cs" t="Include" />
+          <e p="WritersTests.cs" t="Include" />
         </e>
         <e p="Utils" t="Include">
           <e p="CollectionExtensions" t="Include">

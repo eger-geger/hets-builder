@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
-using BoilerplateBuilders.ToString.Format;
+using BoilerplateBuilders.ToString;
 using BoilerplateBuilders.Utils;
 
 namespace BoilerplateBuilders

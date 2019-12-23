@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using static BoilerplateBuilders.ToString.Format.FormatDensity;
-using static BoilerplateBuilders.ToString.Format.Formatters;
-using static BoilerplateBuilders.ToString.Format.Writers;
+using static BoilerplateBuilders.ToString.FormatDensity;
+using static BoilerplateBuilders.ToString.Formatters;
+using static BoilerplateBuilders.ToString.Writers;
 using ToStringMember = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
 
-namespace BoilerplateBuilders.ToString.Format
+namespace BoilerplateBuilders.ToString
 {
     /// <summary>
     /// Builds formatting function according to provided settings.
@@ -234,7 +234,7 @@ namespace BoilerplateBuilders.ToString.Format
         private Formatter<T> PrependNewLineToMember<T>()
         {
             return Density.HasFlag(ItemOnNewLine)
-                ? Lift<T>(NewLine())
+                ? Lift<T>(NewLine)
                 : Empty<T>();
         }
 
