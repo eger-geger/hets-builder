@@ -80,6 +80,7 @@
         </e>
         <e p="ToString" t="Include">
           <e p="DefaultToStringFactoryTests.cs" t="Include" />
+          <e p="FormattersTests.cs" t="Include" />
           <e p="WritersTests.cs" t="Include" />
         </e>
         <e p="Utils" t="Include">

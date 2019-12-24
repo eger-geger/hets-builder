@@ -149,7 +149,7 @@ namespace BoilerplateBuilders.ToString
             var formatMembers = Enclose(
                 members
                     .Select(FormatMember)
-                    .Aggregate(Join(Lift<object>(Write(MemberSeparator)))),
+                    .Aggregate(Joiner(Lift<object>(Write(MemberSeparator)))),
                 BodyPrefixAndSuffix
             );
 
@@ -174,7 +174,7 @@ namespace BoilerplateBuilders.ToString
                 Write(MemberSeparator)
             );
 
-            var seqFormatter = Map<IEnumerable, IEnumerable<(int, object)>>(keyValuePairsFormatter,
+            var seqFormatter = Wrap<IEnumerable, IEnumerable<(int, object)>>(keyValuePairsFormatter,
                 seq => seq.Cast<object>().Select((value, index) => (index, value)));
 
             return Formatters.ToString(Enclose(seqFormatter, ("[", "]")));
@@ -187,7 +187,7 @@ namespace BoilerplateBuilders.ToString
                 Write(MemberSeparator)
             );
 
-            var formatSeq = Map<IDictionary<K, V>, IEnumerable<(K, V)>>(formatPairs,
+            var formatSeq = Wrap<IDictionary<K, V>, IEnumerable<(K, V)>>(formatPairs,
                 dict => dict.Select(kv => (kv.Key, kv.Value)));
 
             return Formatters.ToString(Enclose(formatSeq, ("{", "}")));
@@ -200,15 +200,15 @@ namespace BoilerplateBuilders.ToString
                 Write(MemberSeparator)
             );
 
-            var setFormatter = Map<IEnumerable, IEnumerable<object>>(valuesFormatter, seq => seq.Cast<object>());
+            var setFormatter = Wrap<IEnumerable, IEnumerable<object>>(valuesFormatter, seq => seq.Cast<object>());
 
             return Formatters.ToString(Enclose(setFormatter, ("{", "}")));
         }
 
         private Formatter<(K key, V value)> AppendSequenceKeyAndValue<K, V>()
         {
-            var formatName = FormatMemberName<(K key, V value)>(kv => kv.key?.ToString());
-            var formatValue = FormatMemberValue<(K key, V value)>(kv => kv.value?.ToString());
+            var formatName = FormatMemberName<(K key, V value)>(kv => ToString(kv.key));
+            var formatValue = FormatMemberValue<(K key, V value)>(kv => ToString(kv.value)); 
             var formatPair = Enclose(formatName + formatValue, MemberPrefixAndSuffix);
             return PrependNewLineToMember<(K key, V value)>() + formatPair;
         }
@@ -228,7 +228,7 @@ namespace BoilerplateBuilders.ToString
                     : Empty<object>()
             );
 
-            return Map(memberFmt, op.Member.Getter);
+            return Wrap(memberFmt, op.Member.Getter);
         }
 
         private Formatter<T> PrependNewLineToMember<T>()
@@ -246,6 +246,8 @@ namespace BoilerplateBuilders.ToString
         }
 
         private Formatter<T> FormatMemberValue<T>(Func<T, string> toString = null) =>
-            Enclose(Nullable(Lift(toString ?? (o => o?.ToString()))), MemberValuePrefixAndSuffix);
+            Enclose(UnlessNull(Lift(toString ?? ToString)), MemberValuePrefixAndSuffix);
+
+        private static string ToString<T>(T value) => value?.ToString();
     }
 }

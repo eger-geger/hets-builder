@@ -7,25 +7,35 @@ using static BoilerplateBuilders.ToString.Writers;
 namespace BoilerplateBuilders.ToString
 {
     /// <summary>
-    /// Function providing string representation of given <paramref name="value"/>. 
+    /// Function converting object to string according to predefined rules (format). 
     /// </summary>
-    /// <param name="value">Formatted instance.</param>
-    /// <typeparam name="T">Type of formatted instance.</typeparam>
-    /// <returns>Function writing string representation of <paramref name="value"/>.</returns>
+    /// <param name="value">Instance or value to convert.</param>
+    /// <typeparam name="T">Type of converted instance.</typeparam>
+    /// <returns>Function writing string representation of object.</returns>
     public delegate Writer Formatter<in T>(T value);
     
+    /// <summary>
+    /// <see cref="Formatter{T}"/> function combinators.
+    /// </summary>
     public static class Formatters
     {
-        public static Formatter<T> Empty<T>() => a => Writers.Empty;
-        
-        public static Formatter<T> Lift<T>(Writer writer) => t => writer;
+        /// <summary>
+        /// Creates formatting function which ignores input value and writes empty string.
+        /// </summary>
+        /// <typeparam name="T">Formatted value type.</typeparam>
+        public static Formatter<T> Empty<T>() => _ => Writers.Empty;
         
         /// <summary>
-        /// Creates formatting function which invokes provided <paramref name="toString"/> function
-        /// on formatted value and appends result to <see cref="StringBuilder"/> at current position.
+        /// Creates function ignoring input value and using provided writer function instead.
+        /// </summary>
+        /// <param name="writer">Writer function.</param>
+        /// <typeparam name="T">Formatted value type.</typeparam>
+        public static Formatter<T> Lift<T>(Writer writer) => _ => writer;
+        
+        /// <summary>
+        /// Creates formatting function applying provided function to input value.
         /// </summary>
         /// <param name="toString">Function converting formatted value to string.</param>
-        /// <returns>Formatting function wrapping provided <paramref name="toString"/> function.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="toString"/> is null.</exception>
         public static Formatter<T> Lift<T>(Func<T, string> toString)
         {
@@ -36,25 +46,26 @@ namespace BoilerplateBuilders.ToString
         }
 
         /// <summary>
-        /// Combines mapping and formatting function by applying mapping function first
-        /// and passing result to formatting function. 
+        /// Creates formatting function from another formatter applied to result of a mapper function applied to input. 
         /// </summary>
+        /// <typeparam name="TA">Type of resulting function input.</typeparam>
+        /// <typeparam name="TB">Type of wrapped formatting function input.</typeparam>
         /// <param name="fmt">Formatting function applied to mapped value.</param>
-        /// <param name="map">Mapping function applied to formatted value.</param>
-        /// <returns>Formatting function.</returns>
-        public static Formatter<TA> Map<TA, TB>(Formatter<TB> fmt, Func<TA, TB> map) => a => fmt(map(a));
+        /// <param name="map">
+        /// Function applied to created function input and producing value passed to wrapped formatter.
+        /// </param>
+        public static Formatter<TA> Wrap<TA, TB>(Formatter<TB> fmt, Func<TA, TB> map) => a => fmt(map(a));
         
         /// <summary>
-        /// Creates collection formatting function by applying provided <paramref name="fmt"/> to every collection element
-        /// and joining results with <paramref name="glue"/>.
+        /// Creates formatting function for sequence which applies provided formatter to every sequence item
+        /// and joins results with <paramref name="glue"/>.
         /// </summary>
-        /// <param name="fmt">Formatting function for individual collection element.</param>
-        /// <param name="glue">Writer function called between 2 subsequent collection item writers.</param>
+        /// <param name="fmt">Formats individual sequence elements.</param>
+        /// <param name="glue">Joins formatter results applied to subsequent items.</param>
         /// <typeparam name="T">Type of collection elements.</typeparam>
-        /// <returns>Collection formatting function.</returns>
         public static Formatter<IEnumerable<T>> Collect<T>(Formatter<T> fmt, Writer glue = null)
         {
-            glue = glue ?? Writers.Empty;
+            glue = glue ?? Whitespace;
 
             return seq => seq
                 .Select(fmt.Invoke)
@@ -63,16 +74,13 @@ namespace BoilerplateBuilders.ToString
     
         /// <summary>
         /// Creates function combining two formatting functions and <paramref name="glue"/> function
-        /// by applying those sequentially to same formatted value in following order: 1st, separator, 2nd.  
+        /// by applying those sequentially to same formatted value in following order: 1st, glue, 2nd.  
         /// </summary>
         /// <param name="glue">Formatting function applied in between two other formatting functions.</param>
         /// <returns>Function combining two formatting function into one.</returns>
-        public static Func<Formatter<T>, Formatter<T>, Formatter<T>> Join<T>(Formatter<T> glue)
+        public static Func<Formatter<T>, Formatter<T>, Formatter<T>> Joiner<T>(Formatter<T> glue = null)
         {
-            if (glue is null)
-                throw new ArgumentNullException(nameof(glue));
-
-            return (fa, fb) => fa + glue + fb;
+            return (fa, fb) => o => fa(o) + glue?.Invoke(o) + fb(o);
         }
         
         /// <summary>
@@ -85,11 +93,10 @@ namespace BoilerplateBuilders.ToString
             o => Writers.ToString(formatter?.Invoke(o));
 
         /// <summary>
-        /// Creates formatting function which encloses value generated by another formatting function.
+        /// Creates formatting function adding prefix and suffix to value produced by another formatting function.
         /// </summary>
-        /// <param name="fmt">Wrapped formatter which generated value is enclosed.</param>
-        /// <param name="prefixAndSuffix">Prefix and suffix enclosing formatted value.</param>
-        /// <returns>Formatting function wrapping <paramref name="fmt"/>.</returns>
+        /// <param name="fmt">Wrapped formatter.</param>
+        /// <param name="prefixAndSuffix">Prefix and suffix added to formatted value.</param>
         public static Formatter<T> Enclose<T>(Formatter<T> fmt, (string prefix, string suffix) prefixAndSuffix)
         {
             var (prefix, suffix) = prefixAndSuffix;
@@ -98,26 +105,29 @@ namespace BoilerplateBuilders.ToString
 
         /// <summary>
         /// Creates formatting function invoking one of two provided formatting functions
-        /// depending on result of <paramref name="condition"/> applied to formatted value. 
+        /// depending on result of <paramref name="condition"/> applied to input value. 
         /// </summary>
         /// <param name="condition">
-        /// Condition on formatted value determining which of two formatting functions to invoke.
+        /// Condition applied to input value determining which of two formatters to apply.
         /// </param>
         /// <param name="positive">
         /// Formatting function invoked when condition is positive.
         /// </param>
         /// <param name="negative">
-        /// Formatting function invoked when condition is negative (default: do nothing function).
+        /// Formatting function invoked when condition is negative (default: <see cref="Empty{T}"/>).
         /// </param>
-        /// <returns>Conditional formatting function.</returns>
         public static Formatter<T> When<T>(Func<T, bool> condition, Formatter<T> positive, Formatter<T> negative = null)
         {
             return o => (condition(o) ? positive : negative ?? Empty<T>())(o);
         }
 
-        public static Formatter<T> Nullable<T>(Formatter<T> fmt, Writer nullWr = null)
-        {
-            return t => t == null ? nullWr ?? Write("null") : fmt(t);
-        }
+        /// <summary>
+        /// Creates formatting function applying first formatter when input is not null and second otherwise.
+        /// </summary>
+        /// <param name="positive">Applied to input when one is not null.</param>
+        /// <param name="negative">Applied to null values of input (default: emits "null").</param>
+        /// <typeparam name="T">Formatter input type.</typeparam>
+        public static Formatter<T> UnlessNull<T>(Formatter<T> positive, Formatter<T> negative = null) => 
+            When(obj => obj != null, positive, negative ?? Lift<T>(Write("null")));
     }
 }

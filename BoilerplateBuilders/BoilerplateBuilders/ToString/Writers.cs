@@ -24,6 +24,11 @@ namespace BoilerplateBuilders.ToString
         public static Writer NewLine => sb => sb.AppendLine();
         
         /// <summary>
+        /// Creates function writing a whitespace to output.
+        /// </summary>
+        public static Writer Whitespace => sb => sb.Append(" ");
+        
+        /// <summary>
         /// Creates a function writing given string to output unless it is null or empty. 
         /// </summary>
         /// <param name="s">String to write to output.</param>
