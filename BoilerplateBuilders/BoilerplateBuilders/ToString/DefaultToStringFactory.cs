@@ -146,12 +146,9 @@ namespace BoilerplateBuilders.ToString
             if (members is null)
                 throw new ArgumentNullException(nameof(members));
 
-            var formatMembers = Enclose(
-                members
-                    .Select(FormatMember)
-                    .Aggregate(Joiner(Lift<object>(Write(MemberSeparator)))),
-                BodyPrefixAndSuffix
-            );
+            var formatMembers = JoinWithSeparator(members.Select(FormatMember));
+            
+            var formatBody = Enclose(formatMembers, BodyPrefixAndSuffix);
 
             var formatClassName = Density.HasFlag(IncludeClassName)
                 ? Lift<object>(o => o?.GetType().Name)
@@ -160,13 +157,20 @@ namespace BoilerplateBuilders.ToString
             var formatObject =
                 formatClassName + When(
                     o => o != null,
-                    formatMembers,
+                    formatBody,
                     Lift<object>(Write("null"))
                 );
 
             return Formatters.ToString(formatObject);
         }
 
+        private Formatter<object> JoinWithSeparator(IEnumerable<Formatter<object>> formatters)
+        {
+            var separator = Lift<object>(Write(MemberSeparator));
+
+            return formatters.Aggregate((first, second) => Sum(first, separator, second));
+        }
+        
         public Func<IEnumerable, string> EnumerableToString()
         {
             var keyValuePairsFormatter = Collect<(int, object)>(

@@ -73,15 +73,20 @@ namespace BoilerplateBuilders.ToString
         }
     
         /// <summary>
-        /// Creates function combining two formatting functions and <paramref name="glue"/> function
-        /// by applying those sequentially to same formatted value in following order: 1st, glue, 2nd.  
+        /// Combines formatter functions by applying them sequentially and summing resulting writer functions.
         /// </summary>
-        /// <param name="glue">Formatting function applied in between two other formatting functions.</param>
-        /// <returns>Function combining two formatting function into one.</returns>
-        public static Func<Formatter<T>, Formatter<T>, Formatter<T>> Joiner<T>(Formatter<T> glue = null)
-        {
-            return (fa, fb) => o => fa(o) + glue?.Invoke(o) + fb(o);
-        }
+        /// <param name="formatters">Formatter functions to combine.</param>
+        /// <typeparam name="T">Type of formatter functions.</typeparam>
+        public static Formatter<T> Sum<T>(params Formatter<T>[] formatters) => formatters.Aggregate(Empty<T>(), Add);
+
+        /// <summary>
+        /// Combines two formatter functions by applying them sequentially and summing resulting writer functions.
+        /// </summary>
+        /// <param name="first">Formatter function applied first.</param>
+        /// <param name="second">Formatter function applied second.</param>
+        /// <typeparam name="T">Type of formatter functions.</typeparam>
+        public static Formatter<T> Add<T>(Formatter<T> first, Formatter<T> second) => 
+            o => Writers.Empty + first?.Invoke(o) + second?.Invoke(o);
         
         /// <summary>
         /// Converts formatting function to function returning string representation of formatted value accumulated in

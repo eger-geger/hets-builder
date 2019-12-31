@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using BoilerplateBuilders.ToString;
 using NUnit.Framework;
 using static BoilerplateBuilders.ToString.Writers;
@@ -125,39 +123,44 @@ namespace BoilerplateBuildersTests.ToString
         }
 
         [Test]
-        public void JoinerShouldCreateFunctionCombiningFormattersViaSeparator()
+        public void AddShouldCombineTwoFunctionsByApplyingThemInOrder()
         {
-            var formatters = new List<Formatter<int>>
-            {
-                Lift<int>(i => i.ToString()),
-                Lift<int>(i => Convert.ToString(i*2)),
-                Lift<int>(i => Convert.ToString(i*4)),
-                Lift<int>(i => Convert.ToString(i*8)),
-                Lift<int>(i => Convert.ToString(i*16))
-            };
-
-            var glue = Lift<int>(Write(","));
-
-            var fmt = formatters.Aggregate(Joiner(glue));
+            var binFmt = Lift<int>(i => Convert.ToString(i, 2));
+            var hexFmt = Lift<int>(i => i.ToString("X"));
+            var sum = Add(binFmt, hexFmt);
             
-            Assert.That(Writers.ToString(fmt(1)), Is.EqualTo("1,2,4,8,16"));
+            Assert.That(Writers.ToString(sum(15)), Is.EqualTo("1111F"));
         }
 
         [Test]
-        public void JoinerShouldUseEmptyStringToJoinFormatterResultsByDefault()
+        public void AdditionShouldAllowNulls()
         {
-            var formatters = new List<Formatter<int>>
-            {
-                Lift<int>(i => i.ToString()),
-                Lift<int>(i => Convert.ToString(i*2)),
-                Lift<int>(i => Convert.ToString(i*4)),
-                Lift<int>(i => Convert.ToString(i*8)),
-                Lift<int>(i => Convert.ToString(i*16))
-            };
-
-            var fmt = formatters.Aggregate(Joiner<int>());
+            var hexFmt = Lift<int>(ToHexString);
             
-            Assert.That(Writers.ToString(fmt(1)), Is.EqualTo("124816"));
+            Assert.That(Writers.ToString(Add(hexFmt, null)(15)), Is.EqualTo("F"));
+            Assert.That(Writers.ToString(Add(null, hexFmt)(15)), Is.EqualTo("F"));
+        }
+
+        [Test]
+        public void AddingTwoNullFormattersShouldResultInEmptyFormatter()
+        {
+            var sum = Add<int>(null, null);
+            
+            Assert.That(sum, Is.Not.Null);
+            Assert.That(Writers.ToString(sum(1)), Is.Empty);
+        }
+
+        [Test]
+        public void SumShouldAddMultipleFormatter()
+        {
+            var binFmt = Lift<int>(i => Convert.ToString(i, 2));
+            var hexFmt = Lift<int>(i => i.ToString("X"));
+            var decFmt = Lift<int>(i => i.ToString());
+
+            var sum = Sum(binFmt, decFmt, hexFmt);
+            
+            Assert.That(Writers.ToString(sum(15)), Is.EqualTo("111115F"));
+
         }
     }
 }
