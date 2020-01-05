@@ -20,7 +20,7 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Converts selected object members into function returning objects' string representation. 
         /// </summary>
-        public IToStringFactory ToStringFactory { get; private set; } = DefaultToStringFactory;
+        public IFormatterFactory FormatterFactory { get; private set; } = DefaultFormatterFactory;
         
         /// <summary>
         /// Includes referenced field or property into list of members available to <see cref="object.ToString"/>
@@ -62,18 +62,18 @@ namespace BoilerplateBuilders
 
         public ToStringBuilder<TTarget> FormatCollectionElementWise()
         {
-            return Use<ICollection>(ToStringFactory.EnumerableToString());
+            return Use<ICollection>(FormatterFactory.EnumerableFormatter());
         }
         
         /// <summary>
-        /// Overrides current <see cref="ToStringFactory"/> with given value or sets it to <see cref="DefaultToStringFactory"/>
-        /// when <paramref name="toStringFactory"/> is null.
+        /// Overrides current <see cref="FormatterFactory"/> with given value or sets it to <see cref="DefaultFormatterFactory"/>
+        /// when <paramref name="formatterFactory"/> is null.
         /// </summary>
-        /// <param name="toStringFactory">New format.</param>
+        /// <param name="formatterFactory">New format.</param>
         /// <returns>Updated builder instance.</returns>
-        public ToStringBuilder<TTarget> UseFormat(IToStringFactory toStringFactory)
+        public ToStringBuilder<TTarget> UseFormat(IFormatterFactory formatterFactory)
         {
-            ToStringFactory = toStringFactory ?? DefaultToStringFactory;
+            FormatterFactory = formatterFactory ?? DefaultFormatterFactory;
             return this;
         }
         
@@ -83,7 +83,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ToStringFactory.ObjectToString(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return FormatterFactory.ObjectFormatter(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.
         /// </summary>
-        public static IToStringFactory DefaultToStringFactory =>
-            new DefaultToStringFactory()
+        public static IFormatterFactory DefaultFormatterFactory =>
+            new DefaultFormatterFactory()
                 .SetDensityFlag(FormatDensity.IncludeClassName)
-                .SetDensityFlag(FormatDensity.IncludeItemName)
+                .SetDensityFlag(FormatDensity.IncludeMemberName)
                 .JoinMembersWith(", ");
     }
 }

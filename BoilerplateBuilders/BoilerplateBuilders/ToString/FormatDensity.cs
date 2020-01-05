@@ -9,14 +9,19 @@ namespace BoilerplateBuilders.ToString
     public enum FormatDensity
     {
         /// <summary>
+        /// The most sparse density.
+        /// </summary>
+        Dense = 0,
+        
+        /// <summary>
         /// Place every formatted member on new line.
         /// </summary>
-        ItemOnNewLine = 0x1,
+        MemberOnNewLine = 0x1,
         
         /// <summary>
         /// Include member name into output.
         /// </summary>
-        IncludeItemName = 0x2,
+        IncludeMemberName = 0x2,
         
         /// <summary>
         /// Include formatted object class name into output.
