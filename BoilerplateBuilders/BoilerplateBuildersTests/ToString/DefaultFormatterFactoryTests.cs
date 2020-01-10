@@ -230,8 +230,19 @@ namespace BoilerplateBuildersTests.ToString
         {
             get
             {
-                yield return new TestCaseData(Dense).Returns("['John', '', '']");
-                yield return new TestCaseData(IncludeMemberName).Returns("['1':'John', '2':'', '3':'']");
+                yield return new TestCaseData(Dense).Returns("['John','']");
+                yield return new TestCaseData(IncludeMemberName).Returns("['0':'John','1':'']");
+                yield return new TestCaseData(IncludeNullValues).Returns("['John','','']");
+                yield return new TestCaseData(MemberOnNewLine | IncludeMemberName | IncludeNullValues)
+                    .Returns(
+                        new StringBuilder()
+                            .AppendLine("[")
+                            .AppendLine("'0':'John',")
+                            .AppendLine("'1':'',")
+                            .Append("'2':''")
+                            .Append("]")
+                            .ToString()
+                    );
             }
         }
         
@@ -244,7 +255,7 @@ namespace BoilerplateBuildersTests.ToString
                 .EncloseMemberNameWith("'", "'")
                 .EncloseMemberValueWith("'", "'")
                 .JoinMemberNameAndValueWith(":")
-                .JoinMembersWith(", ");
+                .JoinMembersWith(",");
 
             return factory.EnumerableFormatter()(new []{"John", "", null});     
         }

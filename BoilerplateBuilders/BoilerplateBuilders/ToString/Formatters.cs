@@ -69,7 +69,7 @@ namespace BoilerplateBuilders.ToString
 
             return seq => seq
                 .Select(fmt.Invoke)
-                .Aggregate((a, b) => a + glue + b);
+                .Aggregate((a, b) => IsEmpty(b) ? a : Writers.Sum(a, glue, b));
         }
     
         /// <summary>

@@ -65,7 +65,7 @@ namespace BoilerplateBuilders.ToString
             if (members is null)
                 throw new ArgumentNullException(nameof(members));
 
-            var formatMembers = JoinWithSeparator(members.Select(FormatMember));
+            var formatMembers = JoinWithSeparator(members.Select(FormatObjectMember));
 
             var formatBody = Enclose(formatMembers, BodyPrefixAndSuffix);
 
@@ -230,35 +230,47 @@ namespace BoilerplateBuilders.ToString
             return Formatters.ToString(Enclose(setFormatter, ("{", "}")));
         }
 
-        private Formatter<(K key, V value)> AppendSequenceKeyAndValue<K, V>()
-        {
-            var formatName = FormatMemberName<(K key, V value)>(kv => ToString(kv.key));
-            var formatValue = FormatMemberValue<(K key, V value)>(kv => ToString(kv.value));
-            var formatPair = Enclose(formatName + formatValue, MemberPrefixAndSuffix);
-            return Add(PrependNewLineToMember<(K key, V value)>(), formatPair);
-        }
-
-        private Formatter<object> FormatMember(ToStringMember op)
-        {
-            var formatName = FormatMemberName<object>(_ => op.Member.MemberName);
-            var formatValue = FormatMemberValue(op.Context);
-            var formatNameValueSeparator = Density.HasFlag(IncludeMemberName)
-                ? Lift<object>(Write(MemberNameValueSeparator))
-                : Empty<object>();
-            var formatNameAndValue = Sum(formatName, formatNameValueSeparator, formatValue);
-            var formatEnclosedNameAndValue = Enclose(formatNameAndValue, MemberPrefixAndSuffix);
-            var formatNameValueAndLineBreak = Add(PrependNewLineToMember<object>(), formatEnclosedNameAndValue);
-
-            var formatNullableMember = When(
-                o => o != null,
-                formatNameValueAndLineBreak,
-                Density.HasFlag(IncludeNullValues)
-                    ? formatNameValueAndLineBreak
-                    : Empty<object>()
+        private Formatter<(TK key, TV value)> AppendSequenceKeyAndValue<TK, TV>() =>
+            FormatMemberNameAndValue<(TK key, TV value)>(
+                kv => ToString(kv.key),
+                kv => ToString(kv.value)
             );
 
-            return Wrap(formatNullableMember, op.Member.Getter);
+        private Formatter<T> FormatMemberNameAndValue<T>(Func<T, string> getMemberName, Func<T, string> getMemberValue)
+        {
+            var formatName = FormatMemberName(getMemberName);
+            var formatValue = FormatMemberValue(getMemberValue);
+
+            var formatNameValueSeparator = Density.HasFlag(IncludeMemberName)
+                ? Lift<T>(Write(MemberNameValueSeparator))
+                : Empty<T>();
+
+            var formatNameAndValue = Add(
+                PrependNewLineToMember<T>(),
+                Enclose(
+                    Sum(
+                        formatName,
+                        formatNameValueSeparator,
+                        formatValue
+                    ),
+                    MemberPrefixAndSuffix
+                )
+            );
+
+            return When(
+                o => getMemberValue(o) != null,
+                formatNameAndValue,
+                Density.HasFlag(IncludeNullValues)
+                    ? formatNameAndValue
+                    : Empty<T>()
+            );
         }
+
+        private Formatter<object> FormatObjectMember(ToStringMember op) =>
+            Wrap(FormatMemberNameAndValue(
+                _ => op.Member.MemberName,
+                op.Context
+            ), op.Member.Getter);
 
         private Formatter<T> PrependNewLineToMember<T>()
         {
@@ -279,9 +291,6 @@ namespace BoilerplateBuilders.ToString
             return Enclose(UnlessNull(Lift(toString ?? ToString)), MemberValuePrefixAndSuffix);
         }
 
-        private static string ToString<T>(T value)
-        {
-            return value?.ToString();
-        }
+        private static string ToString<T>(T value) => value?.ToString();
     }
 }

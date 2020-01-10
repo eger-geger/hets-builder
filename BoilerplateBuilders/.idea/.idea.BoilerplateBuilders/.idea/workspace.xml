@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/IToStringFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultToStringFactoryTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,9 +124,6 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultToStringFactoryTests.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/FormattersTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" />
@@ -136,6 +131,9 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" />
       </list>
     </option>
   </component>
@@ -237,7 +235,8 @@
       <workItem from="1577126544126" duration="5288000" />
       <workItem from="1577200604430" duration="5371000" />
       <workItem from="1577807407445" duration="7773000" />
-      <workItem from="1578257353197" duration="2726000" />
+      <workItem from="1578257353197" duration="2990000" />
+      <workItem from="1578688511701" duration="7967000" />
     </task>
     <servers />
   </component>
@@ -258,13 +257,13 @@
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="627" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="651" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="627" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="614" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="651" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="645" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />

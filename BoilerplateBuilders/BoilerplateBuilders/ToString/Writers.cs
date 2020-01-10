@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 
 namespace BoilerplateBuilders.ToString
@@ -17,6 +18,21 @@ namespace BoilerplateBuilders.ToString
         /// Creates a function writing empty string to output.
         /// </summary>
         public static Writer Empty => _ => { };
+
+        /// <summary>
+        /// Combines two writers by invoking them sequentially.
+        /// </summary>
+        /// <param name="first">Writer applied first.</param>
+        /// <param name="second">Writer applied second.</param>
+        public static Writer Add(Writer first, Writer second) => IsEmpty(second) ? first : first + second;
+
+        public static Writer Sum(params Writer[] writers) => writers.Aggregate(Add);
+        
+        /// <summary>
+        /// Determines if a writer is empty (<see cref="Empty"/>).
+        /// </summary>
+        /// <param name="wr">Writer function to check.</param>
+        public static bool IsEmpty(Writer wr) => Empty == wr || wr == null;
         
         /// <summary>
         /// Creates function writing a line break to output.

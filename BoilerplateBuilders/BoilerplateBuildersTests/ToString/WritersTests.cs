@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using BoilerplateBuilders.ToString;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using static BoilerplateBuilders.ToString.Writers;
 
 namespace BoilerplateBuildersTests.ToString
@@ -13,6 +15,22 @@ namespace BoilerplateBuildersTests.ToString
             Assert.That(Writers.ToString(Empty), Is.Empty);
         }
 
+        private static IEnumerable<ITestCaseData> EmptyWritersTestCases
+        {
+            get
+            {
+                yield return new TestCaseData(Empty);
+                yield return new TestCaseData(Add(Empty, Empty));
+                yield return new TestCaseData(Empty + null);
+            }
+        }
+        
+        [TestCaseSource(nameof(EmptyWritersTestCases))]
+        public void EmptyWriterShouldBeConsideredEmpty(Writer empty)
+        {
+            Assert.That(IsEmpty(empty), Is.True);
+        }
+        
         [TestCase("")]
         [TestCase(" ")]
         [TestCase("Jack")]
