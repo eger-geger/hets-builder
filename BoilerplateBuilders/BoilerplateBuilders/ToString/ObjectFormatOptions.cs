@@ -6,12 +6,12 @@ namespace BoilerplateBuilders.ToString
     /// Determine how compact string representation should be.
     /// </summary>
     [Flags]
-    public enum FormatDensity
+    public enum ObjectFormatOptions
     {
         /// <summary>
         /// The most sparse density.
         /// </summary>
-        Dense = 0,
+        None = 0,
         
         /// <summary>
         /// Place every formatted member on new line.
@@ -31,6 +31,6 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Include members with <code>null</code> values into output.
         /// </summary>
-        IncludeNullValues = 0X8
+        IncludeNullValues = 0X8,
     }
 }

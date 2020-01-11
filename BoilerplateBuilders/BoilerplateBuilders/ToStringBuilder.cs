@@ -100,9 +100,9 @@ namespace BoilerplateBuilders
         /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.
         /// </summary>
         public static IFormatterFactory DefaultFormatterFactory =>
-            new DefaultFormatterFactory()
-                .SetDensityFlag(FormatDensity.IncludeClassName)
-                .SetDensityFlag(FormatDensity.IncludeMemberName)
+            new ObjectFormatterFactory()
+                .AddFlags(ObjectFormatOptions.IncludeClassName)
+                .AddFlags(ObjectFormatOptions.IncludeMemberName)
                 .JoinMembersWith(", ");
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using static BoilerplateBuilders.ToString.FormatDensity;
+using static BoilerplateBuilders.ToString.ObjectFormatOptions;
 using static BoilerplateBuilders.ToString.Formatters;
 using static BoilerplateBuilders.ToString.Writers;
 using ToStringMember = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
@@ -14,13 +14,13 @@ namespace BoilerplateBuilders.ToString
     ///     Builds formatting function according to provided settings.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public class DefaultFormatterFactory : IFormatterFactory
+    public class ObjectFormatterFactory : IFormatterFactory
     {
         /// <summary>
         ///     Determines what should be printed into formatted output and how
         ///     densely it should be formatted.
         /// </summary>
-        public FormatDensity Density { get; private set; }
+        public ObjectFormatOptions Options { get; private set; }
 
         /// <summary>
         ///     Tuple of symbols placed before first and after last member in output.
@@ -69,7 +69,7 @@ namespace BoilerplateBuilders.ToString
 
             var formatBody = Enclose(formatMembers, BodyPrefixAndSuffix);
 
-            var formatClassName = Density.HasFlag(IncludeClassName)
+            var formatClassName = Options.HasFlag(IncludeClassName)
                 ? Lift<object>(o => o?.GetType().Name)
                 : Empty<object>();
 
@@ -102,61 +102,61 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         ///     Deactivates density flag and returns updated format instance.
         /// </summary>
-        /// <param name="flags">Density flag(s) to negate.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory UnsetDensityFlag(FormatDensity flags)
+        /// <param name="options">Density flag(s) to negate.</param>
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory RemoveFlags(ObjectFormatOptions options)
         {
-            Density &= Density ^ flags;
+            Options &= Options ^ options;
             return this;
         }
 
         /// <summary>
         ///     Sets density flag and returns updated format instance.
         /// </summary>
-        /// <param name="flags">Density flag(s) to set.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory SetDensityFlag(FormatDensity flags)
+        /// <param name="options">Density flag(s) to set.</param>
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory AddFlags(ObjectFormatOptions options)
         {
-            Density |= flags;
+            Options |= options;
             return this;
         }
 
         /// <summary>
-        ///     Instructs to enclose every formatted member into pair of <paramref name="opening" />
-        ///     and <paramref name="closing" /> symbols.
+        ///     Instructs to enclose every formatted member into pair of <paramref name="prefix" />
+        ///     and <paramref name="suffix" /> symbols.
         /// </summary>
-        /// <param name="opening">Placed before formatted member name and value.</param>
-        /// <param name="closing">Placed after formatted member name and value.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory EncloseMemberWith(string opening, string closing)
+        /// <param name="prefix">Placed before formatted member name and value.</param>
+        /// <param name="suffix">Placed after formatted member name and value.</param>
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory ObjectMemberPrefixAndSuffix(string prefix, string suffix)
         {
-            MemberPrefixAndSuffix = (opening, closing);
+            MemberPrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        ///     Instructs to enclose every formatted member value into pair of <paramref name="opening" />
-        ///     and <paramref name="closing" /> symbols.
+        ///     Instructs to enclose every formatted member value into pair of <paramref name="prefix" />
+        ///     and <paramref name="suffix" /> symbols.
         /// </summary>
-        /// <param name="opening">Placed before formatted member value.</param>
-        /// <param name="closing">Placed after formatted member value.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory EncloseMemberValueWith(string opening, string closing)
+        /// <param name="prefix">Placed before formatted member value.</param>
+        /// <param name="suffix">Placed after formatted member value.</param>
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory ObjectMemberValuePrefixAndSuffix(string prefix, string suffix)
         {
-            MemberValuePrefixAndSuffix = (opening, closing);
+            MemberValuePrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        ///     Instructs to enclose every formatted member name into pair of <paramref name="opening" />
-        ///     and <paramref name="closing" /> symbols.
+        ///     Instructs to enclose every formatted member name into pair of <paramref name="prefix" />
+        ///     and <paramref name="suffix" /> symbols.
         /// </summary>
-        /// <param name="opening">Placed before formatted member name.</param>
-        /// <param name="closing">Placed after formatted member name.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory EncloseMemberNameWith(string opening, string closing)
+        /// <param name="prefix">Placed before formatted member name.</param>
+        /// <param name="suffix">Placed after formatted member name.</param>
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory ObjectMemberNamePrefixAndSuffix(string prefix, string suffix)
         {
-            MemberNamePrefixAndSuffix = (opening, closing);
+            MemberNamePrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
@@ -165,8 +165,8 @@ namespace BoilerplateBuilders.ToString
         ///     subsequent formatted members.
         /// </summary>
         /// <param name="separator">Placed between subsequent members.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory JoinMembersWith(string separator)
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory JoinMembersWith(string separator)
         {
             MemberSeparator = separator;
             return this;
@@ -177,7 +177,7 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="separator">Character placed between member name and value.</param>
         /// <returns>Updated factory.</returns>
-        public DefaultFormatterFactory JoinMemberNameAndValueWith(string separator)
+        public ObjectFormatterFactory JoinMemberNameAndValueWith(string separator)
         {
             MemberNameValueSeparator = separator;
             return this;
@@ -189,8 +189,8 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="opening">Placed before first formatted member.</param>
         /// <param name="closing">Placed after lats formatted member.</param>
-        /// <returns>Updated <see cref="DefaultFormatterFactory" /> instance.</returns>
-        public DefaultFormatterFactory EncloseBodyWith(string opening, string closing)
+        /// <returns>Updated <see cref="ObjectFormatterFactory" /> instance.</returns>
+        public ObjectFormatterFactory ObjectBodyPrefixAndSuffix(string opening, string closing)
         {
             BodyPrefixAndSuffix = (opening, closing);
             return this;
@@ -231,17 +231,17 @@ namespace BoilerplateBuilders.ToString
         }
 
         private Formatter<(TK key, TV value)> AppendSequenceKeyAndValue<TK, TV>() =>
-            FormatMemberNameAndValue<(TK key, TV value)>(
+            FormatNameAndValue<(TK key, TV value)>(
                 kv => ToString(kv.key),
                 kv => ToString(kv.value)
             );
 
-        private Formatter<T> FormatMemberNameAndValue<T>(Func<T, string> getMemberName, Func<T, string> getMemberValue)
+        private Formatter<T> FormatNameAndValue<T>(Func<T, string> getName, Func<T, string> getValue)
         {
-            var formatName = FormatMemberName(getMemberName);
-            var formatValue = FormatMemberValue(getMemberValue);
+            var formatName = FormatName(getName, IncludeMemberName);
+            var formatValue = FormatMemberValue(getValue);
 
-            var formatNameValueSeparator = Density.HasFlag(IncludeMemberName)
+            var formatNameValueSeparator = Options.HasFlag(IncludeMemberName)
                 ? Lift<T>(Write(MemberNameValueSeparator))
                 : Empty<T>();
 
@@ -258,30 +258,30 @@ namespace BoilerplateBuilders.ToString
             );
 
             return When(
-                o => getMemberValue(o) != null,
+                o => getValue(o) != null,
                 formatNameAndValue,
-                Density.HasFlag(IncludeNullValues)
+                Options.HasFlag(IncludeNullValues)
                     ? formatNameAndValue
                     : Empty<T>()
             );
         }
 
         private Formatter<object> FormatObjectMember(ToStringMember op) =>
-            Wrap(FormatMemberNameAndValue(
+            Wrap(FormatNameAndValue(
                 _ => op.Member.MemberName,
                 op.Context
             ), op.Member.Getter);
 
         private Formatter<T> PrependNewLineToMember<T>()
         {
-            return Density.HasFlag(MemberOnNewLine)
+            return Options.HasFlag(MemberOnNewLine)
                 ? Lift<T>(NewLine)
                 : Empty<T>();
         }
 
-        private Formatter<T> FormatMemberName<T>(Func<T, string> getName)
+        private Formatter<T> FormatName<T>(Func<T, string> getName, ObjectFormatOptions nameOption)
         {
-            return Density.HasFlag(IncludeMemberName)
+            return Options.HasFlag(nameOption)
                 ? Enclose(Lift(getName), MemberNamePrefixAndSuffix)
                 : Empty<T>();
         }

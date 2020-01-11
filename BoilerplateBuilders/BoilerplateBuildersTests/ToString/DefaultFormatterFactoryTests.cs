@@ -7,7 +7,7 @@ using BoilerplateBuilders.ToString;
 using BoilerplateBuildersTests.Models;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using static BoilerplateBuilders.ToString.FormatDensity;
+using static BoilerplateBuilders.ToString.ObjectFormatOptions;
 
 namespace BoilerplateBuildersTests.ToString
 {
@@ -40,10 +40,10 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void EmptyBuilder()
         {
-            var factory = new DefaultFormatterFactory();
+            var factory = new ObjectFormatterFactory();
             var defaultPrefixAndSuffix = ValueTuple.Create<string, string>(null, null);
 
-            Assert.That(factory.Density, Is.EqualTo((FormatDensity) 0));
+            Assert.That(factory.Options, Is.EqualTo((ObjectFormatOptions) 0));
             Assert.That(factory.MemberPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberSeparator, Is.EqualTo(null));
             Assert.That(factory.BodyPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
@@ -54,12 +54,12 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldSetMultipleDensityFlags()
         {
-            var factory = new DefaultFormatterFactory()
-                .SetDensityFlag(IncludeClassName)
-                .SetDensityFlag(IncludeMemberName)
-                .SetDensityFlag(MemberOnNewLine);
+            var factory = new ObjectFormatterFactory()
+                .AddFlags(IncludeClassName)
+                .AddFlags(IncludeMemberName)
+                .AddFlags(MemberOnNewLine);
 
-            Assert.That(factory.Density, Is.EqualTo(
+            Assert.That(factory.Options, Is.EqualTo(
                 IncludeClassName
                 | IncludeMemberName
                 | MemberOnNewLine
@@ -69,25 +69,25 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUnsetDensityFlags()
         {
-            var factory = new DefaultFormatterFactory()
-                .SetDensityFlag(IncludeClassName)
-                .SetDensityFlag(IncludeMemberName)
-                .SetDensityFlag(MemberOnNewLine)
-                .UnsetDensityFlag(
+            var factory = new ObjectFormatterFactory()
+                .AddFlags(IncludeClassName)
+                .AddFlags(IncludeMemberName)
+                .AddFlags(MemberOnNewLine)
+                .RemoveFlags(
                     IncludeClassName
                     | IncludeMemberName
                     | MemberOnNewLine
                     | IncludeNullValues
                 );
 
-            Assert.That(factory.Density, Is.EqualTo((FormatDensity) 0));
+            Assert.That(factory.Options, Is.EqualTo((ObjectFormatOptions) 0));
         }
 
         [Test]
         public void ShouldUpdateMemberPrefixAndSuffix()
         {
-            var factory = new DefaultFormatterFactory()
-                .EncloseMemberWith("<", ">");
+            var factory = new ObjectFormatterFactory()
+                .ObjectMemberPrefixAndSuffix("<", ">");
 
             Assert.That(factory.MemberPrefixAndSuffix, Is.EqualTo(("<", ">")));
         }
@@ -95,8 +95,8 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberValuePrefixAndSuffix()
         {
-            var factory = new DefaultFormatterFactory()
-                .EncloseMemberValueWith(null, "]");
+            var factory = new ObjectFormatterFactory()
+                .ObjectMemberValuePrefixAndSuffix(null, "]");
 
             Assert.That(
                 factory.MemberValuePrefixAndSuffix,
@@ -107,8 +107,8 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberNamePrefixAndSuffix()
         {
-            var factory = new DefaultFormatterFactory()
-                .EncloseMemberNameWith("'", "'");
+            var factory = new ObjectFormatterFactory()
+                .ObjectMemberNamePrefixAndSuffix("'", "'");
 
             Assert.That(factory.MemberNamePrefixAndSuffix, Is.EqualTo(ValueTuple.Create("'", "'")));
         }
@@ -116,7 +116,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberSeparator()
         {
-            var factory = new DefaultFormatterFactory()
+            var factory = new ObjectFormatterFactory()
                 .JoinMembersWith(",");
 
             Assert.That(factory.MemberSeparator, Is.EqualTo(","));
@@ -125,8 +125,8 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateBodyPrefixAndSuffix()
         {
-            var factory = new DefaultFormatterFactory()
-                .EncloseBodyWith("{", "}");
+            var factory = new ObjectFormatterFactory()
+                .ObjectBodyPrefixAndSuffix("{", "}");
 
             Assert.That(factory.BodyPrefixAndSuffix, Is.EqualTo(ValueTuple.Create("{", "}")));
         }
@@ -172,7 +172,7 @@ namespace BoilerplateBuildersTests.ToString
                             .ToString()
                     );
                 
-                yield return new TestCaseData(Dense)
+                yield return new TestCaseData(None)
                     .Returns(
                         new StringBuilder()
                             .Append("<")
@@ -186,15 +186,15 @@ namespace BoilerplateBuildersTests.ToString
         }
 
         [TestCaseSource(nameof(ObjectFormatterTestCases))]
-        public string ShouldFormatObjectAccordingToDensity(FormatDensity density)
+        public string ShouldFormatObjectAccordingToDensity(ObjectFormatOptions options)
         {
             var account = new Account(19, "John", new[] {"12-33-19", "66-18-23"});
 
-            var factory = new DefaultFormatterFactory()
-                .SetDensityFlag(density)
-                .EncloseBodyWith("<", ">")
-                .EncloseMemberNameWith("'", "'")
-                .EncloseMemberValueWith("\"", "\"")
+            var factory = new ObjectFormatterFactory()
+                .AddFlags(options)
+                .ObjectBodyPrefixAndSuffix("<", ">")
+                .ObjectMemberNamePrefixAndSuffix("'", "'")
+                .ObjectMemberValuePrefixAndSuffix("\"", "\"")
                 .JoinMemberNameAndValueWith(":")
                 .JoinMembersWith(",");
 
@@ -204,7 +204,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ObjectFormatterFactoryMethodShouldThrowArgumentNullExceptionWhenSequenceOfFormattingMembersIsNull()
         {
-            var factory = new DefaultFormatterFactory();
+            var factory = new ObjectFormatterFactory();
             
             Assert.Throws<ArgumentNullException>(()=> factory.ObjectFormatter(null));
         }
@@ -212,10 +212,10 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ObjectFormatterShouldIncludeNullValuesWhenCorrespondingDensityFlagWasSet()
         {
-            var factory = new DefaultFormatterFactory()
-                .SetDensityFlag(IncludeNullValues)
-                .SetDensityFlag(IncludeMemberName)
-                .EncloseBodyWith("(", ")")
+            var factory = new ObjectFormatterFactory()
+                .AddFlags(IncludeNullValues)
+                .AddFlags(IncludeMemberName)
+                .ObjectBodyPrefixAndSuffix("(", ")")
                 .JoinMemberNameAndValueWith(": ")
                 .JoinMembersWith(", ");
 
@@ -230,7 +230,7 @@ namespace BoilerplateBuildersTests.ToString
         {
             get
             {
-                yield return new TestCaseData(Dense).Returns("['John','']");
+                yield return new TestCaseData(None).Returns("['John','']");
                 yield return new TestCaseData(IncludeMemberName).Returns("['0':'John','1':'']");
                 yield return new TestCaseData(IncludeNullValues).Returns("['John','','']");
                 yield return new TestCaseData(MemberOnNewLine | IncludeMemberName | IncludeNullValues)
@@ -247,13 +247,13 @@ namespace BoilerplateBuildersTests.ToString
         }
         
         [TestCaseSource(nameof(SequenceFormatterTestCases))]
-        public string ShouldFormatSequenceAccordingToDensity(FormatDensity density)
+        public string ShouldFormatSequenceAccordingToDensity(ObjectFormatOptions options)
         {
-            var factory = new DefaultFormatterFactory()
-                .SetDensityFlag(density)
-                .EncloseBodyWith("<", ">")
-                .EncloseMemberNameWith("'", "'")
-                .EncloseMemberValueWith("'", "'")
+            var factory = new ObjectFormatterFactory()
+                .AddFlags(options)
+                .ObjectBodyPrefixAndSuffix("<", ">")
+                .ObjectMemberNamePrefixAndSuffix("'", "'")
+                .ObjectMemberValuePrefixAndSuffix("'", "'")
                 .JoinMemberNameAndValueWith(":")
                 .JoinMembersWith(",");
 

@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +33,6 @@
     <expand />
     <select />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Account</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -52,14 +49,15 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/OrderedHashSet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Models/Account.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/TypeExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCode/HashCodeFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/AccessorFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -76,18 +74,15 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/EqualityComparerBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/AbstractBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/56C02F65-7F8E-4DE0-B35F-CD26C3C2693D/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCodeBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormat.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultFormatBuilderTests.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMemberOperation.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderOperationSource.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/BuilderMember.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunction.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunctionSource.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" />
@@ -129,11 +124,16 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultToStringFactoryTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Formatters.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatFlags.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatOptions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" />
       </list>
     </option>
   </component>
@@ -237,6 +237,7 @@
       <workItem from="1577807407445" duration="7773000" />
       <workItem from="1578257353197" duration="2990000" />
       <workItem from="1578688511701" duration="7967000" />
+      <workItem from="1578781945740" duration="2735000" />
     </task>
     <servers />
   </component>
@@ -399,10 +400,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1577094154613" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577811264527">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578782908087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577811264527" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578782908087" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -411,6 +412,19 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs</url>
+          <line>270</line>
+          <properties documentPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" initialLine="270">
+            <startOffsets>
+              <option value="11114" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11134" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
