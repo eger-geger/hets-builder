@@ -11,7 +11,7 @@ using static BoilerplateBuilders.ToString.ObjectFormatOptions;
 
 namespace BoilerplateBuildersTests.ToString
 {
-    public class DefaultFormatterFactoryTests
+    public class ObjectFormatterFactoryTests
     {
         private static IEnumerable<MemberContext<Func<object, string>>> AccountFormattingMembers
         {
@@ -224,40 +224,6 @@ namespace BoilerplateBuildersTests.ToString
             Assert.That(toString(new Account(15)), Is.EqualTo(
                 "(Id: 15, Name: null, Phones: null)"
             ));
-        }
-
-        private static IEnumerable<ITestCaseData> SequenceFormatterTestCases
-        {
-            get
-            {
-                yield return new TestCaseData(None).Returns("['John','']");
-                yield return new TestCaseData(IncludeMemberName).Returns("['0':'John','1':'']");
-                yield return new TestCaseData(IncludeNullValues).Returns("['John','','']");
-                yield return new TestCaseData(MemberOnNewLine | IncludeMemberName | IncludeNullValues)
-                    .Returns(
-                        new StringBuilder()
-                            .AppendLine("[")
-                            .AppendLine("'0':'John',")
-                            .AppendLine("'1':'',")
-                            .Append("'2':''")
-                            .Append("]")
-                            .ToString()
-                    );
-            }
-        }
-        
-        [TestCaseSource(nameof(SequenceFormatterTestCases))]
-        public string ShouldFormatSequenceAccordingToDensity(ObjectFormatOptions options)
-        {
-            var factory = new ObjectFormatterFactory()
-                .AddFlags(options)
-                .ObjectBodyPrefixAndSuffix("<", ">")
-                .ObjectMemberNamePrefixAndSuffix("'", "'")
-                .ObjectMemberValuePrefixAndSuffix("'", "'")
-                .JoinMemberNameAndValueWith(":")
-                .JoinMembersWith(",");
-
-            return factory.EnumerableFormatter()(new []{"John", "", null});     
         }
     }
 }

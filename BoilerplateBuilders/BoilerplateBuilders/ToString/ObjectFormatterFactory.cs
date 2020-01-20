@@ -84,22 +84,6 @@ namespace BoilerplateBuilders.ToString
         }
 
         /// <summary>
-        /// Builds formatting function converting sequence of arbitrary objects to string. 
-        /// </summary>
-        public Func<IEnumerable, string> EnumerableFormatter()
-        {
-            var keyValuePairsFormatter = Collect<(int, object)>(
-                AppendSequenceKeyAndValue<int, object>(),
-                Write(MemberSeparator)
-            );
-
-            var seqFormatter = Wrap<IEnumerable, IEnumerable<(int, object)>>(keyValuePairsFormatter,
-                seq => seq.Cast<object>().Select((value, index) => (index, value)));
-
-            return Formatters.ToString(Enclose(seqFormatter, ("[", "]")));
-        }
-
-        /// <summary>
         ///     Deactivates density flag and returns updated format instance.
         /// </summary>
         /// <param name="options">Density flag(s) to negate.</param>

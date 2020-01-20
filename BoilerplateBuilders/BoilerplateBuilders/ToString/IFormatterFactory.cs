@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using BoilerplateBuilders.Reflection;
 
@@ -21,10 +20,5 @@ namespace BoilerplateBuilders.ToString
         ///     <paramref name="members" /> is null.
         /// </exception>
         Func<object, string> ObjectFormatter(IEnumerable<MemberContext<Func<object, string>>> members);
-
-        /// <summary>
-        /// Builds formatting function converting sequence of arbitrary objects to string. 
-        /// </summary>
-        Func<IEnumerable, string> EnumerableFormatter();
     }
 }

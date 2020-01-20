@@ -5,64 +5,168 @@ using System.Linq;
 using static BoilerplateBuilders.ToString.Writers;
 using static BoilerplateBuilders.ToString.Formatters;
 using static BoilerplateBuilders.ToString.CollectionFormatOptions;
+using IndexAndValue = System.ValueTuple<int, object>;
 
 namespace BoilerplateBuilders.ToString
 {
+    /// <summary>
+    /// Builds <see cref="object.ToString"/> function accepting <see cref="IEnumerable{T}"/>.
+    /// </summary>
     public class CollectionFormatterFactory
     {
+        /// <summary>
+        /// Separate subsequent index-value pairs (or subsequent values when index not included into output) within output. 
+        /// </summary>
         public string ItemSeparator { get; private set; }
 
-        public (string, string) ItemIndexPrefixAndSuffix { get; private set; }
+        /// <summary>
+        /// Prefix and suffix placed before/after all formatted sequence items.
+        /// </summary>
+        public (string, string) SequencePrefixAndSuffix { get; private set; }
 
-        public (string, string) ItemValuePrefixAndSuffix { get; private set; }
+        /// <summary>
+        /// Prefix and suffix placed before/after index of each sequence item when one is included into output.
+        /// </summary>
+        public (string, string) IndexPrefixAndSuffix { get; private set; }
 
+        /// <summary>
+        /// Prefix and suffix placed before/after each sequence value.
+        /// </summary>
+        public (string, string) ValuePrefixAndSuffix { get; private set; }
+
+        /// <summary>
+        /// Prefix and suffix placed before/after each pair of index and value (or just value when index not included into output).
+        /// </summary>
         public (string, string) ItemPrefixAndSuffix { get; private set; }
-        
-        public string ItemIndexValueSeparator { get; private set; }
-        
+
+        /// <summary>
+        /// Placed between index and value within every such pair. Used only when index included into output.
+        /// </summary>
+        public string IndexValueSeparator { get; private set; }
+
+        /// <summary>
+        /// Determines overall structure of formatted output.
+        /// </summary>
         public CollectionFormatOptions Options { get; private set; }
+
+        /// <summary>
+        /// Sets <see cref="SequencePrefixAndSuffix"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="prefix">Placed before formatted sequence items.</param>
+        /// <param name="suffix">Placed after formatted sequence items.</param>
+        public CollectionFormatterFactory SetSequencePrefixAndSuffix(string prefix, string suffix)
+        {
+            SequencePrefixAndSuffix = (prefix, suffix);
+            return this;
+        }
+        
+        /// <summary>
+        /// Sets <see cref="IndexPrefixAndSuffix"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="prefix">Placed before every formatted sequence item index.</param>
+        /// <param name="suffix">Placed after every formatted sequence item index.</param>
+        public CollectionFormatterFactory SetIndexPrefixAndSuffix(string prefix, string suffix)
+        {
+            IndexPrefixAndSuffix = (prefix, suffix);
+            return this;
+        }
+
+        /// <summary>
+        /// Sets <see cref="ValuePrefixAndSuffix"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="prefix">Placed before every formatted sequence value.</param>
+        /// <param name="suffix">Placed after every formatted sequence value.</param>
+        public CollectionFormatterFactory SetValuePrefixAndSuffix(string prefix, string suffix)
+        {
+            ValuePrefixAndSuffix = (prefix, suffix);
+            return this;
+        }
+
+        /// <summary>
+        /// Sets <see cref="ItemPrefixAndSuffix"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="prefix">Placed before every formatted index-value pair of sequence items.</param>
+        /// <param name="suffix">Placed after every formatted index-value pair of sequence items.</param>
+        public CollectionFormatterFactory SetItemPrefixAndSuffix(string prefix, string suffix)
+        {
+            ItemPrefixAndSuffix = (prefix, suffix);
+            return this;
+        }
+    
+        /// <summary>
+        /// Sets <see cref="ItemSeparator"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="separator">
+        /// Separate subsequent index-value pairs (or subsequent values when index not included into output) within output.
+        /// </param>
+        public CollectionFormatterFactory SetItemSeparator(string separator)
+        {
+            ItemSeparator = separator;
+            return this;
+        }
+    
+        /// <summary>
+        /// Sets <see cref="IndexValueSeparator"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="separator">
+        /// Placed between index and value within every such pair.
+        /// Applies only when <see cref="CollectionFormatOptions.IncludeItemIndex"/> added to <see cref="Options"/>.
+        /// </param>
+        public CollectionFormatterFactory SetIndexValueSeparator(string separator)
+        {
+            IndexValueSeparator = separator;
+            return this;
+        }
+        
+        /// <summary>
+        /// Sets <see cref="Options"/> and returns updated factory instance.
+        /// </summary>
+        /// <param name="options">Determines overall structure of formatted output.</param>
+        public CollectionFormatterFactory SetOptions(CollectionFormatOptions options)
+        {
+            Options |= options;
+            return this;
+        }
 
         /// <summary>
         /// Builds formatting function converting sequence of arbitrary objects to string. 
         /// </summary>
         public Func<IEnumerable, string> CreateToStringFunction()
         {
-            var keyValuePairsFormatter = Collect<(int, object)>(
-                AppendSequenceKeyAndValue<int, object>(),
-                Write(ItemSeparator)
+            var seqFormatter = Wrap<IEnumerable, IEnumerable<IndexAndValue>>(
+                Collect(FormatIndexAndValue(), Write(ItemSeparator)),
+                ToIndexValueSequence
             );
 
-            var seqFormatter = Wrap<IEnumerable, IEnumerable<(int, object)>>(keyValuePairsFormatter,
-                seq => seq.Cast<object>().Select((value, index) => (index, value)));
-
-            return Formatters.ToString(Enclose(seqFormatter, ("[", "]")));
+            seqFormatter = Options.HasFlag(IncludeLineBreak)
+                ? Add(seqFormatter, Lift<IEnumerable>(NewLine))
+                : seqFormatter;
+            
+            return Formatters.ToString(Enclose(seqFormatter, SequencePrefixAndSuffix));
         }
 
-        private Formatter<(TK key, TV value)> AppendSequenceKeyAndValue<TK, TV>() =>
-            FormatItem<(TK key, TV value)>(
-                kv => kv.key?.ToString(),
-                kv => kv.value?.ToString()
-            );
-
-        private Formatter<T> FormatItem<T>(Func<T, string> getName, Func<T, string> getValue)
+        private static IEnumerable<IndexAndValue> ToIndexValueSequence(IEnumerable seq) =>
+            seq.Cast<object>().Select((v, i) => (i, v));
+        
+        private Formatter<IndexAndValue> FormatIndexAndValue()
         {
             var formatIndex = Options.HasFlag(IncludeItemIndex)
-                ? Enclose(Lift(getName), ItemIndexPrefixAndSuffix)
-                : Empty<T>();
+                ? Enclose(Lift<IndexAndValue>(IndexToString), IndexPrefixAndSuffix)
+                : Empty<IndexAndValue>();
 
             var formatValue = Enclose(
-                Lift<T>(o => getValue(o)?.ToString()),
-                ItemValuePrefixAndSuffix
+                Lift<IndexAndValue>(ValueToString),
+                ValuePrefixAndSuffix
             );
 
             var formatSeparator = Options.HasFlag(IncludeItemIndex)
-                ? Lift<T>(Write(ItemIndexValueSeparator))
-                : Empty<T>();
+                ? Lift<IndexAndValue>(Write(IndexValueSeparator))
+                : Empty<IndexAndValue>();
 
-            var lineBreak = Options.HasFlag(ItemLineBreak)
-                ? Lift<T>(NewLine)
-                : Empty<T>();
-            
+            var lineBreak = Options.HasFlag(IncludeLineBreak)
+                ? Lift<IndexAndValue>(NewLine)
+                : Empty<IndexAndValue>();
+
             var formatIndexAndValue = Add(
                 lineBreak,
                 Enclose(
@@ -76,12 +180,16 @@ namespace BoilerplateBuilders.ToString
             );
 
             return When(
-                o => getValue(o) != null,
+                o => o.Item2 != null,
                 formatIndexAndValue,
                 Options.HasFlag(IncludeNullValues)
                     ? formatIndexAndValue
-                    : Empty<T>()
+                    : Empty<IndexAndValue>()
             );
         }
+
+        private static string IndexToString(IndexAndValue iv) => iv.Item1.ToString("D");
+
+        private static string ValueToString(IndexAndValue iv) => iv.Item2?.ToString();
     }
 }

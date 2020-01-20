@@ -20,7 +20,7 @@ namespace BoilerplateBuilders
         /// <summary>
         /// Converts selected object members into function returning objects' string representation. 
         /// </summary>
-        public IFormatterFactory FormatterFactory { get; private set; } = DefaultFormatterFactory;
+        public IFormatterFactory ObjectFormatterFactory { get; private set; } = DefaultFormatterFactory;
         
         /// <summary>
         /// Includes referenced field or property into list of members available to <see cref="object.ToString"/>
@@ -62,18 +62,18 @@ namespace BoilerplateBuilders
 
         public ToStringBuilder<TTarget> FormatCollectionElementWise()
         {
-            return Use<ICollection>(FormatterFactory.EnumerableFormatter());
+            return Use<ICollection>(DefaultCollectionFormatterFactory.CreateToStringFunction());
         }
         
         /// <summary>
-        /// Overrides current <see cref="FormatterFactory"/> with given value or sets it to <see cref="DefaultFormatterFactory"/>
+        /// Overrides current <see cref="ObjectFormatterFactory"/> with given value or sets it to <see cref="DefaultFormatterFactory"/>
         /// when <paramref name="formatterFactory"/> is null.
         /// </summary>
         /// <param name="formatterFactory">New format.</param>
         /// <returns>Updated builder instance.</returns>
         public ToStringBuilder<TTarget> UseFormat(IFormatterFactory formatterFactory)
         {
-            FormatterFactory = formatterFactory ?? DefaultFormatterFactory;
+            ObjectFormatterFactory = formatterFactory ?? DefaultFormatterFactory;
             return this;
         }
         
@@ -83,7 +83,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return FormatterFactory.ObjectFormatter(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return ObjectFormatterFactory.ObjectFormatter(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>
@@ -95,6 +95,11 @@ namespace BoilerplateBuilders
         {
             return o => o?.ToString();
         }
+        
+        public static CollectionFormatterFactory DefaultCollectionFormatterFactory =>
+            new CollectionFormatterFactory()
+                .SetSequencePrefixAndSuffix("[", "]")
+                .SetValuePrefixAndSuffix("'", "'");
         
         /// <summary>
         /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.

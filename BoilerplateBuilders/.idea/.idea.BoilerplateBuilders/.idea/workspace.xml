@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bfd6f2-9a28-45f8-b478-89aca01f4d64" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/CollectionFormatterFactoryTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BoilerplateBuilders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/ObjectFormatterFactoryTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Equality/EqualityFunctionFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/FunctionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Utils/CollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/ObjectFormatterFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/HashCode/HashCodeFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/Reflection/AccessorFactory/CreatePropertyOrFieldGetterTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -63,6 +64,7 @@
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/SelectedMember.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/ContextSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BoilerplateBuildersTests/ToString/CollectionFormatterFactoryTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BoilerplateBuilders/Reflection/Equality/EqualityFunctionFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,9 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunction.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFunctionSource.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Reflection/MemberContext.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/Utils/OrderedSet.cs" />
@@ -115,7 +114,6 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/Formatters.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultFormatProviderBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IFormatProvider.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/IToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Format/DefaultToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/Format/DefaultToStringFactoryTests.cs" />
@@ -123,7 +121,6 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatDensity.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultToStringFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultToStringFactoryTests.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/DefaultFormatterFactoryTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/WritersTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/Writers.cs" />
@@ -131,9 +128,14 @@
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/FormatFlags.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/DefaultFormatterFactory.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatOptions.cs" />
-        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/SequenceFormatterFactoryTests.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatOptions.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/ObjectFormatterFactoryTests.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/IFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuilders/ToStringBuilder.cs" />
         <option value="$PROJECT_DIR$/BoilerplateBuilders/ToString/CollectionFormatterFactory.cs" />
+        <option value="$PROJECT_DIR$/BoilerplateBuildersTests/ToString/CollectionFormatterFactoryTests.cs" />
       </list>
     </option>
   </component>
@@ -237,7 +239,10 @@
       <workItem from="1577807407445" duration="7773000" />
       <workItem from="1578257353197" duration="2990000" />
       <workItem from="1578688511701" duration="7967000" />
-      <workItem from="1578781945740" duration="2735000" />
+      <workItem from="1578781945740" duration="2798000" />
+      <workItem from="1579283279280" duration="113000" />
+      <workItem from="1579376386769" duration="3403000" />
+      <workItem from="1579542103221" duration="7497000" />
     </task>
     <servers />
   </component>
@@ -248,7 +253,7 @@
     <option name="coveragePercentColumnWidth" value="149" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="383" />
+    <option name="symbolColumnWidth" value="388" />
     <coverage-tree-state>
       <expand>
         <path>
@@ -258,13 +263,13 @@
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="651" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="651" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="645" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="720" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
@@ -292,26 +297,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="470" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1577094736591" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1577815685980">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1579554203396">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.3440.1400@0.0.1920.1040" timestamp="1577207002574" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577815685980" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1577815685980">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579554203396" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1579554203396">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.3440.1400@0.0.1920.1040" timestamp="1577207002574" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577815685980" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1577815685980">
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579554203396" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1579554203396">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.3440.1400@0.0.1920.1040" timestamp="1577207002574" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577815685980" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1577815685980">
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579554203396" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1579554203396">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.3440.1400@0.0.1920.1040" timestamp="1577207002574" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577815685980" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579554203396" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1577815685980">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -412,19 +417,6 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs</url>
-          <line>270</line>
-          <properties documentPath="$PROJECT_DIR$/BoilerplateBuilders/ToString/ObjectFormatterFactory.cs" initialLine="270">
-            <startOffsets>
-              <option value="11114" />
-            </startOffsets>
-            <endOffsets>
-              <option value="11134" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
