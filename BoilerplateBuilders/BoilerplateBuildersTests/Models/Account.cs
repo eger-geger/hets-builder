@@ -8,7 +8,7 @@ namespace BoilerplateBuildersTests.Models
     {
         public readonly int Id;
 
-        public Account(int id = 0, string name = null, string[] phones = null)
+        public Account(int id = 0, string name = null, params string[] phones)
         {
             Id = id;
             Name = name;

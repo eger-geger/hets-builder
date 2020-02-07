@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using BoilerplateBuilders.ToString;
@@ -47,20 +48,18 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldCreateFactoryWithDefaultSetting()
         {
+            ValueTuple<string, string> defaultPrefixAndSuffix = (null, null);
+            
             var factory = new CollectionFormatterFactory();
 
             var toString = factory.CreateToStringFunction();
             
             Assert.That(factory.ItemSeparator, Is.Null);
             Assert.That(factory.IndexValueSeparator, Is.Null);
-            Assert.That(factory.ItemPrefixAndSuffix.Item1, Is.Null);
-            Assert.That(factory.ItemPrefixAndSuffix.Item2, Is.Null);
-            Assert.That(factory.ValuePrefixAndSuffix.Item1, Is.Null);
-            Assert.That(factory.ValuePrefixAndSuffix.Item2, Is.Null);
-            Assert.That(factory.IndexPrefixAndSuffix.Item1, Is.Null);
-            Assert.That(factory.IndexPrefixAndSuffix.Item2, Is.Null);
-            Assert.That(factory.SequencePrefixAndSuffix.Item1, Is.Null);
-            Assert.That(factory.SequencePrefixAndSuffix.Item2, Is.Null);
+            Assert.That(factory.ItemPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.ValuePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.IndexPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.SequencePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.Options, Is.EqualTo(None));
             
             Assert.That(toString(new object[]{"John", 12, "Mercedes"}), Is.EqualTo("John12Mercedes"));

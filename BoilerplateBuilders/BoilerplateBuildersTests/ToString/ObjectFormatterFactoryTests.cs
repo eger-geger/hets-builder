@@ -8,6 +8,7 @@ using BoilerplateBuildersTests.Models;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using static BoilerplateBuilders.ToString.ObjectFormatOptions;
+using Enumerable = System.Linq.Enumerable;
 
 namespace BoilerplateBuildersTests.ToString
 {
@@ -25,7 +26,7 @@ namespace BoilerplateBuildersTests.ToString
 
                 yield return new MemberContext<Func<object, string>>(
                     SelectedMember.Create<Account, string>(ac => ac.Name),
-                    name => name?.ToString(),
+                    name => name.ToString(),
                     ContextSource.Implicit
                 );
 
@@ -41,6 +42,7 @@ namespace BoilerplateBuildersTests.ToString
         public void EmptyBuilder()
         {
             var factory = new ObjectFormatterFactory();
+            var toStringFunction = factory.CreateToStringFunction(AccountFormattingMembers);
             var defaultPrefixAndSuffix = ValueTuple.Create<string, string>(null, null);
 
             Assert.That(factory.Options, Is.EqualTo((ObjectFormatOptions) 0));
@@ -49,6 +51,8 @@ namespace BoilerplateBuildersTests.ToString
             Assert.That(factory.BodyPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberNamePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberValuePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            
+            Assert.That(toStringFunction(new Account(10, "James", "777")), Is.EqualTo("10James777"));
         }
 
         [Test]
@@ -188,7 +192,7 @@ namespace BoilerplateBuildersTests.ToString
         [TestCaseSource(nameof(ObjectFormatterTestCases))]
         public string ShouldFormatObjectAccordingToDensity(ObjectFormatOptions options)
         {
-            var account = new Account(19, "John", new[] {"12-33-19", "66-18-23"});
+            var account = new Account(19, "John", "12-33-19", "66-18-23");
 
             var factory = new ObjectFormatterFactory()
                 .AddFlags(options)
@@ -198,7 +202,7 @@ namespace BoilerplateBuildersTests.ToString
                 .JoinMemberNameAndValueWith(":")
                 .JoinMembersWith(",");
 
-            return factory.ObjectFormatter(AccountFormattingMembers)(account);
+            return factory.CreateToStringFunction(AccountFormattingMembers)(account);
         }
 
         [Test]
@@ -206,7 +210,7 @@ namespace BoilerplateBuildersTests.ToString
         {
             var factory = new ObjectFormatterFactory();
             
-            Assert.Throws<ArgumentNullException>(()=> factory.ObjectFormatter(null));
+            Assert.Throws<ArgumentNullException>(()=> factory.CreateToStringFunction(null));
         }
 
         [Test]
@@ -219,9 +223,9 @@ namespace BoilerplateBuildersTests.ToString
                 .JoinMemberNameAndValueWith(": ")
                 .JoinMembersWith(", ");
 
-            var toString = factory.ObjectFormatter(AccountFormattingMembers);
+            var toString = factory.CreateToStringFunction(AccountFormattingMembers);
             
-            Assert.That(toString(new Account(15)), Is.EqualTo(
+            Assert.That(toString(new Account(15, null, null)), Is.EqualTo(
                 "(Id: 15, Name: null, Phones: null)"
             ));
         }

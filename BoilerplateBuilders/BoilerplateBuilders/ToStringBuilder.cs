@@ -83,7 +83,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ObjectFormatterFactory.ObjectFormatter(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return ObjectFormatterFactory.CreateToStringFunction(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>

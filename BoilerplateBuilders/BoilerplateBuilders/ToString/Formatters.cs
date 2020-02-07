@@ -46,7 +46,7 @@ namespace BoilerplateBuilders.ToString
         }
 
         /// <summary>
-        /// Creates formatting function from another formatter applied to result of a mapper function applied to input. 
+        /// Applies mapping function and pipes result to formatter. 
         /// </summary>
         /// <typeparam name="TA">Type of resulting function input.</typeparam>
         /// <typeparam name="TB">Type of wrapped formatting function input.</typeparam>

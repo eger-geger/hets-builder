@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using static BoilerplateBuilders.ToString.ObjectFormatOptions;
 using static BoilerplateBuilders.ToString.Formatters;
 using static BoilerplateBuilders.ToString.Writers;
-using ToStringMember = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
+using MemberContext = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
 
 namespace BoilerplateBuilders.ToString
 {
@@ -51,37 +50,6 @@ namespace BoilerplateBuilders.ToString
         ///     Symbol placed between member name and value when both included to output.
         /// </summary>
         public string MemberNameValueSeparator { get; private set; }
-
-        /// <summary>
-        ///     Builds <see cref="object.ToString" /> function from sequence of formatting operations.
-        /// </summary>
-        /// <param name="members">Sequence of formatting member operations.</param>
-        /// <returns>Function converting object to string representation.</returns>
-        /// <exception cref="ArgumentNullException">
-        ///     <paramref name="members" /> is null.
-        /// </exception>
-        public Func<object, string> ObjectFormatter(IEnumerable<ToStringMember> members)
-        {
-            if (members is null)
-                throw new ArgumentNullException(nameof(members));
-
-            var formatMembers = JoinWithSeparator(members.Select(FormatObjectMember));
-
-            var formatBody = Enclose(formatMembers, BodyPrefixAndSuffix);
-
-            var formatClassName = Options.HasFlag(IncludeClassName)
-                ? Lift<object>(o => o?.GetType().Name)
-                : Empty<object>();
-
-            var formatObject =
-                Add(formatClassName, When(
-                    o => o != null,
-                    formatBody,
-                    Lift<object>(Write("null"))
-                ));
-
-            return Formatters.ToString(formatObject);
-        }
 
         /// <summary>
         ///     Deactivates density flag and returns updated format instance.
@@ -180,7 +148,33 @@ namespace BoilerplateBuilders.ToString
             return this;
         }
 
-        private Formatter<object> JoinWithSeparator(IEnumerable<Formatter<object>> formatters)
+        /// <summary>
+        ///     Builds <see cref="object.ToString" /> function from sequence of formatting operations.
+        /// </summary>
+        /// <param name="members">Sequence of formatting member operations.</param>
+        /// <returns>Function converting object to string representation.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="members" /> is null.
+        /// </exception>
+        public Func<object, string> CreateToStringFunction(IEnumerable<MemberContext> members)
+        {
+            if (members is null)
+                throw new ArgumentNullException(nameof(members));
+
+            var formatMembers = JoinMemberFormatters(members.Select(FormatObjectMember));
+
+            var formatBody = Enclose(formatMembers, BodyPrefixAndSuffix);
+
+            var formatClassName = Options.HasFlag(IncludeClassName)
+                ? Lift<object>(o => o?.GetType().Name)
+                : Empty<object>();
+
+            var formatObject = Add(formatClassName, UnlessNull(formatBody)); 
+
+            return Formatters.ToString(formatObject);
+        }
+        
+        private Formatter<object> JoinMemberFormatters(IEnumerable<Formatter<object>> formatters)
         {
             var separator = Lift<object>(Write(MemberSeparator));
 
@@ -189,90 +183,47 @@ namespace BoilerplateBuilders.ToString
             );
         }
 
-        public Func<IDictionary<K, V>, string> BuildDictionaryFormatter<K, V>()
+        private Formatter<object> FormatObjectMember(MemberContext op) =>
+            Wrap(FormatNameAndValue(op), op.Member.Getter);
+
+        private Formatter<object> FormatNameAndValue(MemberContext context)
         {
-            var formatPairs = Collect<(K, V)>(
-                AppendSequenceKeyAndValue<K, V>(),
-                Write(MemberSeparator)
-            );
+            var formatName = FormatName(context);
+            var formatValue = FormatValue(context);
 
-            var formatSeq = Wrap<IDictionary<K, V>, IEnumerable<(K, V)>>(formatPairs,
-                dict => dict.Select(kv => (kv.Key, kv.Value)));
-
-            return Formatters.ToString(Enclose(formatSeq, ("{", "}")));
-        }
-
-        public Func<IEnumerable, string> BuildSetFormatter()
-        {
-            var valuesFormatter = Collect(
-                Add(PrependNewLineToMember<object>(), FormatMemberValue<object>()),
-                Write(MemberSeparator)
-            );
-
-            var setFormatter = Wrap<IEnumerable, IEnumerable<object>>(valuesFormatter, seq => seq.Cast<object>());
-
-            return Formatters.ToString(Enclose(setFormatter, ("{", "}")));
-        }
-
-        private Formatter<(TK key, TV value)> AppendSequenceKeyAndValue<TK, TV>() =>
-            FormatNameAndValue<(TK key, TV value)>(
-                kv => ToString(kv.key),
-                kv => ToString(kv.value)
-            );
-
-        private Formatter<T> FormatNameAndValue<T>(Func<T, string> getName, Func<T, string> getValue)
-        {
-            var formatName = FormatName(getName, IncludeMemberName);
-            var formatValue = FormatMemberValue(getValue);
-
-            var formatNameValueSeparator = Options.HasFlag(IncludeMemberName)
-                ? Lift<T>(Write(MemberNameValueSeparator))
-                : Empty<T>();
+            var writeSeparator = Options.HasFlag(IncludeMemberName)
+                ? Lift<object>(Write(MemberNameValueSeparator))
+                : Empty<object>();
 
             var formatNameAndValue = Add(
-                PrependNewLineToMember<T>(),
-                Enclose(
-                    Sum(
-                        formatName,
-                        formatNameValueSeparator,
-                        formatValue
-                    ),
-                    MemberPrefixAndSuffix
-                )
+                PrependNewLineToMember(),
+                Enclose(Sum(formatName, writeSeparator, formatValue), MemberPrefixAndSuffix)
             );
 
-            return When(
-                o => getValue(o) != null,
-                formatNameAndValue,
-                Options.HasFlag(IncludeNullValues)
-                    ? formatNameAndValue
-                    : Empty<T>()
-            );
+            var formatNull = Options.HasFlag(IncludeNullValues)
+                ? formatNameAndValue
+                : Empty<object>();
+            
+            return UnlessNull(formatNameAndValue, formatNull);
         }
-
-        private Formatter<object> FormatObjectMember(ToStringMember op) =>
-            Wrap(FormatNameAndValue(
-                _ => op.Member.MemberName,
-                op.Context
-            ), op.Member.Getter);
-
-        private Formatter<T> PrependNewLineToMember<T>()
+        
+        private Formatter<object> PrependNewLineToMember()
         {
             return Options.HasFlag(MemberOnNewLine)
-                ? Lift<T>(NewLine)
-                : Empty<T>();
+                ? Lift<object>(NewLine)
+                : Empty<object>();
         }
 
-        private Formatter<T> FormatName<T>(Func<T, string> getName, ObjectFormatOptions nameOption)
+        private Formatter<object> FormatName(MemberContext context)
         {
-            return Options.HasFlag(nameOption)
-                ? Enclose(Lift(getName), MemberNamePrefixAndSuffix)
-                : Empty<T>();
+            return Options.HasFlag(IncludeMemberName)
+                ? Enclose(Lift<object>(_ => context.Member.MemberName), MemberNamePrefixAndSuffix)
+                : Empty<object>();
         }
-
-        private Formatter<T> FormatMemberValue<T>(Func<T, string> toString = null)
+        
+        private Formatter<object> FormatValue(MemberContext context)
         {
-            return Enclose(UnlessNull(Lift(toString ?? ToString)), MemberValuePrefixAndSuffix);
+            return Enclose(UnlessNull(Lift(context.Context ?? ToString)), MemberValuePrefixAndSuffix);
         }
 
         private static string ToString<T>(T value) => value?.ToString();
