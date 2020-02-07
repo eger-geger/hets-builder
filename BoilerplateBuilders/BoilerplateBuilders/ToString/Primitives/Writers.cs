@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Text;
 
-namespace BoilerplateBuilders.ToString
+namespace BoilerplateBuilders.ToString.Primitives
 {
     /// <summary>
     /// Function which writes something to given <paramref name="output"/>.  
@@ -26,6 +26,10 @@ namespace BoilerplateBuilders.ToString
         /// <param name="second">Writer applied second.</param>
         public static Writer Add(Writer first, Writer second) => IsEmpty(second) ? first : first + second;
 
+        /// <summary>
+        /// Combines multiple writers by invoking them sequentially.
+        /// </summary>
+        /// <param name="writers">Writers to add.</param>
         public static Writer Sum(params Writer[] writers) => writers.Aggregate(Add);
         
         /// <summary>

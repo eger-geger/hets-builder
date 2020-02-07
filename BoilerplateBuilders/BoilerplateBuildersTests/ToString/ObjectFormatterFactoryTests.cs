@@ -229,5 +229,11 @@ namespace BoilerplateBuildersTests.ToString
                 "(Id: 15, Name: null, Phones: null)"
             ));
         }
+
+        [Test]
+        public void ObjectFormatterShouldUseDefaultToStringFunctionWhenOneWasNotProvidedExplicitly()
+        {
+            //TODO test that default ToString is being used
+        }
     }
 }

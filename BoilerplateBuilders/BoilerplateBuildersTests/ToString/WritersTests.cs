@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using BoilerplateBuilders.ToString;
+using BoilerplateBuilders.ToString.Primitives;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using static BoilerplateBuilders.ToString.Writers;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
 
 namespace BoilerplateBuildersTests.ToString
 {

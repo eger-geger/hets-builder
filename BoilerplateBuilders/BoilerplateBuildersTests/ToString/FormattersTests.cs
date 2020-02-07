@@ -1,8 +1,9 @@
 using System;
 using BoilerplateBuilders.ToString;
+using BoilerplateBuilders.ToString.Primitives;
 using NUnit.Framework;
-using static BoilerplateBuilders.ToString.Writers;
-using static BoilerplateBuilders.ToString.Formatters;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
+using static BoilerplateBuilders.ToString.Primitives.Formatters;
 
 namespace BoilerplateBuildersTests.ToString
 {

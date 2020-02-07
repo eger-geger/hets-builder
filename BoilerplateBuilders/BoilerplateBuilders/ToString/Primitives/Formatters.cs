@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static BoilerplateBuilders.ToString.Writers;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
 
-namespace BoilerplateBuilders.ToString
+namespace BoilerplateBuilders.ToString.Primitives
 {
     /// <summary>
     /// Function converting object to string according to predefined rules (format). 

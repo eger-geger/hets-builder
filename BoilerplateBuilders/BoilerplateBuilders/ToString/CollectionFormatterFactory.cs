@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using static BoilerplateBuilders.ToString.Writers;
-using static BoilerplateBuilders.ToString.Formatters;
+using BoilerplateBuilders.ToString.Primitives;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
+using static BoilerplateBuilders.ToString.Primitives.Formatters;
 using static BoilerplateBuilders.ToString.CollectionFormatOptions;
 using IndexAndValue = System.ValueTuple<int, object>;
 

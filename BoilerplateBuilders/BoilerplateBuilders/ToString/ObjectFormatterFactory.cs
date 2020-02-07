@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using BoilerplateBuilders.ToString.Primitives;
 using static BoilerplateBuilders.ToString.ObjectFormatOptions;
-using static BoilerplateBuilders.ToString.Formatters;
-using static BoilerplateBuilders.ToString.Writers;
+using static BoilerplateBuilders.ToString.Primitives.Formatters;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
 using MemberContext = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
 
 namespace BoilerplateBuilders.ToString
