@@ -46,7 +46,7 @@ namespace BoilerplateBuilders.ToString
         public string IndexValueSeparator { get; private set; }
 
         /// <summary>
-        /// Determines overall structure of formatted output.
+        /// Controls overall structure of formatted output.
         /// </summary>
         public CollectionFormatOptions Options { get; private set; }
 
@@ -135,7 +135,7 @@ namespace BoilerplateBuilders.ToString
         public Func<IEnumerable, string> CreateToStringFunction()
         {
             var seqFormatter = Wrap<IEnumerable, IEnumerable<IndexAndValue>>(
-                Collect(FormatIndexAndValue(), Write(ItemSeparator)),
+                Collect(FormatCollectionItem(), Write(ItemSeparator)),
                 ToIndexValueSequence
             );
 
@@ -149,7 +149,7 @@ namespace BoilerplateBuilders.ToString
         private static IEnumerable<IndexAndValue> ToIndexValueSequence(IEnumerable seq) =>
             seq.Cast<object>().Select((v, i) => (i, v));
         
-        private Formatter<IndexAndValue> FormatIndexAndValue()
+        private Formatter<IndexAndValue> FormatCollectionItem()
         {
             var formatIndex = Options.HasFlag(IncludeItemIndex)
                 ? Enclose(Lift<IndexAndValue>(IndexToString), IndexPrefixAndSuffix)
