@@ -65,7 +65,7 @@ namespace BoilerplateBuilders.ToString.Primitives
         /// <typeparam name="T">Type of collection elements.</typeparam>
         public static Formatter<IEnumerable<T>> Collect<T>(Formatter<T> fmt, Writer glue = null)
         {
-            glue = glue ?? Whitespace;
+            glue = glue ?? WriteWhitespace;
 
             return seq => seq
                 .Select(fmt.Invoke)
@@ -94,7 +94,7 @@ namespace BoilerplateBuilders.ToString.Primitives
         /// </summary>
         /// <param name="formatter">Formatting function.</param>
         /// <returns>Function returning string representation of formatted value.</returns>
-        public static Func<T, string> ToString<T>(Formatter<T> formatter) => 
+        public static Func<T, string> MakeToString<T>(Formatter<T> formatter) => 
             o => Writers.ToString(formatter?.Invoke(o));
 
         /// <summary>

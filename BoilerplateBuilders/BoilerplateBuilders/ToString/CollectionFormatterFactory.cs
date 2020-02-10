@@ -140,10 +140,10 @@ namespace BoilerplateBuilders.ToString
             );
 
             seqFormatter = Options.HasFlag(IncludeLineBreak)
-                ? Add(seqFormatter, Lift<IEnumerable>(NewLine))
+                ? Add(seqFormatter, Lift<IEnumerable>(WriteNewLine))
                 : seqFormatter;
             
-            return Formatters.ToString(Enclose(seqFormatter, SequencePrefixAndSuffix));
+            return Formatters.MakeToString(Enclose(seqFormatter, SequencePrefixAndSuffix));
         }
 
         private static IEnumerable<IndexAndValue> ToIndexValueSequence(IEnumerable seq) =>
@@ -165,7 +165,7 @@ namespace BoilerplateBuilders.ToString
                 : Empty<IndexAndValue>();
 
             var lineBreak = Options.HasFlag(IncludeLineBreak)
-                ? Lift<IndexAndValue>(NewLine)
+                ? Lift<IndexAndValue>(WriteNewLine)
                 : Empty<IndexAndValue>();
 
             var formatIndexAndValue = Add(

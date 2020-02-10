@@ -1,5 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using BoilerplateBuilders.ToString.Primitives;
+using static BoilerplateBuilders.ToString.Primitives.Formatters;
+using static BoilerplateBuilders.ToString.Primitives.ToStringFunctions;
+using static BoilerplateBuilders.ToString.Primitives.Writers;
 
 namespace BoilerplateBuilders.ToString
 {
@@ -43,7 +49,7 @@ namespace BoilerplateBuilders.ToString
         /// Controls overall structure of formatted dictionary output.
         /// </summary>
         public DictionaryFormatOptions Options { get; private set; }
-        
+
         public DictionaryFormatterFactory SetKeyValuePairSeparator(string separator)
         {
             KeyValuePairSeparator = separator;
@@ -55,7 +61,7 @@ namespace BoilerplateBuilders.ToString
             KeyValueSeparator = separator;
             return this;
         }
-        
+
         public DictionaryFormatterFactory SetDictionaryPrefixAndSuffix(string prefix, string suffix)
         {
             DictionaryPrefixAndSuffix = (prefix, suffix);
@@ -91,11 +97,36 @@ namespace BoilerplateBuilders.ToString
             Options &= Options ^ options;
             return this;
         }
-        
-        public Func<IDictionary, string> CreateToString()
+
+        public Func<IDictionary<TKey, TValue>, string> CreateToString<TKey, TValue>()
         {
-            return null;
+            var formatter = Wrap<IDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>>(
+                Collect(MakeKeyValuePairFormatter<TKey, TValue>(), Write(KeyValuePairSeparator)),
+                dictionary => dictionary
+            );
+
+            return MakeToString(UnlessNull(Enclose(formatter, DictionaryPrefixAndSuffix)));
         }
-        
+
+        private Formatter<KeyValuePair<TKey, TValue>> MakeKeyValuePairFormatter<TKey, TValue>()
+        {
+            var keyFormatter = Wrap<KeyValuePair<TKey, TValue>, TKey>(
+                Enclose(Lift<TKey>(ToString<TKey>), KeyPrefixAndSuffix),
+                keyValuePair => keyValuePair.Key
+            );
+
+            var valueFormatter = Wrap<KeyValuePair<TKey, TValue>, TValue>(
+                Enclose(UnlessNull(Lift<TValue>(ToString<TValue>)), ValuePrefixAndSuffix),
+                keyValuePair => keyValuePair.Value
+            );
+
+            var keyValuePairFormatter = Sum(
+                keyFormatter,
+                Lift<KeyValuePair<TKey, TValue>>(Write(KeyValueSeparator)),
+                valueFormatter
+            );
+
+            return Enclose(keyValuePairFormatter, KeyValuePrefixAndSuffix);
+        }
     }
 }

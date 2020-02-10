@@ -43,7 +43,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldWriteLineBreak()
         {
-            Assert.That(Writers.ToString(NewLine), Is.EqualTo(Environment.NewLine));
+            Assert.That(Writers.ToString(WriteNewLine), Is.EqualTo(Environment.NewLine));
         }
 
         [Test]

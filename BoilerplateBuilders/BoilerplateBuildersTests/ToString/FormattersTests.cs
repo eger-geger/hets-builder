@@ -14,7 +14,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void EmptyFormatterShouldIgnoreInput()
         {
-            var toString = Formatters.ToString(Empty<int>());
+            var toString = Formatters.MakeToString(Empty<int>());
 
             Assert.That(toString(50), Is.Empty);
         }
@@ -44,7 +44,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ToStringShouldProduceEmptyStringWhenPassedNull()
         {
-            var toString = ToString<object>(null);
+            var toString = MakeToString<object>(null);
 
             Assert.That(toString(15), Is.Empty);
         }

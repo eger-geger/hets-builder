@@ -6,6 +6,7 @@ using BoilerplateBuilders.ToString.Primitives;
 using static BoilerplateBuilders.ToString.ObjectFormatOptions;
 using static BoilerplateBuilders.ToString.Primitives.Formatters;
 using static BoilerplateBuilders.ToString.Primitives.Writers;
+using static BoilerplateBuilders.ToString.Primitives.ToStringFunctions;
 using MemberContext = BoilerplateBuilders.Reflection.MemberContext<System.Func<object, string>>;
 
 namespace BoilerplateBuilders.ToString
@@ -172,7 +173,7 @@ namespace BoilerplateBuilders.ToString
 
             var formatObject = Add(formatClassName, UnlessNull(formatBody)); 
 
-            return Formatters.ToString(formatObject);
+            return Formatters.MakeToString(formatObject);
         }
         
         private Formatter<object> JoinMemberFormatters(IEnumerable<Formatter<object>> formatters)
@@ -197,7 +198,7 @@ namespace BoilerplateBuilders.ToString
                 : Empty<object>();
 
             var formatNameAndValue = Add(
-                PrependNewLineToMember(),
+                Options.HasFlag(MemberOnNewLine) ? Lift<object>(WriteNewLine) : Empty<object>(),
                 Enclose(Sum(formatName, writeSeparator, formatValue), MemberPrefixAndSuffix)
             );
 
@@ -206,13 +207,6 @@ namespace BoilerplateBuilders.ToString
                 : Empty<object>();
             
             return UnlessNull(formatNameAndValue, formatNull);
-        }
-        
-        private Formatter<object> PrependNewLineToMember()
-        {
-            return Options.HasFlag(MemberOnNewLine)
-                ? Lift<object>(NewLine)
-                : Empty<object>();
         }
 
         private Formatter<object> FormatName(MemberContext context)
@@ -224,9 +218,7 @@ namespace BoilerplateBuilders.ToString
         
         private Formatter<object> FormatValue(MemberContext context)
         {
-            return Enclose(UnlessNull(Lift(context.Context ?? ToString)), MemberValuePrefixAndSuffix);
+            return Enclose(UnlessNull(Lift(context.Context ?? ToString<object>)), MemberValuePrefixAndSuffix);
         }
-
-        private static string ToString<T>(T value) => value?.ToString();
     }
 }
