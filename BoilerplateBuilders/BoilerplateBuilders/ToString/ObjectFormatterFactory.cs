@@ -198,7 +198,7 @@ namespace BoilerplateBuilders.ToString
                 : Empty<object>();
 
             var formatNameAndValue = Add(
-                Options.HasFlag(MemberOnNewLine) ? Lift<object>(WriteNewLine) : Empty<object>(),
+                Options.HasFlag(MemberOnNewLine) ? Lift<object>(WriteLineBreak) : Empty<object>(),
                 Enclose(Sum(formatName, writeSeparator, formatValue), MemberPrefixAndSuffix)
             );
 

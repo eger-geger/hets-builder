@@ -140,7 +140,7 @@ namespace BoilerplateBuilders.ToString
             );
 
             seqFormatter = Options.HasFlag(IncludeLineBreak)
-                ? Add(seqFormatter, Lift<IEnumerable>(WriteNewLine))
+                ? Add(seqFormatter, Lift<IEnumerable>(WriteLineBreak))
                 : seqFormatter;
             
             return Formatters.MakeToString(Enclose(seqFormatter, SequencePrefixAndSuffix));
@@ -165,7 +165,7 @@ namespace BoilerplateBuilders.ToString
                 : Empty<IndexAndValue>();
 
             var lineBreak = Options.HasFlag(IncludeLineBreak)
-                ? Lift<IndexAndValue>(WriteNewLine)
+                ? Lift<IndexAndValue>(WriteLineBreak)
                 : Empty<IndexAndValue>();
 
             var formatIndexAndValue = Add(

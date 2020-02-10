@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using BoilerplateBuilders.ToString;
 using BoilerplateBuilders.ToString.Primitives;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using static BoilerplateBuilders.ToString.Primitives.Writers;
 
-namespace BoilerplateBuildersTests.ToString
+namespace BoilerplateBuildersTests.ToString.Primitives
 {
     public class WritersTests
     {
@@ -43,7 +42,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldWriteLineBreak()
         {
-            Assert.That(Writers.ToString(WriteNewLine), Is.EqualTo(Environment.NewLine));
+            Assert.That(Writers.ToString(WriteLineBreak), Is.EqualTo(Environment.NewLine));
         }
 
         [Test]

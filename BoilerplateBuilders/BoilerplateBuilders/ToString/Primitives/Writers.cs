@@ -41,7 +41,7 @@ namespace BoilerplateBuilders.ToString.Primitives
         /// <summary>
         /// Creates function writing a line break to output.
         /// </summary>
-        public static Writer WriteNewLine => sb => sb.AppendLine();
+        public static Writer WriteLineBreak => sb => sb.AppendLine();
         
         /// <summary>
         /// Creates function writing a whitespace to output.

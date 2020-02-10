@@ -15,38 +15,50 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Placed between dictionary key and value.
         /// </summary>
-        public string KeyValueSeparator { get; private set; }
-        
+        public string KeyValueSeparator { get; set; }
+
         /// <summary>
         /// Separate subsequent key-value pairs within output. 
         /// </summary>
-        public string KeyValuePairSeparator { get; private set; }
+        public string KeyValuePairSeparator { get; set; }
 
         /// <summary>
         /// Prefix and suffix placed before/after each dictionary key included into output.
         /// </summary>
-        public (string, string) KeyPrefixAndSuffix { get; private set; }
+        public (string, string) KeyPrefixAndSuffix { get; set; }
 
         /// <summary>
         /// Prefix and suffix placed before/after each dictionary value.
         /// </summary>
-        public (string, string) ValuePrefixAndSuffix { get; private set; }
+        public (string, string) ValuePrefixAndSuffix { get; set; }
 
         /// <summary>
         /// Prefix and suffix placed before/after each dictionary key-value pair.
         /// </summary>
-        public (string, string) KeyValuePairPrefixAndSuffix { get; private set; }
+        public (string, string) KeyValuePairPrefixAndSuffix { get; set; }
 
         /// <summary>
         /// Prefix and suffix placed before/after all formatted sequence items.
         /// </summary>
-        public (string, string) DictionaryPrefixAndSuffix { get; private set; }
+        public (string, string) DictionaryPrefixAndSuffix { get; set; }
 
         /// <summary>
         /// Controls overall structure of formatted dictionary output.
         /// </summary>
-        public DictionaryFormatOptions Options { get; private set; }
+        public DictionaryFormatOptions Options { get; set; }
 
+        /// <summary>
+        /// Creates formatter factory with default settings.
+        /// </summary>
+        public static DictionaryFormatterFactory CreateDefault()
+        {
+            return new DictionaryFormatterFactory()
+                .SetKeyValueSeparator(":")
+                .SetKeyValuePairSeparator(", ")
+                .SetValuePrefixAndSuffix("'", "'")
+                .SetDictionaryPrefixAndSuffix("{", "}");
+        }
+        
         /// <summary>
         /// Sets <see cref="KeyValuePairSeparator"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
         /// </summary>
@@ -133,7 +145,11 @@ namespace BoilerplateBuilders.ToString
                 dictionary => dictionary
             );
 
-            return MakeToString(UnlessNull(Enclose(formatter, DictionaryPrefixAndSuffix)));
+            var formatterWithLineBreak = Options.HasFlag(DictionaryFormatOptions.IncludeLineBreak)
+                ? Add(formatter, Lift<IDictionary<TKey, TValue>>(WriteLineBreak))
+                : formatter;
+            
+            return MakeToString(UnlessNull(Enclose(formatterWithLineBreak, DictionaryPrefixAndSuffix)));
         }
 
         private Formatter<KeyValuePair<TKey, TValue>> MakeKeyValuePairFormatter<TKey, TValue>()
@@ -157,7 +173,7 @@ namespace BoilerplateBuilders.ToString
             var enclosedKvpFormatter = Enclose(keyValuePairFormatter, KeyValuePairPrefixAndSuffix);
 
             return Options.HasFlag(DictionaryFormatOptions.IncludeLineBreak)
-                ? Add(Lift<KeyValuePair<TKey, TValue>>(WriteNewLine), enclosedKvpFormatter)
+                ? Add(Lift<KeyValuePair<TKey, TValue>>(WriteLineBreak), enclosedKvpFormatter)
                 : enclosedKvpFormatter;
         }
     }
