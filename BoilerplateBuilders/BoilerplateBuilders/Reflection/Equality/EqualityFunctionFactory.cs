@@ -13,26 +13,46 @@ namespace BoilerplateBuilders.Reflection.Equality
     /// </summary>
     public static class EqualityFunctionFactory
     {
-        public static bool SequenceEqualElementWise(object a, object b)
+        /// <summary>
+        /// Determines if two sequences contain same set of elements with same order.
+        /// </summary>
+        /// <param name="first">First compared sequence.</param>
+        /// <param name="second">Second compared sequence.</param>
+        /// <returns>Flag indicating whether sequences are equal.</returns>
+        /// <exception cref="ArgumentException">
+        /// Either <paramref name="first"/> or <paramref name="second"/> object is not a sequence
+        /// (does not implement <see cref="IEnumerable"/> interface).
+        /// </exception>
+        public static bool SequenceEqualElementWise(object first, object second)
         {
-            if(!(a is IEnumerable ae))
-                throw new ArgumentException("Not an enumerable", nameof(a));
+            if(!(first is IEnumerable ae))
+                throw new ArgumentException("Not an enumerable", nameof(first));
                 
-            if(!(b is IEnumerable be))
-                throw new ArgumentException("Not an enumerable", nameof(b));
+            if(!(second is IEnumerable be))
+                throw new ArgumentException("Not an enumerable", nameof(second));
 
-            return ReferenceEquals(a, b) || ae.Cast<object>().SequenceEqual(be.Cast<object>());
+            return ReferenceEquals(first, second) || ae.Cast<object>().SequenceEqual(be.Cast<object>());
         }
 
-        public static bool SequenceEqualIgnoreOrder(object a, object b)
+        /// <summary>
+        /// Determines if two given collections contains same set of elements ignoring order.
+        /// </summary>
+        /// <param name="first">First compared collection.</param>
+        /// <param name="second">Second compared collection.</param>
+        /// <returns>Flag indicating whether collections are equal.</returns>
+        /// <exception cref="ArgumentException">
+        /// Either <paramref name="first"/> or <paramref name="second"/> object is not a collection
+        /// (does not implement <see cref="ICollection"/> interface).
+        /// </exception>
+        public static bool SequenceEqualIgnoreOrder(object first, object second)
         {
-            if(!(a is ICollection ac))
-                throw new ArgumentException("Not a collection.", nameof(a));
+            if(!(first is ICollection fc))
+                throw new ArgumentException("Not a collection.", nameof(first));
             
-            if(!(b is ICollection bc))
-                throw new ArgumentException("Not a collection.", nameof(b));
+            if(!(second is ICollection sc))
+                throw new ArgumentException("Not a collection.", nameof(second));
 
-            return ReferenceEquals(ac, bc) || ac.SequenceEqualIgnoreOrder(bc);
+            return ReferenceEquals(fc, sc) || fc.SequenceEqualIgnoreOrder(sc);
         }
         
         
@@ -86,7 +106,7 @@ namespace BoilerplateBuilders.Reflection.Equality
     
         /// <summary>
         /// Creates function comparing two sequences (instances of <see cref="IEnumerable{T}"/>)
-        /// for equality using <see cref="CollectionExtensions.SequenceEqualIgnoreOrder{T}"/>.
+        /// for equality using <see cref="CollectionExtensions.SequenceEqualIgnoreOrder"/>.
         /// </summary>
         /// <param name="collectionType">
         /// Compared sequence type implementing <see cref="IEnumerable{T}"/> or <see cref="IEnumerable{T}"/> itself.
