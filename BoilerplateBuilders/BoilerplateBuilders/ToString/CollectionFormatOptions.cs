@@ -3,7 +3,7 @@ using System;
 namespace BoilerplateBuilders.ToString
 {
     /// <summary>
-    /// Flags controlling behavior of formatting function created by <see cref="CollectionFormatterFactory"/>.
+    /// Flags controlling behavior of formatting function created by <see cref="CollectionFormatterBuilder"/>.
     /// </summary>
     [Flags]
     public enum CollectionFormatOptions
@@ -16,7 +16,7 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Output item index in addition to item value.
         /// </summary>
-        IncludeItemIndex = 1,
+        IncludeIndex = 1,
         
         /// <summary>
         /// Output item even if it's value is null.
@@ -26,6 +26,6 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Output line break between sequence items.
         /// </summary>
-        IncludeLineBreak = 4
+        ItemPerLine = 4
     }
 }

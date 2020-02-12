@@ -62,7 +62,7 @@ namespace BoilerplateBuilders
 
         public ToStringBuilder<TTarget> FormatCollectionElementWise()
         {
-            return Use<ICollection>(DefaultCollectionFormatterFactory.CreateToStringFunction());
+            return Use<ICollection>(DefaultCollectionFormatterBuilder.BuildToString());
         }
         
         /// <summary>
@@ -83,7 +83,7 @@ namespace BoilerplateBuilders
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
         public Func<TTarget, string> Build()
         {
-            return ObjectFormatterFactory.CreateToStringFunction(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return ObjectFormatterFactory.BuildToString(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>
@@ -96,16 +96,16 @@ namespace BoilerplateBuilders
             return o => o?.ToString();
         }
         
-        public static CollectionFormatterFactory DefaultCollectionFormatterFactory =>
-            new CollectionFormatterFactory()
-                .SetSequencePrefixAndSuffix("[", "]")
+        public static CollectionFormatterBuilder DefaultCollectionFormatterBuilder =>
+            new CollectionFormatterBuilder()
+                .SetCollectionPrefixAndSuffix("[", "]")
                 .SetValuePrefixAndSuffix("'", "'");
         
         /// <summary>
         /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.
         /// </summary>
         public static IFormatterFactory DefaultFormatterFactory =>
-            new ObjectFormatterFactory()
+            new ObjectFormatterBuilder()
                 .AddFlags(ObjectFormatOptions.IncludeClassName)
                 .AddFlags(ObjectFormatOptions.IncludeMemberName)
                 .JoinMembersWith(", ");

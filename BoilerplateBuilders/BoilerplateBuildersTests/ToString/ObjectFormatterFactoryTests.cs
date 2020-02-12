@@ -41,14 +41,14 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void EmptyBuilder()
         {
-            var factory = new ObjectFormatterFactory();
-            var toStringFunction = factory.CreateToStringFunction(AccountFormattingMembers);
+            var factory = new ObjectFormatterBuilder();
+            var toStringFunction = factory.BuildToString(AccountFormattingMembers);
             var defaultPrefixAndSuffix = ValueTuple.Create<string, string>(null, null);
 
             Assert.That(factory.Options, Is.EqualTo((ObjectFormatOptions) 0));
             Assert.That(factory.MemberPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberSeparator, Is.EqualTo(null));
-            Assert.That(factory.BodyPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.ObjectPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberNamePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.MemberValuePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             
@@ -58,29 +58,29 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldSetMultipleDensityFlags()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .AddFlags(IncludeClassName)
                 .AddFlags(IncludeMemberName)
-                .AddFlags(MemberOnNewLine);
+                .AddFlags(MemberPerLine);
 
             Assert.That(factory.Options, Is.EqualTo(
                 IncludeClassName
                 | IncludeMemberName
-                | MemberOnNewLine
+                | MemberPerLine
             ));
         }
 
         [Test]
         public void ShouldUnsetDensityFlags()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .AddFlags(IncludeClassName)
                 .AddFlags(IncludeMemberName)
-                .AddFlags(MemberOnNewLine)
+                .AddFlags(MemberPerLine)
                 .RemoveFlags(
                     IncludeClassName
                     | IncludeMemberName
-                    | MemberOnNewLine
+                    | MemberPerLine
                     | IncludeNullValues
                 );
 
@@ -90,7 +90,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberPrefixAndSuffix()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .ObjectMemberPrefixAndSuffix("<", ">");
 
             Assert.That(factory.MemberPrefixAndSuffix, Is.EqualTo(("<", ">")));
@@ -99,7 +99,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberValuePrefixAndSuffix()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .ObjectMemberValuePrefixAndSuffix(null, "]");
 
             Assert.That(
@@ -111,7 +111,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberNamePrefixAndSuffix()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .ObjectMemberNamePrefixAndSuffix("'", "'");
 
             Assert.That(factory.MemberNamePrefixAndSuffix, Is.EqualTo(ValueTuple.Create("'", "'")));
@@ -120,7 +120,7 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateMemberSeparator()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .JoinMembersWith(",");
 
             Assert.That(factory.MemberSeparator, Is.EqualTo(","));
@@ -129,10 +129,10 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUpdateBodyPrefixAndSuffix()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .ObjectBodyPrefixAndSuffix("{", "}");
 
-            Assert.That(factory.BodyPrefixAndSuffix, Is.EqualTo(ValueTuple.Create("{", "}")));
+            Assert.That(factory.ObjectPrefixAndSuffix, Is.EqualTo(ValueTuple.Create("{", "}")));
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -140,7 +140,7 @@ namespace BoilerplateBuildersTests.ToString
         {
             get
             {
-                yield return new TestCaseData(IncludeClassName | IncludeMemberName | MemberOnNewLine)
+                yield return new TestCaseData(IncludeClassName | IncludeMemberName | MemberPerLine)
                     .Returns(
                         new StringBuilder()
                             .Append("Account")
@@ -194,7 +194,7 @@ namespace BoilerplateBuildersTests.ToString
         {
             var account = new Account(19, "John", "12-33-19", "66-18-23");
 
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .AddFlags(options)
                 .ObjectBodyPrefixAndSuffix("<", ">")
                 .ObjectMemberNamePrefixAndSuffix("'", "'")
@@ -202,28 +202,28 @@ namespace BoilerplateBuildersTests.ToString
                 .JoinMemberNameAndValueWith(":")
                 .JoinMembersWith(",");
 
-            return factory.CreateToStringFunction(AccountFormattingMembers)(account);
+            return factory.BuildToString(AccountFormattingMembers)(account);
         }
 
         [Test]
         public void ObjectFormatterFactoryMethodShouldThrowArgumentNullExceptionWhenSequenceOfFormattingMembersIsNull()
         {
-            var factory = new ObjectFormatterFactory();
+            var factory = new ObjectFormatterBuilder();
             
-            Assert.Throws<ArgumentNullException>(()=> factory.CreateToStringFunction(null));
+            Assert.Throws<ArgumentNullException>(()=> factory.BuildToString(null));
         }
 
         [Test]
         public void ObjectFormatterShouldIncludeNullValuesWhenCorrespondingDensityFlagWasSet()
         {
-            var factory = new ObjectFormatterFactory()
+            var factory = new ObjectFormatterBuilder()
                 .AddFlags(IncludeNullValues)
                 .AddFlags(IncludeMemberName)
                 .ObjectBodyPrefixAndSuffix("(", ")")
                 .JoinMemberNameAndValueWith(": ")
                 .JoinMembersWith(", ");
 
-            var toString = factory.CreateToStringFunction(AccountFormattingMembers);
+            var toString = factory.BuildToString(AccountFormattingMembers);
             
             Assert.That(toString(new Account(15, null, null)), Is.EqualTo(
                 "(Id: 15, Name: null, Phones: null)"

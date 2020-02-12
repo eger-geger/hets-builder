@@ -19,6 +19,6 @@ namespace BoilerplateBuilders.ToString
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="members" /> is null.
         /// </exception>
-        Func<object, string> CreateToStringFunction(IEnumerable<MemberContext<Func<object, string>>> members);
+        Func<object, string> BuildToString(IEnumerable<MemberContext<Func<object, string>>> members);
     }
 }

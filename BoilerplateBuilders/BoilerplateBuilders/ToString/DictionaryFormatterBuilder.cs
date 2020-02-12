@@ -10,7 +10,7 @@ namespace BoilerplateBuilders.ToString
     /// <summary>
     /// Builds <see cref="object.ToString"/> functions for dictionaries.
     /// </summary>
-    public class DictionaryFormatterFactory
+    public class DictionaryFormatterBuilder
     {
         /// <summary>
         /// Placed between dictionary key and value.
@@ -50,9 +50,9 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Creates formatter factory with default settings.
         /// </summary>
-        public static DictionaryFormatterFactory CreateDefault()
+        public static DictionaryFormatterBuilder CreateDefault()
         {
-            return new DictionaryFormatterFactory()
+            return new DictionaryFormatterBuilder()
                 .SetKeyValueSeparator(":")
                 .SetKeyValuePairSeparator(", ")
                 .SetValuePrefixAndSuffix("'", "'")
@@ -60,74 +60,74 @@ namespace BoilerplateBuilders.ToString
         }
         
         /// <summary>
-        /// Sets <see cref="KeyValuePairSeparator"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="KeyValuePairSeparator"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetKeyValuePairSeparator(string separator)
+        public DictionaryFormatterBuilder SetKeyValuePairSeparator(string separator)
         {
             KeyValuePairSeparator = separator;
             return this;
         }
         
         /// <summary>
-        /// Sets <see cref="KeyValueSeparator"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="KeyValueSeparator"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetKeyValueSeparator(string separator)
+        public DictionaryFormatterBuilder SetKeyValueSeparator(string separator)
         {
             KeyValueSeparator = separator;
             return this;
         }
 
         /// <summary>
-        /// Sets <see cref="DictionaryPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="DictionaryPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetDictionaryPrefixAndSuffix(string prefix, string suffix)
+        public DictionaryFormatterBuilder SetDictionaryPrefixAndSuffix(string prefix, string suffix)
         {
             DictionaryPrefixAndSuffix = (prefix, suffix);
             return this;
         }
         
         /// <summary>
-        /// Sets <see cref="KeyPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="KeyPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetKeyPrefixAndSuffix(string prefix, string suffix)
+        public DictionaryFormatterBuilder SetKeyPrefixAndSuffix(string prefix, string suffix)
         {
             KeyPrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        /// Sets <see cref="ValuePrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="ValuePrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetValuePrefixAndSuffix(string prefix, string suffix)
+        public DictionaryFormatterBuilder SetValuePrefixAndSuffix(string prefix, string suffix)
         {
             ValuePrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        /// Sets <see cref="KeyValuePairPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Sets <see cref="KeyValuePairPrefixAndSuffix"/> and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
-        public DictionaryFormatterFactory SetKeyValuePrefixAndSuffix(string prefix, string suffix)
+        public DictionaryFormatterBuilder SetKeyValuePrefixAndSuffix(string prefix, string suffix)
         {
             KeyValuePairPrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        /// Extends current formatting options with provided options and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Extends current formatting options with provided options and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
         /// <param name="options">Formatting options added.</param>
-        public DictionaryFormatterFactory AddOptions(DictionaryFormatOptions options)
+        public DictionaryFormatterBuilder AddOptions(DictionaryFormatOptions options)
         {
             Options |= options;
             return this;
         }
 
         /// <summary>
-        /// Removes given formatting options from current if present and returns updated <see cref="DictionaryFormatterFactory"/>.
+        /// Removes given formatting options from current if present and returns updated <see cref="DictionaryFormatterBuilder"/>.
         /// </summary>
         /// <param name="options">Formatted options removed.</param>
-        public DictionaryFormatterFactory RemoveOptions(DictionaryFormatOptions options)
+        public DictionaryFormatterBuilder RemoveOptions(DictionaryFormatOptions options)
         {
             Options &= Options ^ options;
             return this;
@@ -138,14 +138,14 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <typeparam name="TKey">Type of dictionary key.</typeparam>
         /// <typeparam name="TValue">Type of dictionary value.</typeparam>
-        public Func<IDictionary<TKey, TValue>, string> CreateToString<TKey, TValue>()
+        public Func<IDictionary<TKey, TValue>, string> BuildToString<TKey, TValue>()
         {
             var formatter = Wrap<IDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>>(
                 Collect(MakeKeyValuePairFormatter<TKey, TValue>(), Write(KeyValuePairSeparator)),
                 dictionary => dictionary
             );
 
-            var formatterWithLineBreak = Options.HasFlag(DictionaryFormatOptions.IncludeLineBreak)
+            var formatterWithLineBreak = Options.HasFlag(DictionaryFormatOptions.ItemPerLine)
                 ? Add(formatter, Lift<IDictionary<TKey, TValue>>(WriteLineBreak))
                 : formatter;
             
@@ -172,7 +172,7 @@ namespace BoilerplateBuilders.ToString
 
             var enclosedKvpFormatter = Enclose(keyValuePairFormatter, KeyValuePairPrefixAndSuffix);
 
-            return Options.HasFlag(DictionaryFormatOptions.IncludeLineBreak)
+            return Options.HasFlag(DictionaryFormatOptions.ItemPerLine)
                 ? Add(Lift<KeyValuePair<TKey, TValue>>(WriteLineBreak), enclosedKvpFormatter)
                 : enclosedKvpFormatter;
         }

@@ -16,7 +16,7 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Place every formatted member on new line.
         /// </summary>
-        MemberOnNewLine = 0x1,
+        MemberPerLine = 0x1,
         
         /// <summary>
         /// Include member name into output.

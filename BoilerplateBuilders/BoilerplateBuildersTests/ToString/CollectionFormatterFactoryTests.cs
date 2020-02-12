@@ -15,9 +15,9 @@ namespace BoilerplateBuildersTests.ToString
             get
             {
                 yield return new TestCaseData(None).Returns("[<'John'>,<''>]");
-                yield return new TestCaseData(IncludeItemIndex).Returns("[<'0':'John'>,<'1':''>]");
+                yield return new TestCaseData(IncludeIndex).Returns("[<'0':'John'>,<'1':''>]");
                 yield return new TestCaseData(IncludeNullValues).Returns("[<'John'>,<''>,<''>]");
-                yield return new TestCaseData(IncludeLineBreak | IncludeItemIndex | IncludeNullValues)
+                yield return new TestCaseData(ItemPerLine | IncludeIndex | IncludeNullValues)
                     .Returns(
                         new StringBuilder()
                             .AppendLine("[")
@@ -33,16 +33,16 @@ namespace BoilerplateBuildersTests.ToString
         [TestCaseSource(nameof(SequenceFormatterTestCases))]
         public string ShouldFormatSequenceAccordingToDensity(CollectionFormatOptions options)
         {
-            var factory = new CollectionFormatterFactory()
+            var factory = new CollectionFormatterBuilder()
                 .SetOptions(options)
-                .SetSequencePrefixAndSuffix("[", "]")
-                .SetItemPrefixAndSuffix("<", ">")
+                .SetCollectionPrefixAndSuffix("[", "]")
+                .SetIndexValuePairPrefixAndSuffix("<", ">")
                 .SetIndexPrefixAndSuffix("'", "'")
                 .SetValuePrefixAndSuffix("'", "'")
                 .SetIndexValueSeparator(":")
-                .SetItemSeparator(",");
+                .SetIndexValuePairSeparator(",");
 
-            return factory.CreateToStringFunction()(new []{"John", "", null});     
+            return factory.BuildToString()(new []{"John", "", null});     
         }
 
         [Test]
@@ -50,16 +50,16 @@ namespace BoilerplateBuildersTests.ToString
         {
             ValueTuple<string, string> defaultPrefixAndSuffix = (null, null);
             
-            var factory = new CollectionFormatterFactory();
+            var factory = new CollectionFormatterBuilder();
 
-            var toString = factory.CreateToStringFunction();
+            var toString = factory.BuildToString();
             
-            Assert.That(factory.ItemSeparator, Is.Null);
+            Assert.That(factory.IndexValuePairSeparator, Is.Null);
             Assert.That(factory.IndexValueSeparator, Is.Null);
-            Assert.That(factory.ItemPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.IndexValuePairPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.ValuePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.IndexPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
-            Assert.That(factory.SequencePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(factory.CollectionPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(factory.Options, Is.EqualTo(None));
             
             Assert.That(toString(new object[]{"John", 12, "Mercedes"}), Is.EqualTo("John12Mercedes"));

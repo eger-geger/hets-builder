@@ -1,22 +1,22 @@
 namespace BoilerplateBuilders.Reflection
 {
     /// <summary>
-    /// Indicates how/why builder operation was created. 
+    /// Indicates how/why <see cref="MemberContext{TContext}"/> was created. 
     /// </summary>
     public enum ContextSource
     {
         /// <summary>
-        /// Operation was chosen implicitly by builder based on member information and it's settings. 
+        /// Was chosen implicitly by builder based on member information and it's settings. 
         /// </summary>
         Implicit,
         
         /// <summary>
-        /// Operation was specified explicitly for specific member.
+        /// Was provided explicitly for specific member.
         /// </summary>
         ExplicitMember,
         
         /// <summary>
-        /// Operation was specified explicitly for specific type/interface (and all subtypes/implementations).
+        /// Was provided explicitly for specific type/interface (and all subtypes/implementations).
         /// </summary>
         ExplicitType
     }
