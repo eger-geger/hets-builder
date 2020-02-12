@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
@@ -17,11 +18,12 @@ namespace BoilerplateBuilders
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public sealed class ToStringBuilder<TTarget> : AbstractBuilder<TTarget, ToStringBuilder<TTarget>, Func<object, string>>
     {
-        /// <summary>
-        /// Converts selected object members into function returning objects' string representation. 
-        /// </summary>
-        public IFormatterFactory ObjectFormatterFactory { get; private set; } = DefaultFormatterFactory;
-        
+        private ObjectFormatterBuilder _objectFormatterBuilder = ObjectFormatterBuilder.CreateDefault();
+
+        private readonly CollectionFormatterBuilder _collectionFormatterBuilder = CollectionFormatterBuilder.CreateDefault();
+
+        private readonly DictionaryFormatterBuilder _dictionaryFormatterBuilder = DictionaryFormatterBuilder.CreateDefault();
+
         /// <summary>
         /// Includes referenced field or property into list of members available to <see cref="object.ToString"/>
         /// function being built.
@@ -36,13 +38,13 @@ namespace BoilerplateBuilders
         /// </exception>
         /// <exception cref="ArgumentNullException"><paramref name="toString"/> is null.</exception>
         public ToStringBuilder<TTarget> Append<TMember>(
-            Expression<Func<TTarget, TMember>> fieldOrPropertyGetter, 
+            Expression<Func<TTarget, TMember>> fieldOrPropertyGetter,
             Func<TMember, string> toString
         )
         {
             return AppendExplicit(fieldOrPropertyGetter, toString?.ToGeneric<TMember, string, object, string>());
         }
-        
+
         /// <summary>
         /// Instructs builder to use a given function for all selected (previously or later)
         /// members which values are assignable to type <typeparamref name="T"/>.
@@ -60,9 +62,25 @@ namespace BoilerplateBuilders
             return OverrideContextForType(typeof(T), toString?.ToGeneric<T, string, object, string>());
         }
 
-        public ToStringBuilder<TTarget> FormatCollectionElementWise()
+        public ToStringBuilder<TTarget> UseCollectionFormatter(
+            Func<CollectionFormatterBuilder, CollectionFormatterBuilder> setup = null
+        )
         {
-            return Use<ICollection>(DefaultCollectionFormatterBuilder.BuildToString());
+            return Use<ICollection>(SetupOrDefault(_collectionFormatterBuilder, setup).BuildToString());
+        }
+
+        public ToStringBuilder<TTarget> UseDictionaryFormatter(
+            Func<DictionaryFormatterBuilder, DictionaryFormatterBuilder> setup = null
+        )
+        {
+            return Use(SetupOrDefault(_dictionaryFormatterBuilder, setup).BuildToString());
+        }
+
+        public ToStringBuilder<TTarget> UseDictionaryFormatter<TKey, TValue>(
+            Func<DictionaryFormatterBuilder, DictionaryFormatterBuilder> setup = null
+        )
+        {
+            return Use(SetupOrDefault(_dictionaryFormatterBuilder, setup).BuildToString<TKey, TValue>());
         }
         
         /// <summary>
@@ -71,19 +89,24 @@ namespace BoilerplateBuilders
         /// </summary>
         /// <param name="formatterFactory">New format.</param>
         /// <returns>Updated builder instance.</returns>
-        public ToStringBuilder<TTarget> UseFormat(IFormatterFactory formatterFactory)
+        public ToStringBuilder<TTarget> UseObjectFormatter(Func<ObjectFormatterBuilder, ObjectFormatterBuilder> setup)
         {
-            ObjectFormatterFactory = formatterFactory ?? DefaultFormatterFactory;
+            _objectFormatterBuilder = SetupOrDefault(_objectFormatterBuilder, setup);
             return this;
+        }
+
+        private static T SetupOrDefault<T>(T defaultFormatterBuilder, Func<T, T> setup) where T : class
+        {
+            return setup?.Invoke(defaultFormatterBuilder) ?? defaultFormatterBuilder;
         }
         
         /// <summary>
         /// Generates final <see cref="object.ToString"/> function.
         /// </summary>
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
-        public Func<TTarget, string> Build()
+        public Func<TTarget, string> BuildToString()
         {
-            return ObjectFormatterFactory.BuildToString(GetMemberContexts()).ToSpecific<object, TTarget, string>();
+            return _objectFormatterBuilder.BuildToString(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
 
         /// <summary>
@@ -95,19 +118,5 @@ namespace BoilerplateBuilders
         {
             return o => o?.ToString();
         }
-        
-        public static CollectionFormatterBuilder DefaultCollectionFormatterBuilder =>
-            new CollectionFormatterBuilder()
-                .SetCollectionPrefixAndSuffix("[", "]")
-                .SetValuePrefixAndSuffix("'", "'");
-        
-        /// <summary>
-        /// Format used by builder when none was explicitly set with <see cref="UseFormat"/>.
-        /// </summary>
-        public static IFormatterFactory DefaultFormatterFactory =>
-            new ObjectFormatterBuilder()
-                .AddFlags(ObjectFormatOptions.IncludeClassName)
-                .AddFlags(ObjectFormatOptions.IncludeMemberName)
-                .JoinMembersWith(", ");
     }
 }

@@ -52,6 +52,17 @@ namespace BoilerplateBuilders.ToString
         public CollectionFormatOptions Options { get; set; }
 
         /// <summary>
+        /// Creates a collection formatter builder with default settings.
+        /// </summary>
+        public static CollectionFormatterBuilder CreateDefault()
+        {
+            return new CollectionFormatterBuilder()
+                .SetOptions(IncludeNullValues)
+                .SetValuePrefixAndSuffix("'", "'")
+                .SetCollectionPrefixAndSuffix("[", "]");
+        }
+        
+        /// <summary>
         /// Sets <see cref="CollectionPrefixAndSuffix"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
         /// </summary>
         /// <param name="prefix">Placed before all formatted collection values.</param>

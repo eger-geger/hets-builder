@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BoilerplateBuilders.ToString.Primitives;
 using static BoilerplateBuilders.ToString.Primitives.Formatters;
 using static BoilerplateBuilders.ToString.Primitives.ToStringFunctions;
@@ -134,24 +136,46 @@ namespace BoilerplateBuilders.ToString
         }
 
         /// <summary>
+        /// Creates <see cref="object.ToString"/> function tailored for generic dictionary <see cref="IDictionary"/>.
+        /// </summary>
+        public Func<IDictionary, string> BuildToString()
+        {
+            var formatter = Wrap<IDictionary, IEnumerable<KeyValuePair<object, object>>>(
+                MakeDictionaryFormatter<object, object>(),
+                ToKeyValuePairSequence
+            );
+
+            return MakeToString(formatter);
+        }
+
+        private static IEnumerable<KeyValuePair<object, object>> ToKeyValuePairSequence(IDictionary dictionary)
+        {
+            return dictionary
+                .Cast<DictionaryEntry>()
+                .Select(entry => new KeyValuePair<object, object>(entry.Key, entry.Value));
+        }
+        
+        /// <summary>
         /// Creates <see cref="object.ToString"/> function tailored for <see cref="IDictionary{TKey,TValue}"/>.
         /// </summary>
         /// <typeparam name="TKey">Type of dictionary key.</typeparam>
         /// <typeparam name="TValue">Type of dictionary value.</typeparam>
         public Func<IDictionary<TKey, TValue>, string> BuildToString<TKey, TValue>()
         {
-            var formatter = Wrap<IDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>>(
-                Collect(MakeKeyValuePairFormatter<TKey, TValue>(), Write(KeyValuePairSeparator)),
-                dictionary => dictionary
-            );
-
-            var formatterWithLineBreak = Options.HasFlag(DictionaryFormatOptions.ItemPerLine)
-                ? Add(formatter, Lift<IDictionary<TKey, TValue>>(WriteLineBreak))
-                : formatter;
-            
-            return MakeToString(UnlessNull(Enclose(formatterWithLineBreak, DictionaryPrefixAndSuffix)));
+            return MakeToString(MakeDictionaryFormatter<TKey, TValue>());
         }
 
+        private Formatter<IEnumerable<KeyValuePair<TKey, TValue>>> MakeDictionaryFormatter<TKey, TValue>()
+        {
+            var formatter = Collect(MakeKeyValuePairFormatter<TKey, TValue>(), Write(KeyValuePairSeparator));
+
+            var formatterWithLineBreak = Options.HasFlag(DictionaryFormatOptions.ItemPerLine)
+                ? Add(formatter, Lift<IEnumerable<KeyValuePair<TKey, TValue>>>(WriteLineBreak))
+                : formatter;
+
+            return UnlessNull(Enclose(formatterWithLineBreak, DictionaryPrefixAndSuffix));
+        }
+        
         private Formatter<KeyValuePair<TKey, TValue>> MakeKeyValuePairFormatter<TKey, TValue>()
         {
             var keyFormatter = Wrap<KeyValuePair<TKey, TValue>, TKey>(

@@ -54,6 +54,19 @@ namespace BoilerplateBuilders.ToString
         public ObjectFormatOptions Options { get; private set; }
 
         /// <summary>
+        /// Creates default formatter with default settings.
+        /// </summary>
+        public static ObjectFormatterBuilder CreateDefault()
+        {
+            return new ObjectFormatterBuilder()
+                .AddFlags(IncludeClassName | IncludeMemberName)
+                .JoinMembersWith(", ")
+                .JoinMemberNameAndValueWith(": ")
+                .ObjectMemberNamePrefixAndSuffix("'", "'")
+                .ObjectMemberValuePrefixAndSuffix("\"", "\"");
+        }
+        
+        /// <summary>
         /// Builds <see cref="object.ToString" /> function from sequence of object members.
         /// </summary>
         /// <param name="members">Sequence of formatting member operations.</param>
