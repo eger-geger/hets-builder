@@ -11,12 +11,6 @@ namespace BoilerplateBuilders.HashCode
     /// </summary>
     public static class HashCodeFunctions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
         public static int ComputeCollectionHashCode(object value, int seed, int step)
         {
             switch (value)

@@ -3,7 +3,7 @@ using System;
 namespace BoilerplateBuilders.ToString
 {
     /// <summary>
-    /// Flags controlling behavior of formatting function created by <see cref="CollectionFormatterBuilder"/>.
+    /// Flags controlling behavior of formatting function created by <see cref="CollectionFormat"/>.
     /// </summary>
     [Flags]
     public enum CollectionFormatOptions

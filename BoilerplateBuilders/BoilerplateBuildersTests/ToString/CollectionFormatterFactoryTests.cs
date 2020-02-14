@@ -33,7 +33,7 @@ namespace BoilerplateBuildersTests.ToString
         [TestCaseSource(nameof(SequenceFormatterTestCases))]
         public string ShouldFormatSequenceAccordingToDensity(CollectionFormatOptions options)
         {
-            var factory = new CollectionFormatterBuilder()
+            var factory = new CollectionFormat()
                 .SetOptions(options)
                 .SetCollectionPrefixAndSuffix("[", "]")
                 .SetIndexValuePairPrefixAndSuffix("<", ">")
@@ -42,7 +42,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetIndexValueSeparator(":")
                 .SetIndexValuePairSeparator(",");
 
-            return factory.BuildToString()(new []{"John", "", null});     
+            return factory.Compile()(new []{"John", "", null});     
         }
 
         [Test]
@@ -50,9 +50,9 @@ namespace BoilerplateBuildersTests.ToString
         {
             ValueTuple<string, string> defaultPrefixAndSuffix = (null, null);
             
-            var factory = new CollectionFormatterBuilder();
+            var factory = new CollectionFormat();
 
-            var toString = factory.BuildToString();
+            var toString = factory.Compile();
             
             Assert.That(factory.IndexValuePairSeparator, Is.Null);
             Assert.That(factory.IndexValueSeparator, Is.Null);

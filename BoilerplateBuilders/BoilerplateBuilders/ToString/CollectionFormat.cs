@@ -13,7 +13,7 @@ namespace BoilerplateBuilders.ToString
     /// <summary>
     /// Builds <see cref="object.ToString"/> function accepting <see cref="IEnumerable{T}"/>.
     /// </summary>
-    public class CollectionFormatterBuilder
+    public class CollectionFormat
     {
         /// <summary>
         /// Placed between index and value within every such pair. Used only when index included into output.
@@ -54,84 +54,84 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Creates a collection formatter builder with default settings.
         /// </summary>
-        public static CollectionFormatterBuilder CreateDefault()
+        public static CollectionFormat CreateDefault()
         {
-            return new CollectionFormatterBuilder()
+            return new CollectionFormat()
                 .SetOptions(IncludeNullValues)
                 .SetValuePrefixAndSuffix("'", "'")
                 .SetCollectionPrefixAndSuffix("[", "]");
         }
         
         /// <summary>
-        /// Sets <see cref="CollectionPrefixAndSuffix"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="CollectionPrefixAndSuffix"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="prefix">Placed before all formatted collection values.</param>
         /// <param name="suffix">Placed after all formatted collection values.</param>
-        public CollectionFormatterBuilder SetCollectionPrefixAndSuffix(string prefix, string suffix)
+        public CollectionFormat SetCollectionPrefixAndSuffix(string prefix, string suffix)
         {
             CollectionPrefixAndSuffix = (prefix, suffix);
             return this;
         }
         
         /// <summary>
-        /// Sets <see cref="IndexPrefixAndSuffix"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="IndexPrefixAndSuffix"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="prefix">Placed before collection value index.</param>
         /// <param name="suffix">Placed after collection value index.</param>
-        public CollectionFormatterBuilder SetIndexPrefixAndSuffix(string prefix, string suffix)
+        public CollectionFormat SetIndexPrefixAndSuffix(string prefix, string suffix)
         {
             IndexPrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        /// Sets <see cref="ValuePrefixAndSuffix"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="ValuePrefixAndSuffix"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="prefix">Placed before every formatted collection value.</param>
         /// <param name="suffix">Placed after every formatted collection value.</param>
-        public CollectionFormatterBuilder SetValuePrefixAndSuffix(string prefix, string suffix)
+        public CollectionFormat SetValuePrefixAndSuffix(string prefix, string suffix)
         {
             ValuePrefixAndSuffix = (prefix, suffix);
             return this;
         }
 
         /// <summary>
-        /// Sets <see cref="IndexValuePairPrefixAndSuffix"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="IndexValuePairPrefixAndSuffix"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="prefix">Placed before every formatted index-value pair.</param>
         /// <param name="suffix">Placed after every formatted index-value pair.</param>
-        public CollectionFormatterBuilder SetIndexValuePairPrefixAndSuffix(string prefix, string suffix)
+        public CollectionFormat SetIndexValuePairPrefixAndSuffix(string prefix, string suffix)
         {
             IndexValuePairPrefixAndSuffix = (prefix, suffix);
             return this;
         }
     
         /// <summary>
-        /// Sets <see cref="IndexValuePairSeparator"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="IndexValuePairSeparator"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="separator"> Separate formatted index-value pairs within output.</param>
-        public CollectionFormatterBuilder SetIndexValuePairSeparator(string separator)
+        public CollectionFormat SetIndexValuePairSeparator(string separator)
         {
             IndexValuePairSeparator = separator;
             return this;
         }
     
         /// <summary>
-        /// Sets <see cref="IndexValueSeparator"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="IndexValueSeparator"/> and returns updated <see cref="CollectionFormat"/>.
         /// Ignored unless <see cref="CollectionFormatOptions.IncludeIndex"/> added to <see cref="Options"/>.
         /// </summary>
         /// <param name="separator">Placed between formatted value index and value.</param>
-        public CollectionFormatterBuilder SetIndexValueSeparator(string separator)
+        public CollectionFormat SetIndexValueSeparator(string separator)
         {
             IndexValueSeparator = separator;
             return this;
         }
         
         /// <summary>
-        /// Sets <see cref="Options"/> and returns updated <see cref="CollectionFormatterBuilder"/>.
+        /// Sets <see cref="Options"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="options">Determines overall structure of formatted output.</param>
-        public CollectionFormatterBuilder SetOptions(CollectionFormatOptions options)
+        public CollectionFormat SetOptions(CollectionFormatOptions options)
         {
             Options |= options;
             return this;
@@ -140,7 +140,7 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Builds formatting function converting sequence of arbitrary objects to string. 
         /// </summary>
-        public Func<IEnumerable, string> BuildToString()
+        public Func<IEnumerable, string> Compile()
         {
             var formatter = Wrap<IEnumerable, IEnumerable<IndexAndValue>>(
                 Collect(FormatCollectionItem(), Write(IndexValuePairSeparator)),

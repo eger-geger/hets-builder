@@ -15,7 +15,7 @@ namespace BoilerplateBuilders.ToString
     /// Builds formatting function according to provided settings.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public class ObjectFormatterBuilder : IFormatterFactory
+    public class ObjectFormat : IFormatterFactory
     {
         /// <summary>
         /// Pair of string placed before and after all other formatted output.
@@ -56,9 +56,9 @@ namespace BoilerplateBuilders.ToString
         /// <summary>
         /// Creates default formatter with default settings.
         /// </summary>
-        public static ObjectFormatterBuilder CreateDefault()
+        public static ObjectFormat CreateDefault()
         {
-            return new ObjectFormatterBuilder()
+            return new ObjectFormat()
                 .AddFlags(IncludeClassName | IncludeMemberName)
                 .JoinMembersWith(", ")
                 .JoinMemberNameAndValueWith(": ")
@@ -74,7 +74,7 @@ namespace BoilerplateBuilders.ToString
         /// <exception cref="ArgumentNullException">
         /// <paramref name="members" /> is null.
         /// </exception>
-        public Func<object, string> BuildToString(IEnumerable<MemberContext> members)
+        public Func<object, string> Compile(IEnumerable<MemberContext> members)
         {
             if (members is null)
             {
@@ -98,8 +98,8 @@ namespace BoilerplateBuilders.ToString
         /// Deactivates density flag and returns updated format instance.
         /// </summary>
         /// <param name="options">Density flag(s) to negate.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder RemoveFlags(ObjectFormatOptions options)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat RemoveFlags(ObjectFormatOptions options)
         {
             Options &= Options ^ options;
             return this;
@@ -109,8 +109,8 @@ namespace BoilerplateBuilders.ToString
         /// Sets density flag and returns updated format instance.
         /// </summary>
         /// <param name="options">Density flag(s) to set.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder AddFlags(ObjectFormatOptions options)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat AddFlags(ObjectFormatOptions options)
         {
             Options |= options;
             return this;
@@ -122,8 +122,8 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="prefix">Placed before formatted member name and value.</param>
         /// <param name="suffix">Placed after formatted member name and value.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder ObjectMemberPrefixAndSuffix(string prefix, string suffix)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat ObjectMemberPrefixAndSuffix(string prefix, string suffix)
         {
             MemberPrefixAndSuffix = (prefix, suffix);
             return this;
@@ -135,8 +135,8 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="prefix">Placed before formatted member value.</param>
         /// <param name="suffix">Placed after formatted member value.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder ObjectMemberValuePrefixAndSuffix(string prefix, string suffix)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat ObjectMemberValuePrefixAndSuffix(string prefix, string suffix)
         {
             MemberValuePrefixAndSuffix = (prefix, suffix);
             return this;
@@ -148,8 +148,8 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="prefix">Placed before formatted member name.</param>
         /// <param name="suffix">Placed after formatted member name.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder ObjectMemberNamePrefixAndSuffix(string prefix, string suffix)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat ObjectMemberNamePrefixAndSuffix(string prefix, string suffix)
         {
             MemberNamePrefixAndSuffix = (prefix, suffix);
             return this;
@@ -160,8 +160,8 @@ namespace BoilerplateBuilders.ToString
         /// subsequent formatted members.
         /// </summary>
         /// <param name="separator">Placed between subsequent members.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder JoinMembersWith(string separator)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat JoinMembersWith(string separator)
         {
             MemberSeparator = separator;
             return this;
@@ -172,7 +172,7 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="separator">Character placed between member name and value.</param>
         /// <returns>Updated factory.</returns>
-        public ObjectFormatterBuilder JoinMemberNameAndValueWith(string separator)
+        public ObjectFormat JoinMemberNameAndValueWith(string separator)
         {
             MemberNameValueSeparator = separator;
             return this;
@@ -184,8 +184,8 @@ namespace BoilerplateBuilders.ToString
         /// </summary>
         /// <param name="opening">Placed before first formatted member.</param>
         /// <param name="closing">Placed after lats formatted member.</param>
-        /// <returns>Updated <see cref="ObjectFormatterBuilder" /> instance.</returns>
-        public ObjectFormatterBuilder ObjectBodyPrefixAndSuffix(string opening, string closing)
+        /// <returns>Updated <see cref="ObjectFormat" /> instance.</returns>
+        public ObjectFormat ObjectBodyPrefixAndSuffix(string opening, string closing)
         {
             ObjectPrefixAndSuffix = (opening, closing);
             return this;
