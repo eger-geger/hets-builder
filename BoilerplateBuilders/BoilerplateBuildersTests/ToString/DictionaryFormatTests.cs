@@ -16,7 +16,7 @@ namespace BoilerplateBuildersTests.ToString
         };
 
         [Test]
-        public void ShouldInitializeEmptyFactory()
+        public void ShouldInitializeEmptyFormat()
         {
             ValueTuple<string, string> emptyPrefixAndSuffix = (null, null);
 
@@ -36,7 +36,7 @@ namespace BoilerplateBuildersTests.ToString
         }
 
         [Test]
-        public void ShouldInitializeDefaultFactory()
+        public void ShouldCreateDefaultFormat()
         {
             ValueTuple<string, string> emptyPrefixAndSuffix = (null, null);
 
@@ -166,6 +166,12 @@ namespace BoilerplateBuildersTests.ToString
             
             Assert.That(factory.Options, Is.EqualTo(DictionaryFormatOptions.None));
             Assert.That(toString(Dictionary), Is.EqualTo("{0:'null', 1:'Leroy Jenkins', 7:'James Bond'}"));
+        }
+        
+        [Test]
+        public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
+        {
+            //TODO
         }
     }
 }

@@ -231,9 +231,21 @@ namespace BoilerplateBuildersTests.ToString
         }
 
         [Test]
-        public void ObjectFormatterShouldUseDefaultToStringFunctionWhenOneWasNotProvidedExplicitly()
+        public void ShouldUseDefaultToStringFunctionWhenOneWasNotProvidedExplicitly()
         {
             //TODO test that default ToString is being used
+        }
+
+        [Test]
+        public void ShouldCreateDefaultFormat()
+        {
+            //TODO
+        }
+
+        [Test]
+        public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
+        {
+            //TODO   
         }
     }
 }

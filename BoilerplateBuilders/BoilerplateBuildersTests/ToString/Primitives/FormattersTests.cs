@@ -13,7 +13,7 @@ namespace BoilerplateBuildersTests.ToString.Primitives
         [Test]
         public void EmptyFormatterShouldIgnoreInput()
         {
-            var toString = Formatters.MakeToString(Empty<int>());
+            var toString = MakeToString(Empty<int>());
 
             Assert.That(toString(50), Is.Empty);
         }

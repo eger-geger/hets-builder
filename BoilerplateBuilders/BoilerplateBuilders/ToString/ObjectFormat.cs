@@ -62,7 +62,7 @@ namespace BoilerplateBuilders.ToString
                 .AddFlags(IncludeClassName | IncludeMemberName)
                 .JoinMembersWith(", ")
                 .JoinMemberNameAndValueWith(": ")
-                .ObjectMemberNamePrefixAndSuffix("'", "'")
+                .ObjectBodyPrefixAndSuffix("(", ")")
                 .ObjectMemberValuePrefixAndSuffix("\"", "\"");
         }
         

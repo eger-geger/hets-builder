@@ -58,6 +58,7 @@ namespace BoilerplateBuilders.ToString
         {
             return new CollectionFormat()
                 .SetOptions(IncludeNullValues)
+                .SetIndexValuePairSeparator(", ")
                 .SetValuePrefixAndSuffix("'", "'")
                 .SetCollectionPrefixAndSuffix("[", "]");
         }

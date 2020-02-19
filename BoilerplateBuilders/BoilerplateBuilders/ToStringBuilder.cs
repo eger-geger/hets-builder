@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.ToString;
+using BoilerplateBuilders.ToString.Primitives;
 using BoilerplateBuilders.Utils;
 
 namespace BoilerplateBuilders
@@ -140,7 +141,7 @@ namespace BoilerplateBuilders
         /// Generates final <see cref="object.ToString"/> function.
         /// </summary>
         /// <returns>Function returning string representation of <typeparamref name="TTarget"/> object.</returns>
-        public Func<TTarget, string> BuildToString()
+        public Func<TTarget, string> Build()
         {
             return _objectFormat.Compile(GetMemberContexts()).ToSpecific<object, TTarget, string>();
         }
@@ -150,9 +151,6 @@ namespace BoilerplateBuilders
         /// </summary>
         /// <param name="member">Member which value need to be converted to string.</param>
         /// <returns>Function returning string representation of a member value.</returns>
-        protected override Func<object, string> GetImplicitContext(SelectedMember member)
-        {
-            return o => o?.ToString();
-        }
+        protected override Func<object, string> GetImplicitContext(SelectedMember member) => ToStringFunctions.ToString;
     }
 }
