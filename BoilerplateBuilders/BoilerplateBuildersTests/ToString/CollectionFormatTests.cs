@@ -8,7 +8,7 @@ using static BoilerplateBuilders.ToString.CollectionFormatOptions;
 
 namespace BoilerplateBuildersTests.ToString
 {
-    public class CollectionFormatterFactoryTests
+    public class CollectionFormatTests
     {
         private static IEnumerable<ITestCaseData> SequenceFormatterTestCases
         {

@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace BoilerplateBuildersTests.ToString
 {
-    public class DictionaryFormatterFactoryTests
+    public class DictionaryFormatTests
     {
         private static readonly IDictionary<int, string> Dictionary = new Dictionary<int, string>
         {

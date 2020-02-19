@@ -12,7 +12,7 @@ using Enumerable = System.Linq.Enumerable;
 
 namespace BoilerplateBuildersTests.ToString
 {
-    public class ObjectFormatterFactoryTests
+    public class ObjectFormatTests
     {
         private static IEnumerable<MemberContext<Func<object, string>>> AccountFormattingMembers
         {
