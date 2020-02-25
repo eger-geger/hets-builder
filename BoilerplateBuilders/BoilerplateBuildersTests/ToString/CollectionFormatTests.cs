@@ -34,7 +34,7 @@ namespace BoilerplateBuildersTests.ToString
         public string ShouldApplyFormatOptions(CollectionFormatOptions options)
         {
             var format = new CollectionFormat()
-                .SetOptions(options)
+                .AddOptions(options)
                 .SetCollectionPrefixAndSuffix("[", "]")
                 .SetIndexValuePairPrefixAndSuffix("<", ">")
                 .SetIndexPrefixAndSuffix("'", "'")
@@ -68,13 +68,48 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldCreateDefaultFormat()
         {
-            //TODO
+            ValueTuple<string, string> defaultPrefixAndSuffix = (null, null);
+            
+            var format = CollectionFormat.CreateDefault();
+
+            var toString = format.Compile();
+            
+            Assert.That(toString, Is.Not.Null);
+            
+            Assert.That(format.IndexValueSeparator, Is.Null);
+            Assert.That(format.IndexValuePairSeparator, Is.EqualTo(", "));
+            Assert.That(format.ValuePrefixAndSuffix, Is.EqualTo(("'", "'")));
+            Assert.That(format.IndexPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(format.IndexValuePairPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
+            Assert.That(format.CollectionPrefixAndSuffix, Is.EqualTo(("[", "]")));
+            Assert.That(format.Options, Is.EqualTo(IncludeNullValues));
+            
+            Assert.That(
+                toString(new object[]{"John", "007", null, "Bond"}), 
+                Is.EqualTo("['John', '007', '', 'Bond']")
+            );
         }
 
         [Test]
         public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
         {
-            //TODO
+            var firstFormat = CollectionFormat.CreateDefault()
+                .AddOptions(IncludeIndex)
+                .SetIndexValuePairPrefixAndSuffix("<", ">");
+
+            var firstToString = firstFormat.Compile();
+
+            var secondFormat = CollectionFormat.CreateDefault();
+
+            var secondToString = secondFormat.Compile();
+            
+            Assert.That(secondFormat, Is.Not.SameAs(firstFormat));
+            Assert.That(secondToString, Is.Not.SameAs(firstToString));
+            
+            Assert.That(
+                secondToString(new object[]{"John", "007", null, "Bond"}), 
+                Is.EqualTo("['John', '007', '', 'Bond']")
+            );
         }
     }
 }

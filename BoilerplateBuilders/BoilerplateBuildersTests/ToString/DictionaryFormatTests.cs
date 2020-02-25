@@ -171,7 +171,23 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
         {
-            //TODO
+            var firstFormat = DictionaryFormat.CreateDefault()
+                .AddOptions(DictionaryFormatOptions.ItemPerLine)
+                .SetKeyPrefixAndSuffix("[", "]")
+                .SetKeyValuePrefixAndSuffix("<", ">");
+
+            var firstToString = firstFormat.Compile<int, string>();
+            
+            var secondFormat = DictionaryFormat.CreateDefault();
+            var secondToString = secondFormat.Compile<int, string>();
+
+            Assert.That(secondFormat, Is.Not.SameAs(firstFormat));
+            Assert.That(secondToString, Is.Not.SameAs(firstToString));
+            
+            Assert.That(
+                secondToString(Dictionary),
+                Is.EqualTo("{0:'null', 1:'Leroy Jenkins', 7:'James Bond'}")
+            );
         }
     }
 }

@@ -57,7 +57,7 @@ namespace BoilerplateBuilders.ToString
         public static CollectionFormat CreateDefault()
         {
             return new CollectionFormat()
-                .SetOptions(IncludeNullValues)
+                .AddOptions(IncludeNullValues)
                 .SetIndexValuePairSeparator(", ")
                 .SetValuePrefixAndSuffix("'", "'")
                 .SetCollectionPrefixAndSuffix("[", "]");
@@ -132,7 +132,7 @@ namespace BoilerplateBuilders.ToString
         /// Sets <see cref="Options"/> and returns updated <see cref="CollectionFormat"/>.
         /// </summary>
         /// <param name="options">Determines overall structure of formatted output.</param>
-        public CollectionFormat SetOptions(CollectionFormatOptions options)
+        public CollectionFormat AddOptions(CollectionFormatOptions options)
         {
             Options |= options;
             return this;
