@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using BoilerplateBuilders.ToString.Primitives;
 using NUnit.Framework;
 using static BoilerplateBuilders.ToString.Primitives.Writers;
@@ -160,7 +161,49 @@ namespace BoilerplateBuildersTests.ToString.Primitives
             var sum = Sum(binFmt, decFmt, hexFmt);
             
             Assert.That(Writers.ToString(sum(15)), Is.EqualTo("111115F"));
+        }
 
+        [Test]
+        public void JoinShouldCombineFormatters()
+        {
+            var binFmt = Lift<int>(i => Convert.ToString(i, 2));
+            var hexFmt = Lift<int>(i => i.ToString("X"));
+
+            var combined = Join(binFmt, hexFmt, Write("|"));
+            
+            Assert.That(Writers.ToString(combined(15)), Is.EqualTo("1111|F"));
+        }
+
+        [Test]
+        public void JoinShouldIgnoreFormatterProducingEmptyWriter()
+        {
+            var binFmt = Lift<int>(i => Convert.ToString(i, 2));
+
+            var firstEmpty = Join(Lift<int>(Writers.Empty), binFmt, Write("|"));
+            var secondEmpty = Join(binFmt, Lift<int>(Writers.Empty), Write("-"));
+            
+            Assert.That(Writers.ToString(firstEmpty(15)), Is.EqualTo("1111"));
+            Assert.That(Writers.ToString(secondEmpty(15)), Is.EqualTo("1111"));
+        }
+
+        [Test]
+        public void ReduceJoinShouldCombineFormattersIgnoringOnesProducingEmptyWriters()
+        {
+            var formatters = new[]
+            {
+                Lift<int>(Writers.Empty),
+                Lift<int>(i => Convert.ToString(i, 2)),
+                Lift<int>(Writers.Empty),
+                Lift<int>(i => i.ToString("X")),
+                Lift<int>(Writers.Empty),
+                Lift<int>(Writers.Empty),
+                Lift<int>(i => i.ToString()),
+                Lift<int>(Writers.Empty)
+            };
+
+            var combined = formatters.Aggregate(ReduceJoin<int>(Write("|")));
+            
+            Assert.That(Writers.ToString(combined(15)), Is.EqualTo("1111|F|15"));
         }
     }
 }

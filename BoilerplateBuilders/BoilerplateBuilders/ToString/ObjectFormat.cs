@@ -81,7 +81,9 @@ namespace BoilerplateBuilders.ToString
                 throw new ArgumentNullException(nameof(members));
             }
 
-            var formatMembers = JoinMemberFormatters(members.Select(FormatObjectMember));
+            var formatMembers = members
+                .Select(FormatObjectMember)
+                .Aggregate(ReduceJoin<object>(Write(MemberSeparator)));
 
             var formatBody = Enclose(formatMembers, ObjectPrefixAndSuffix);
 
@@ -189,15 +191,6 @@ namespace BoilerplateBuilders.ToString
         {
             ObjectPrefixAndSuffix = (opening, closing);
             return this;
-        }
-
-        private Formatter<object> JoinMemberFormatters(IEnumerable<Formatter<object>> formatters)
-        {
-            var separator = Lift<object>(Write(MemberSeparator));
-
-            return formatters.Aggregate((first, second) =>
-                Sum(first, separator, second)
-            );
         }
 
         private Formatter<object> FormatObjectMember(MemberContext op)
