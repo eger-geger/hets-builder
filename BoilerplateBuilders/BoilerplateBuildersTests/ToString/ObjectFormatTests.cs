@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 using BoilerplateBuilders.Reflection;
 using BoilerplateBuilders.ToString;
@@ -14,7 +15,7 @@ namespace BoilerplateBuildersTests.ToString
 {
     public class ObjectFormatTests
     {
-        private static IEnumerable<MemberContext<Func<object, string>>> AccountFormattingMembers
+        private static IEnumerable<MemberContext<Func<object, string>>> AccountMembers
         {
             get
             {
@@ -37,12 +38,12 @@ namespace BoilerplateBuildersTests.ToString
                 );
             }
         }
-        
+
         [Test]
         public void EmptyBuilder()
         {
             var format = new ObjectFormat();
-            var toString = format.Compile(AccountFormattingMembers);
+            var toString = format.Compile(AccountMembers);
             var defaultPrefixAndSuffix = ValueTuple.Create<string, string>(null, null);
 
             Assert.That(format.Options, Is.EqualTo((ObjectFormatOptions) 0));
@@ -51,7 +52,7 @@ namespace BoilerplateBuildersTests.ToString
             Assert.That(format.ObjectPrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(format.MemberNamePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
             Assert.That(format.MemberValuePrefixAndSuffix, Is.EqualTo(defaultPrefixAndSuffix));
-            
+
             Assert.That(toString(new Account(10, "James", "777")), Is.EqualTo("10James777"));
         }
 
@@ -152,7 +153,7 @@ namespace BoilerplateBuildersTests.ToString
                             .Append(">")
                             .ToString()
                     );
-                
+
                 yield return new TestCaseData(IncludeClassName | IncludeMemberName)
                     .Returns(
                         new StringBuilder()
@@ -164,7 +165,7 @@ namespace BoilerplateBuildersTests.ToString
                             .Append(">")
                             .ToString()
                     );
-                
+
                 yield return new TestCaseData(IncludeMemberName)
                     .Returns(
                         new StringBuilder()
@@ -175,7 +176,7 @@ namespace BoilerplateBuildersTests.ToString
                             .Append(">")
                             .ToString()
                     );
-                
+
                 yield return new TestCaseData(None)
                     .Returns(
                         new StringBuilder()
@@ -202,15 +203,15 @@ namespace BoilerplateBuildersTests.ToString
                 .JoinMemberNameAndValueWith(":")
                 .JoinMembersWith(",");
 
-            return format.Compile(AccountFormattingMembers)(account);
+            return format.Compile(AccountMembers)(account);
         }
 
         [Test]
         public void ObjectFormatterFactoryMethodShouldThrowArgumentNullExceptionWhenSequenceOfFormattingMembersIsNull()
         {
             var factory = new ObjectFormat();
-            
-            Assert.Throws<ArgumentNullException>(()=> factory.Compile(null));
+
+            Assert.Throws<ArgumentNullException>(() => factory.Compile(null));
         }
 
         [Test]
@@ -223,8 +224,8 @@ namespace BoilerplateBuildersTests.ToString
                 .JoinMemberNameAndValueWith(": ")
                 .JoinMembersWith(", ");
 
-            var toString = format.Compile(AccountFormattingMembers);
-            
+            var toString = format.Compile(AccountMembers);
+
             Assert.That(toString(new Account(15, null, null)), Is.EqualTo(
                 "(Id: 15, Name: null, Phones: null)"
             ));
@@ -233,17 +234,25 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldUseDefaultToStringFunctionWhenOneWasNotProvidedExplicitly()
         {
-            //TODO test that default ToString is being used
+            var toString = ObjectFormat.CreateDefault()
+                .Compile(AccountMembers.Select(am =>
+                    new MemberContext<Func<object, string>>(am.Member, null, ContextSource.Implicit)
+                ));
+
+            Assert.That(
+                toString(new Account(42, "James")),
+                Is.EqualTo("Account(Id: \"42\", Name: \"James\", Phones: \"System.String[]\")")
+            );
         }
 
         [Test]
         public void ShouldCreateDefaultFormat()
         {
             var format = ObjectFormat.CreateDefault();
-            var toString = format.Compile(AccountFormattingMembers);
-            
+            var toString = format.Compile(AccountMembers);
+
             Assert.That(toString, Is.Not.Null);
-            
+
             Assert.That(
                 toString(new Account(42, "James", null)),
                 Is.EqualTo("Account(Id: \"42\", Name: \"James\")")
@@ -253,7 +262,19 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
         {
-            //TODO   
+            var firstFormat = ObjectFormat.CreateDefault()
+                .AddFlags(MemberPerLine)
+                .ObjectMemberNamePrefixAndSuffix("<", ">");
+
+            var firstToString = firstFormat.Compile(AccountMembers);
+
+            var secondFormat = ObjectFormat.CreateDefault();
+            var secondToString = secondFormat.Compile(AccountMembers);
+
+            Assert.That(firstFormat, Is.Not.SameAs(secondFormat));
+            Assert.That(firstToString, Is.Not.SameAs(secondToString));
+            Assert.That(secondToString(new Account(42, "James", null)),
+                Is.EqualTo("Account(Id: \"42\", Name: \"James\")"));
         }
     }
 }
