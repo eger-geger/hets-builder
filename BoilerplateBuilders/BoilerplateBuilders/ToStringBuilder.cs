@@ -71,7 +71,7 @@ namespace BoilerplateBuilders
         /// <see cref="CollectionFormat.CreateDefault"/> will be used when function is omitted (or null passed).
         /// </param>
         /// <returns>Updated <see cref="ToStringBuilder{TTarget}"/> instance.</returns>
-        public ToStringBuilder<TTarget> UseCollectionFormatter(
+        public ToStringBuilder<TTarget> UseCollectionFormat(
             Func<CollectionFormat, CollectionFormat> setup = null
         )
         {
@@ -89,7 +89,7 @@ namespace BoilerplateBuilders
         /// <see cref="DictionaryFormat.CreateDefault"/> will be used when function is omitted (or null passed).
         /// </param>
         /// <returns>Updated <see cref="ToStringBuilder{TTarget}"/> instance.</returns>
-        public ToStringBuilder<TTarget> UseDictionaryFormatter(
+        public ToStringBuilder<TTarget> UseDictionaryFormat(
             Func<DictionaryFormat, DictionaryFormat> setup = null
         )
         {
@@ -110,7 +110,7 @@ namespace BoilerplateBuilders
         /// <typeparam name="TKey">Type of keys of affected dictionaries.</typeparam>
         /// <typeparam name="TValue">Type of values of affected dictionaries.</typeparam>
         /// <returns>Updated <see cref="ToStringBuilder{TTarget}"/> instance.</returns>
-        public ToStringBuilder<TTarget> UseDictionaryFormatter<TKey, TValue>(
+        public ToStringBuilder<TTarget> UseDictionaryFormat<TKey, TValue>(
             Func<DictionaryFormat, DictionaryFormat> setup = null
         )
         {
@@ -126,7 +126,7 @@ namespace BoilerplateBuilders
         /// used <see cref="ObjectFormat"/> (the one passed to setup function) will be used. 
         /// </param>
         /// <returns>Updated <see cref="ToStringBuilder{TTarget}"/> instance.</returns>
-        public ToStringBuilder<TTarget> UseObjectFormatter(Func<ObjectFormat, ObjectFormat> setup)
+        public ToStringBuilder<TTarget> UseObjectFormat(Func<ObjectFormat, ObjectFormat> setup)
         {
             _objectFormat = SetupFormat(_objectFormat, setup);
             return this;

@@ -194,18 +194,32 @@ namespace BoilerplateBuildersTests.ToString
         [Test]
         public void ShouldApplyFormatToOldDictionary()
         {
-            var dict = new Hashtable
-            {
-                {7, "James Bond"},
-                {8, "Bill Timothy"},
-                {12, "Sam Johnston"}
-            };
-
             var toString = DictionaryFormat.CreateDefault().Compile();
 
             Assert.That(
-                toString(dict),
+                toString(new Hashtable
+                {
+                    {7, "James Bond"},
+                    {8, "Bill Timothy"},
+                    {12, "Sam Johnston"}
+                }),
                 Is.EqualTo("{12:'Sam Johnston', 8:'Bill Timothy', 7:'James Bond'}")
+            );
+        }
+
+        [Test]
+        public void ShouldApplyNonGenericFunctionToGenericDictionary()
+        {
+            var toString = DictionaryFormat.CreateDefault().Compile();
+
+            Assert.That(
+                toString(new Dictionary<int, string>
+                {
+                    {7, "James Bond"},
+                    {8, "Bill Timothy"},
+                    {12, "Sam Johnston"}
+                }),
+                Is.EqualTo("{7:'James Bond', 8:'Bill Timothy', 12:'Sam Johnston'}")
             );
         }
     }

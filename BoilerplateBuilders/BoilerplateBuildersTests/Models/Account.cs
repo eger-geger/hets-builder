@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
@@ -18,6 +19,8 @@ namespace BoilerplateBuildersTests.Models
         public string Name { get; }
 
         public string[] Phones { get; }
+        
+        public Dictionary<string, object> Extra { get; set; }
         
         public override string ToString()
         {

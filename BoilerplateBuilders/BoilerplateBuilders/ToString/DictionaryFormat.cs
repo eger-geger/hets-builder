@@ -150,9 +150,9 @@ namespace BoilerplateBuilders.ToString
 
         private static IEnumerable<KeyValuePair<object, object>> ToKeyValuePairSequence(IDictionary dictionary)
         {
-            return dictionary
-                .Cast<DictionaryEntry>()
-                .Select(entry => new KeyValuePair<object, object>(entry.Key, entry.Value));
+            var keys = dictionary.Keys.Cast<object>();
+            var values = dictionary.Values.Cast<object>();
+            return keys.Zip(values, (key, value) => new KeyValuePair<object, object>(key, value));
         }
         
         /// <summary>
