@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using BoilerplateBuilders.ToString;
@@ -41,9 +42,9 @@ namespace BoilerplateBuildersTests.ToString
             ValueTuple<string, string> emptyPrefixAndSuffix = (null, null);
 
             var factory = DictionaryFormat.CreateDefault();
-            
+
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.KeyValueSeparator, Is.EqualTo(":"));
             Assert.That(factory.KeyValuePairSeparator, Is.EqualTo(", "));
             Assert.That(factory.KeyPrefixAndSuffix, Is.EqualTo(emptyPrefixAndSuffix));
@@ -53,7 +54,7 @@ namespace BoilerplateBuildersTests.ToString
             Assert.That(factory.Options, Is.EqualTo(DictionaryFormatOptions.None));
             Assert.That(toString(Dictionary), Is.EqualTo("{0:'null', 1:'Leroy Jenkins', 7:'James Bond'}"));
         }
-        
+
         [Test]
         public void ShouldSetKeyValueSeparatorWithinOutput()
         {
@@ -62,7 +63,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetKeyValueSeparator("::");
 
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.KeyValueSeparator, Is.EqualTo("::"));
             Assert.That(toString(Dictionary), Is.EqualTo("{0::'null', 1::'Leroy Jenkins', 7::'James Bond'}"));
         }
@@ -75,7 +76,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetKeyValuePairSeparator("|");
 
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.KeyValuePairSeparator, Is.EqualTo("|"));
             Assert.That(toString(Dictionary), Is.EqualTo("{0:'null'|1:'Leroy Jenkins'|7:'James Bond'}"));
         }
@@ -88,7 +89,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetKeyPrefixAndSuffix("[", "]");
 
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.KeyPrefixAndSuffix, Is.EqualTo(("[", "]")));
             Assert.That(toString(Dictionary), Is.EqualTo("{[0]:'null', [1]:'Leroy Jenkins', [7]:'James Bond'}"));
         }
@@ -101,7 +102,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetValuePrefixAndSuffix("(", ")");
 
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.ValuePrefixAndSuffix, Is.EqualTo(("(", ")")));
             Assert.That(toString(Dictionary), Is.EqualTo("{0:(null), 1:(Leroy Jenkins), 7:(James Bond)}"));
         }
@@ -114,7 +115,7 @@ namespace BoilerplateBuildersTests.ToString
                 .SetKeyValuePrefixAndSuffix("<", ">");
 
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.KeyValuePairPrefixAndSuffix, Is.EqualTo(("<", ">")));
             Assert.That(toString(Dictionary), Is.EqualTo("{<0:'null'>, <1:'Leroy Jenkins'>, <7:'James Bond'>}"));
         }
@@ -125,9 +126,9 @@ namespace BoilerplateBuildersTests.ToString
             var factory = DictionaryFormat
                 .CreateDefault()
                 .SetDictionaryPrefixAndSuffix("<", ">");
-            
+
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.DictionaryPrefixAndSuffix, Is.EqualTo(("<", ">")));
             Assert.That(toString(Dictionary), Is.EqualTo("<0:'null', 1:'Leroy Jenkins', 7:'James Bond'>"));
         }
@@ -139,9 +140,9 @@ namespace BoilerplateBuildersTests.ToString
                 .CreateDefault()
                 .SetKeyValuePairSeparator(null)
                 .AddOptions(DictionaryFormatOptions.ItemPerLine);
-            
+
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.Options, Is.EqualTo(DictionaryFormatOptions.ItemPerLine));
             Assert.That(toString(Dictionary), Is.EqualTo(
                 new StringBuilder()
@@ -161,13 +162,13 @@ namespace BoilerplateBuildersTests.ToString
                 .CreateDefault()
                 .AddOptions(DictionaryFormatOptions.ItemPerLine)
                 .RemoveOptions(DictionaryFormatOptions.ItemPerLine);
-            
+
             var toString = factory.Compile<int, string>();
-            
+
             Assert.That(factory.Options, Is.EqualTo(DictionaryFormatOptions.None));
             Assert.That(toString(Dictionary), Is.EqualTo("{0:'null', 1:'Leroy Jenkins', 7:'James Bond'}"));
         }
-        
+
         [Test]
         public void ShouldAlwaysCreateNewInstanceOfDefaultFormat()
         {
@@ -177,16 +178,34 @@ namespace BoilerplateBuildersTests.ToString
                 .SetKeyValuePrefixAndSuffix("<", ">");
 
             var firstToString = firstFormat.Compile<int, string>();
-            
+
             var secondFormat = DictionaryFormat.CreateDefault();
             var secondToString = secondFormat.Compile<int, string>();
 
             Assert.That(secondFormat, Is.Not.SameAs(firstFormat));
             Assert.That(secondToString, Is.Not.SameAs(firstToString));
-            
+
             Assert.That(
                 secondToString(Dictionary),
                 Is.EqualTo("{0:'null', 1:'Leroy Jenkins', 7:'James Bond'}")
+            );
+        }
+
+        [Test]
+        public void ShouldApplyFormatToOldDictionary()
+        {
+            var dict = new Hashtable
+            {
+                {7, "James Bond"},
+                {8, "Bill Timothy"},
+                {12, "Sam Johnston"}
+            };
+
+            var toString = DictionaryFormat.CreateDefault().Compile();
+
+            Assert.That(
+                toString(dict),
+                Is.EqualTo("{12:'Sam Johnston', 8:'Bill Timothy', 7:'James Bond'}")
             );
         }
     }
